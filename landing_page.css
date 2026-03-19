@@ -1,0 +1,57 @@
+/*pagina inicial - VAGOS*/
+.landing_page {
+    background-color: lightgrey;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+/*todos os títulos de página na landing_page*/
+.landing_page>h3 {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+}
+
+/*VAGOS*/
+.landing_page>h3:first-child {
+    background-color: red;
+    top: 0;
+}
+
+/*SOBRE*/
+.landing_page>h3:nth-child(2) {
+    background-color: pink;
+    left: 0;
+}
+
+/*CONTEÚDO*/
+.landing_page>h3:nth-child(3) {
+    background-color: yellow;
+    bottom: 0;
+}
+
+/*ARQUIVO*/
+.landing_page>h3:nth-child(4) {
+    background-color: lightgreen;
+    right: 0;
+}
+
+/*pontos que remetem ao atlas/toolkit/zpu*/
+.dots {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 20px;
+    bottom: 5dvh;
+}
+
+.dots>h3 {
+    cursor: pointer;
+}

@@ -1,62 +1,38 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     width: 100vw;
     height: 100vh;
     margin: 0;
     border: 0;
-    padding: 0;
+    padding: 0;    
     overflow-x: hidden;
     font-family: Arial, sans-serif;
+    -ms-overflow-style: none;/* IE and Edge */
+}
+
+/*esconde as barras de scroll no Chrome, Safari and Opera*/
+body::-webkit-scrollbar {
+    display: none;
 }
 
 main {
     width: 100vw;
 }
 
-.container>div {
+.container {
     width: 100%;
+    position: relative;
+}
+
+/*afeta apenas SOBRE e ARQUIVO*/
+.about,
+.archive {
     height: 100dvh;
     position: absolute;
     top: 0;
-}
-
-/*pagina inicial - VAGOS*/
-.landing_page {
-    background-color: aqua;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-}
-
-h3 {
-    border: 0;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-}
-
-.landing_page>h3:first-child {
-    background-color: red;
-    top: 0;
-}
-
-.landing_page>h3:nth-child(2) {
-    background-color: pink;
-    left: 0;
-}
-
-.landing_page>h3:nth-child(3) {
-    background-color: yellow;
-    bottom: 0;
-}
-
-.landing_page>h3:nth-child(4) {
-    background-color: lightgreen;
-    right: 0;
 }
 
 /*pagina esquerda - SOBRE*/
@@ -69,4 +45,30 @@ h3 {
 .archive {
     background-color: lightgreen;
     left: 100%;
+}
+
+/*pagina baixo - CONTEÚDO*/
+.content {
+    background-color: rgb(144, 196, 238);
+    height: 300dvh;
+}
+
+.content>div {
+    height: 100dvh;
+    width: 100%;
+}
+
+/*atlas*/
+#atlas {
+    background-color: aqua;
+}
+
+/*toolkit*/
+#toolkit {
+    background-color: white;
+}
+
+/*zpu*/
+#zpu {
+    background-color: yellow;
 }

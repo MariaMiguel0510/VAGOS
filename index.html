@@ -7,22 +7,31 @@
     <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
 
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="landing_page.css">
     <title>VAGOS</title>
 </head>
 
 <body>
     <main>
-        <div class="container">
-            <div class="landing_page">
-                <h3>VAGOS</h3>
-                <h3 id="about_title">SOBRE</h3>
-                <h3 id="content_title">CONTEÚDO</h3>
-                <h3 id="archive_title">ARQUIVO</h3>
-            </div>
-            <div class="about">
-            </div>
-            <div class="archive">
-            </div>
+        <div class="container landing_page">
+            <h3>VAGOS</h3>
+            <h3 id="about_title">SOBRE</h3>
+            <h3 id="content_title">CONTEÚDO</h3>
+            <h3 id="archive_title">ARQUIVO</h3>
+            <nav class="dots">
+                <a id="atlas_title" href="#atlas">1</a>
+                <a id="toolkit_title" href="#toolkit">2</a>
+                <a id="zpu_title" href="#zpu">3</a>
+            </nav>
+        </div>
+        <div class="container about" id="about">
+        </div>
+        <div class="container archive">
+        </div>
+        <div class="container content">
+            <div id="atlas"></div>
+            <div id="toolkit"></div>
+            <div id="zpu"></div>
         </div>
     </main>
 
