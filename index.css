@@ -8,7 +8,6 @@ body {
     margin: 0;
     border: 0;
     padding: 0;    
-    overflow-x: hidden;
     font-family: Arial, sans-serif;
     -ms-overflow-style: none;/* IE and Edge */
 }
@@ -23,7 +22,7 @@ main {
 }
 
 .container {
-    width: 100%;
+    width: 100vw;
     position: relative;
 }
 
@@ -38,7 +37,7 @@ main {
 /*pagina esquerda - SOBRE*/
 .about {
     background-color: pink;
-    right: 100%;
+    right: 100vw;
 }
 
 /*pagina direita - ARQUIVO*/

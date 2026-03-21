@@ -1,9 +1,12 @@
-/*
+
 let about_title = document.getElementById('about_title');
 let about_container = document.querySelector('.about');
 let archive_title = document.getElementById('archive_title');
 let archive_container = document.querySelector('.archive');
+let landing_page_container = document.querySelector('.landing_page');
+let content_container = document.querySelector('.content');
 
+/*
 //abrir e fechar páginas
 function toggle(page, container, openValue, closedValue) {
     let isOpen = false; // estado inicial
@@ -26,32 +29,28 @@ function toggle(page, container, openValue, closedValue) {
 toggle(archive_title, archive_container, '100vw', '0vw');//arquivo
 toggle(about_title, about_container, '-100vw', '0vw');//sobre*/
 
-const aboutContainer = document.querySelector('.about');
-const archiveContainer = document.querySelector('.archive');
+//faz com que não haja scroll horizontal sem ser na landing page
+window.addEventListener('scroll', () => {
+  let rect = content_container.getBoundingClientRect();
 
-// posição atual das páginas
-let aboutPos = -100;   // em vw
-let archivePos = 100;  // em vw
+  let isVisible = rect.top < window.innerHeight && rect.bottom > 0;
 
-document.addEventListener('wheel', (e) => {
-    // scroll horizontal com Shift ou baseado no deltaX
-    if (e.deltaX !== 0 || e.shiftKey) {
-       // e.preventDefault(); // impede scroll horizontal padrão
+  if (isVisible) {
+    document.body.style.overflowX = 'hidden'; //desativa scroll horizontal
+  } else {
+    document.body.style.overflowX = 'auto'; //ativa scroll horizontal 
+  }
+});
 
-        // scroll para esquerda -> mostra about
-        if (e.deltaY < 0 || e.deltaX < 0) {
-            aboutPos = Math.min(0, aboutPos + 10); // move para dentro
-            aboutContainer.style.left = aboutPos + 'vw';
-        }
+//faz com que não haja scroll vertical sem ser na landing page
+window.addEventListener('scroll', () => {
+  let rect_2 = archive_container.getBoundingClientRect();
 
-        // scroll para direita -> mostra archive
-        if (e.deltaY > 0 || e.deltaX > 0) {
-            archivePos = Math.max(0, archivePos - 10); // move para dentro
-            archiveContainer.style.left = archivePos + 'vw';
-        }
+  let isVisible_2 = rect_2.left < window.innerWidth && rect_2.right > 0;
 
-        // animação suave
-        aboutContainer.style.transition = 'left 0.9s ease';
-        archiveContainer.style.transition = 'left 0.9s ease';
-    }
+  if (isVisible_2) {
+    document.body.style.overflowY = 'hidden'; //desativa scroll horizontal
+  } else {
+    document.body.style.overflowY = 'auto'; //ativa scroll horizontal 
+  }
 });
