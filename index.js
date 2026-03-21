@@ -6,7 +6,8 @@ let archive_container = document.querySelector('.archive');
 let landing_page_container = document.querySelector('.landing_page');
 let content_container = document.querySelector('.content');
 
-/*
+let visible = false;
+
 //abrir e fechar páginas
 function toggle(page, container, openValue, closedValue) {
     let isOpen = false; // estado inicial
@@ -28,29 +29,3 @@ function toggle(page, container, openValue, closedValue) {
 
 toggle(archive_title, archive_container, '100vw', '0vw');//arquivo
 toggle(about_title, about_container, '-100vw', '0vw');//sobre*/
-
-//faz com que não haja scroll horizontal sem ser na landing page
-window.addEventListener('scroll', () => {
-  let rect = content_container.getBoundingClientRect();
-
-  let isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-
-  if (isVisible) {
-    document.body.style.overflowX = 'hidden'; //desativa scroll horizontal
-  } else {
-    document.body.style.overflowX = 'auto'; //ativa scroll horizontal 
-  }
-});
-
-//faz com que não haja scroll vertical sem ser na landing page
-window.addEventListener('scroll', () => {
-  let rect_2 = archive_container.getBoundingClientRect();
-
-  let isVisible_2 = rect_2.left < window.innerWidth && rect_2.right > 0;
-
-  if (isVisible_2) {
-    document.body.style.overflowY = 'hidden'; //desativa scroll horizontal
-  } else {
-    document.body.style.overflowY = 'auto'; //ativa scroll horizontal 
-  }
-});

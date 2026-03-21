@@ -1,0 +1,17 @@
+deteta se estou a fazer scroll para cima o para baixo de cada vez que mudo e direção
+
+let prevScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+let prevScrollDirection = '';
+
+window.addEventListener('scroll', function() {
+  const st = window.pageYOffset || document.documentElement.scrollTop;
+  if (st > prevScrollTop && prevScrollDirection !== 'down') {
+    console.log('down');
+    prevScrollDirection = 'down';
+  }
+  else if (st < prevScrollTop && prevScrollDirection !== 'up') {
+    console.log('up');
+    prevScrollDirection = 'up';
+  }
+  prevScrollTop = st <= 0 ? 0 : st; // for Mobile or negative scrolling
+}, false);

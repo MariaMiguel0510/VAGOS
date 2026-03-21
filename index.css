@@ -10,6 +10,7 @@ body {
     padding: 0;    
     font-family: Arial, sans-serif;
     -ms-overflow-style: none;/* IE and Edge */
+    overflow-x: hidden;
 }
 
 /*esconde as barras de scroll no Chrome, Safari and Opera*/
@@ -22,7 +23,7 @@ main {
 }
 
 .container {
-    width: 100vw;
+    width: 100%;
     position: relative;
 }
 
@@ -37,7 +38,7 @@ main {
 /*pagina esquerda - SOBRE*/
 .about {
     background-color: pink;
-    right: 100vw;
+    right: 100%;
 }
 
 /*pagina direita - ARQUIVO*/

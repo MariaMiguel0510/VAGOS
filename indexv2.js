@@ -1,0 +1,111 @@
+
+let about_title = document.getElementById('about_title');
+let about_container = document.querySelector('.about');
+let archive_title = document.getElementById('archive_title');
+let archive_container = document.querySelector('.archive');
+let landing_page_container = document.querySelector('.landing_page');
+let content_container = document.querySelector('.content');
+
+let visible = false;
+
+/*
+//abrir e fechar páginas
+function toggle(page, container, openValue, closedValue) {
+    let isOpen = false; // estado inicial
+    page.addEventListener('click', function () {
+        //define o valor de 'left' baseado no estado atual
+        if (isOpen) {
+            container.style.left = closedValue;
+            page.style.zIndex = 5; //texto fica por cima
+        } else {
+            container.style.left = openValue;
+            page.style.zIndex = 0; //texto fica por baixo
+        }
+        container.style.transition = 'left 0.9s ease';
+
+        //alterna o estado
+        isOpen = !isOpen;
+    });
+}
+
+toggle(archive_title, archive_container, '100vw', '0vw');//arquivo
+toggle(about_title, about_container, '-100vw', '0vw');//sobre*/
+
+
+/*
+//faz com que não haja scroll horizontal sem ser na landing page
+
+window.addEventListener('scroll', () => {
+  let rect = content_container.getBoundingClientRect();
+
+  let isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+  if (isVisible) {
+    document.body.style.overflowX = 'hidden'; //desativa scroll horizontal
+    visible = false;
+  } else {
+    document.body.style.overflowX = 'auto'; //ativa scroll horizontal 
+    visible = true;
+  }
+});
+
+//faz com que não haja scroll vertical sem ser na landing page
+window.addEventListener('scroll', () => {
+  let rect_2 = archive_container.getBoundingClientRect();
+
+  let isVisible_2 = rect_2.left < window.innerWidth && rect_2.right > 0;
+
+  if (isVisible_2) {
+    document.body.style.overflowY = 'hidden'; //desativa scroll horizontal
+  } else {
+    document.body.style.overflowY = 'auto'; //ativa scroll horizontal 
+  }
+});
+
+
+let prevScrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+let prevScrollDirection = '';
+
+window.addEventListener('scroll', function () {
+  let sl = window.pageXOffset || document.documentElement.scrollLeft;
+
+  if (sl > prevScrollLeft && prevScrollDirection !== 'right') {
+    console.log('right');
+    prevScrollDirection = 'right';
+    if (visible == true) {
+      archive_container.style.left = 0;
+      archive_container.style.transition = 'left 0.9s ease';
+
+    }
+  }
+  else if (sl < prevScrollLeft && prevScrollDirection !== 'left') {
+    console.log('left');
+    prevScrollDirection = 'left';
+  }
+
+  prevScrollLeft = sl <= 0 ? 0 : sl;
+}, false);*/
+
+
+let isAnimating = false;
+
+window.addEventListener('wheel', (e) => {
+  // detectar scroll horizontal (trackpad) OU scroll vertical convertido
+  let delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+
+  if (delta > 0 && !isAnimating) {
+    // scroll para a direita
+    isAnimating = true;
+
+    archive_container.style.transform = 'translateX(0)';
+    archive_container.style.transition = 'transform 0.8s ease';
+
+    // bloquear scroll real
+    e.preventDefault();
+
+    setTimeout(() => {
+      isAnimating = false;
+    }, 800);
+  }
+
+}, { passive: false });
