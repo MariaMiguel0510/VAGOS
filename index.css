@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 html {
     scroll-behavior: smooth;
 }
@@ -7,9 +9,10 @@ body {
     height: 100vh;
     margin: 0;
     border: 0;
-    padding: 0;    
-    font-family: Arial, sans-serif;
-    -ms-overflow-style: none;/* IE and Edge */
+    padding: 0;
+    font-family: "Outfit", sans-serif;
+    -ms-overflow-style: none;
+    /* IE and Edge */
     overflow-x: hidden;
 }
 
@@ -43,14 +46,8 @@ main {
 
 /*pagina direita - ARQUIVO*/
 .archive {
-    background-color: lightgreen;
+    background-color: #FDF7EE;
     left: 100%;
-}
-
-/*pagina baixo - CONTEÚDO*/
-.content {
-    background-color: rgb(144, 196, 238);
-    height: 300dvh;
 }
 
 .content>div {
