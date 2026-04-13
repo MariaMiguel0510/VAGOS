@@ -18,7 +18,7 @@ window.addEventListener('scroll', () => {
     dots.forEach(dot => dot.style.backgroundColor = "");
 
     if (window.scrollY < window.innerHeight - 95) {
-        dots.style.backgroundColor = "#FDF7EE";
+        dots[i].style.backgroundColor = "#FDF7EE";
     } else if (window.scrollY < (2 * window.innerHeight) - 95) {
         dots[0].style.backgroundColor = "black";
     } else if (window.scrollY < (3 * window.innerHeight) - 95) {

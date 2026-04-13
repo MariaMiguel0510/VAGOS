@@ -3,6 +3,48 @@
     position: absolute;
     top: 0;
     z-index: 10;
-    background-color: pink;
+    background-color: #FDF7EE;
     right: 100%;
+}
+
+.about>div {
+    width: 94vw;/*tem que ser menor que a dimensão do contentor por causa do padding*/
+    height: 100%;
+    background-color: pink;
+    padding: 10vh 0 0 6vw; /*top/x/x/left*/
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.about_title {
+    font-size: 6vw;
+    margin: 0;
+    font-weight: 500;
+}
+
+.about_text {
+    width: 53%;
+    font-size: 1.2vw;
+    line-height: 160%;
+}
+
+.about_equipa>ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.about_equipa>ul>li {
+    margin-top: 1vh;
+}
+
+#close_about {
+    position: absolute;
+    cursor: pointer;
+    writing-mode: vertical-lr;
+    z-index: 10;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%) scale(-1, -1);
+    margin-right: 60px;
 }
