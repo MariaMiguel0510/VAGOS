@@ -54,7 +54,7 @@
     flex-direction: row;
     gap: 15px;
     bottom: 7.5dvh;
-    z-index: 10;
+    z-index: 5;
 }
 
 .dots>a {

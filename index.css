@@ -36,6 +36,7 @@ main {
     height: 100dvh;
     position: absolute;
     top: 0;
+    z-index: 10;
 }
 
 /*pagina esquerda - SOBRE*/
