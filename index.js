@@ -1,9 +1,13 @@
 
 //ABOUT + ARCHIVE ---------------
-let about_title = document.getElementById('about_title');
+let open_about = document.getElementById('open_about');
+let close_about = document.getElementById('close_about');
 let about_container = document.querySelector('.about');
-let archive_title = document.getElementById('archive_title');
+
+let open_archive = document.getElementById('open_archive');
+let close_archive = document.getElementById('close_archive');
 let archive_container = document.querySelector('.archive');
+
 
 //CONTENT DOTS ------------------
 let dots = document.querySelectorAll('.dots a');
@@ -25,38 +29,35 @@ window.addEventListener('scroll', () => {
 });
 
 //OPEN/CLOSE ABOUT/ARCHIVE
-toggle(archive_title, archive_container, '100vw', '0vw', true);//arquivo
-toggle(about_title, about_container, '-100vw', '0vw', false);//sobre
+toggle(open_archive, close_archive, archive_container, '100vw', '0vw', false);//arquivo
+toggle(open_about, close_about, about_container, '100vw', '0vw', true);//sobre
 
-//abrir e fechar páginas
-function toggle(page, container, openValue, closedValue, move_left) {
-    let isOpen = true; // estado inicial
+function toggle(openBtn, closeBtn, container, hiddenPosition, visiblePosition, itsabout) {
 
-    if (move_left == true) {//se tiver escondido para a direita
+    if (itsabout == false) {//se for o arqchive
         container.style.transition = 'left 0.9s ease';
     } else {
         container.style.transition = 'right 0.9s ease';
     }
 
-    page.addEventListener('click', function () {
-        if (isOpen) {
-            if (move_left == true) {
-                container.style.left = closedValue;
-            } else {
-                container.style.right = closedValue;
-            }
-            lockScroll(true);
+    // ABRIR
+    openBtn.addEventListener('click', function () {
+        if (itsabout == false) {//se for o archive
+            container.style.left = visiblePosition;
         } else {
-            if (move_left == true) {
-                container.style.left = openValue;
-            } else {
-                container.style.right = openValue;
-            }
-            lockScroll(false);//bloqueia o scroll
+            container.style.right = visiblePosition;
         }
+        lockScroll(true);
+    });
 
-        //alterna o estado
-        isOpen = !isOpen;
+    // FECHAR
+    closeBtn.addEventListener('click', function () {
+         if (itsabout == false) {//se for o archive
+            container.style.left = hiddenPosition;
+        } else {
+            container.style.right = hiddenPosition;
+        }
+        lockScroll(false);
     });
 }
 

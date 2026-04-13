@@ -26,7 +26,7 @@
 }
 
 /*SOBRE*/
-#about_title {
+#open_about {
     cursor: pointer;
     left: 0;
     writing-mode: vertical-lr;
@@ -39,7 +39,7 @@
 }
 
 /*ARQUIVO*/
-#archive_title {
+#open_archive {
     cursor: pointer;
     right: 0;
     writing-mode: vertical-lr;
