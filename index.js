@@ -24,6 +24,9 @@ window.addEventListener('scroll', () => {
     }
 });
 
+//OPEN/CLOSE ABOUT/ARCHIVE
+toggle(archive_title, archive_container, '100vw', '0vw', true);//arquivo
+toggle(about_title, about_container, '-100vw', '0vw', false);//sobre
 
 //abrir e fechar páginas
 function toggle(page, container, openValue, closedValue, move_left) {
@@ -42,12 +45,14 @@ function toggle(page, container, openValue, closedValue, move_left) {
             } else {
                 container.style.right = closedValue;
             }
+            lockScroll(true);
         } else {
             if (move_left == true) {
                 container.style.left = openValue;
             } else {
                 container.style.right = openValue;
             }
+            lockScroll(false);//bloqueia o scroll
         }
 
         //alterna o estado
@@ -55,18 +60,11 @@ function toggle(page, container, openValue, closedValue, move_left) {
     });
 }
 
-toggle(archive_title, archive_container, '100vw', '0vw', true);//arquivo
-toggle(about_title, about_container, '-100vw', '0vw', false);//sobre
-
-//bloqueia o scroll no about e no archive
-window.addEventListener('scroll', () => {
-  let rect_2 = archive_container.getBoundingClientRect();
-
-  let isVisible_2 = rect_2.left < window.innerWidth && rect_2.right > 0;
-
-  if (isVisible_2) {
-    document.body.style.overflowY = 'hidden'; //desativa scroll horizontal
-  } else {
-    document.body.style.overflowY = 'auto'; //ativa scroll horizontal 
-  }
-});
+//bloqueia o scroll
+function lockScroll(lock) {
+    if (lock) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+    }
+}
