@@ -1,8 +1,8 @@
-.about {
+.archive {
     height: 100dvh;
     position: absolute;
     top: 0;
     z-index: 10;
-    background-color: pink;
-    right: 100%;
+    background-color: #FDF7EE;
+    left: 100%;
 }

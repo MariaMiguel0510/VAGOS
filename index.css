@@ -25,48 +25,8 @@ main {
     width: 100vw;
 }
 
+/*comum a todas as secções/contentainers*/
 .container {
     width: 100%;
     position: relative;
-}
-
-/*afeta apenas SOBRE e ARQUIVO*/
-.about,
-.archive {
-    height: 100dvh;
-    position: absolute;
-    top: 0;
-    z-index: 10;
-}
-
-/*pagina esquerda - SOBRE*/
-.about {
-    background-color: pink;
-    right: 100%;
-}
-
-/*pagina direita - ARQUIVO*/
-.archive {
-    background-color: #FDF7EE;
-    left: 100%;
-}
-
-.content>div {
-    height: 100dvh;
-    width: 100%;
-}
-
-/*atlas*/
-#atlas {
-    background-color: aqua;
-}
-
-/*toolkit*/
-#toolkit {
-    background-color: white;
-}
-
-/*zpu*/
-#zpu {
-    background-color: yellow;
 }
