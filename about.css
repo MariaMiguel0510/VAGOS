@@ -9,12 +9,12 @@
 
 .about>div {
     width: 94vw;
-    height: 88vh;
+    height: 90vh;
     position: relative;
     display: flex;
     flex-direction: column;
     padding-left: 6vw;
-    padding-top: 12vh;
+    padding-top: 10vh;
 }
 
 
@@ -27,14 +27,11 @@
 }
 
 .about_text {
-    overflow-y: auto;
-    width: 57%;
-    height: 21vh;
+    width: 53vw;
     font-size: 1.2vw;
     line-height: 160%;
     position: relative;
     margin-top: 4vh;
-    margin-bottom: 15vh;
 }
 
 .about_text>p {
@@ -42,9 +39,36 @@
     margin-right: 2vw;
 }
 
-/*esconde as barras de scroll no Chrome, Safari and Opera*/
-body::-webkit-scrollbar {
+.show {
+    display: block;
+    margin: 0;
+    margin-top: 2.5vh;
+    margin-bottom: 10vh;
+    font-size: 1.1vw;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#more{
+    display: block;
+}
+
+#less{
     display: none;
+}
+
+/*esconde as barras de scroll no Chrome, Safari and Opera*/
+.about_text::-webkit-scrollbar {
+    background-color: #FDF7EE;
+    width: 7px;
+}
+
+.about_text::-webkit-scrollbar-thumb {
+    background: black;
+}
+
+.about_text::-webkit-scrollbar-track {
+  background-color:  #E7E1D5; 
 }
 
 /*------------------------- EQUIPA ----------------------------*/

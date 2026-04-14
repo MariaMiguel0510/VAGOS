@@ -3,6 +3,9 @@
 let open_about = document.getElementById('open_about');
 let close_about = document.getElementById('close_about');
 let about_container = document.querySelector('.about');
+let more = document.getElementById('more');
+let less = document.getElementById('less');
+let about_text = document.querySelector('.about_text');
 
 let open_archive = document.getElementById('open_archive');
 let close_archive = document.getElementById('close_archive');
@@ -30,7 +33,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-//OPEN/CLOSE ABOUT/ARCHIVE
+//OPEN/CLOSE ABOUT/ARCHIVE ---------------------------------------------------
 toggle(open_archive, close_archive, archive_container, '100vw', '0vw', false);//arquivo
 toggle(open_about, close_about, about_container, '100vw', '0vw', true);//sobre
 
@@ -70,4 +73,25 @@ function lockScroll(lock) {
     } else {
         document.body.style.overflow = 'auto';
     }
+}
+
+//ABOUT VER MAIS -------------------------------------------------------
+
+toggleBtn(more, true);
+toggleBtn(less, false);
+
+function toggleBtn(botao, show) {
+    botao.addEventListener('click', function () {
+        if (show === true) { //mostra mais informação
+            more.style.display = "none";
+            less.style.display = "block";
+            about_text.style.overflow = "auto";
+            about_text.style.height = "28vh";
+        } else { //mostra menos
+            more.style.display = "block";
+            less.style.display = "none";
+            about_text.style.overflow = "hidden";
+            about_text.style.height = "21vh";
+        }
+    });
 }
