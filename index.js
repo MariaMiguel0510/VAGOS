@@ -91,7 +91,7 @@ function toggleBtn(botao, show) {
             more.style.display = "block";
             less.style.display = "none";
             about_text.style.overflow = "hidden";
-            about_text.style.height = "21vh";
+            about_text.style.height = "16vh";
         }
     });
 }

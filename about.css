@@ -27,7 +27,9 @@
 }
 
 .about_text {
-    width: 53vw;
+    width: 55.5vw;
+    height: 16vh;
+    overflow-y: hidden;
     font-size: 1.2vw;
     line-height: 160%;
     position: relative;
