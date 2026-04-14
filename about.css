@@ -8,35 +8,68 @@
 }
 
 .about>div {
-    width: 94vw;/*tem que ser menor que a dimensão do contentor por causa do padding*/
-    height: 100%;
-    background-color: pink;
-    padding: 10vh 0 0 6vw; /*top/x/x/left*/
+    width: 94vw;
+    height: 88vh;
     position: relative;
     display: flex;
     flex-direction: column;
+    padding-left: 6vw;
+    padding-top: 12vh;
 }
 
+
+/*------------------------- SOBRE ----------------------------*/
 .about_title {
-    font-size: 6vw;
+    font-size: 5.5vw;
     margin: 0;
     font-weight: 500;
+    line-height: 1;
 }
 
 .about_text {
-    width: 53%;
+    overflow-y: auto;
+    width: 57%;
+    height: 21vh;
     font-size: 1.2vw;
     line-height: 160%;
+    position: relative;
+    margin-top: 4vh;
+    margin-bottom: 15vh;
 }
 
+.about_text>p {
+    margin: 0;
+    margin-right: 2vw;
+}
+
+/*esconde as barras de scroll no Chrome, Safari and Opera*/
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/*------------------------- EQUIPA ----------------------------*/
+.about_subtitle {
+    font-weight: 600;
+    margin-top: 0;
+}
+
+.about_equipa {
+    width: 70%;
+}
+
+
+/*lista de nomes equipa*/
 .about_equipa>ul {
     list-style-type: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    row-gap: 1vh;
+    column-gap: -1vw;
+    font-size: 1.2vw;
 }
 
-.about_equipa>ul>li {
-    margin-top: 1vh;
-}
 
 #close_about {
     position: absolute;
