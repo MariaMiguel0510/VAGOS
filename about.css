@@ -46,7 +46,6 @@
     display: block;
     margin: 0;
     margin-top: 2.5vh;
-    margin-bottom: 10vh;
     font-size: 1.1vw;
     font-weight: 600;
     cursor: pointer;
@@ -75,16 +74,17 @@
 }
 
 /*------------------------- EQUIPA ----------------------------*/
+.about_equipa {
+    width: 70%;
+    position: absolute;
+    top: 63vh;
+}
+
 .about_subtitle {
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 2vh;
 }
-
-.about_equipa {
-    width: 70%;
-}
-
 
 /*lista de nomes equipa*/
 .about_equipa>ul {
