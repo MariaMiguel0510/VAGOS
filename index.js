@@ -86,7 +86,7 @@ function toggleBtn(botao, show) {
             more.style.display = "none";
             less.style.display = "block";
             about_text.style.overflow = "auto";
-            about_text.style.height = "28vh";
+            about_text.style.height = "25vh";
         } else { //mostra menos
             more.style.display = "block";
             less.style.display = "none";

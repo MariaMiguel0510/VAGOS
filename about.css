@@ -9,12 +9,13 @@
 
 .about>div {
     width: 94vw;
-    height: 90vh;
+    height: 82vh;
     position: relative;
     display: flex;
     flex-direction: column;
     padding-left: 6vw;
     padding-top: 10vh;
+    padding-bottom: 8vh;
 }
 
 
@@ -77,6 +78,7 @@
 .about_subtitle {
     font-weight: 600;
     margin-top: 0;
+    margin-bottom: 2vh;
 }
 
 .about_equipa {
@@ -86,6 +88,7 @@
 
 /*lista de nomes equipa*/
 .about_equipa>ul {
+    margin-top: 0;
     list-style-type: none;
     padding: 0;
     display: grid;
@@ -96,6 +99,19 @@
     font-size: 1.2vw;
 }
 
+
+/*------------------------- LOGOS DE APOIO ----------------------------*/
+.about_logos{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+}
+
+.about_logos>img{
+    height: 30px;
+    width: auto;
+}
 
 #close_about {
     position: absolute;
