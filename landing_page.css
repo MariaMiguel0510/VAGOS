@@ -1,4 +1,3 @@
-
 /*pagina inicial - VAGOS*/
 .landing_page {
     background-color: #FDF7EE;
@@ -9,11 +8,12 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
-    right: 0;
+    left: 0;
+    transition: all 0.9s ease;/*transicao para deslocar landing page*/
 }
 
 .video {
-    width:100%;  
+    width: 100%;
     height: 100%;
 }
 

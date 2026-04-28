@@ -4,7 +4,8 @@
     top: 0;
     z-index: 10;
     background-color: #FDF7EE;
-    right: 100%;
+    right: 100vw;
+    transition: all 0.9s ease;
 }
 
 .about>div {

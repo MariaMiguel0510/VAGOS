@@ -4,5 +4,6 @@
     top: 0;
     z-index: 10;
     background-color: #FDF7EE;
-    left: 100%;
+    left: 100vw;
+    transition: left 0.9s ease;
 }
