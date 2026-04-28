@@ -3,6 +3,7 @@
 let open_about = document.getElementById('open_about');
 let close_about = document.getElementById('close_about');
 let about_container = document.querySelector('.about');
+
 let more = document.getElementById('more');
 let less = document.getElementById('less');
 let about_text = document.querySelector('.about_text');
@@ -11,6 +12,7 @@ let open_archive = document.getElementById('open_archive');
 let close_archive = document.getElementById('close_archive');
 let archive_container = document.querySelector('.archive');
 
+let landing_page = document.querySelector('.landing_page')
 
 //CONTENT DOTS ------------------
 let dots = document.querySelectorAll('.dots a');
@@ -75,8 +77,9 @@ function lockScroll(lock) {
     }
 }
 
-//ABOUT VER MAIS -------------------------------------------------------
 
+
+//ABOUT VER MAIS -------------------------------------------------------
 toggleBtn(more, true);
 toggleBtn(less, false);
 
