@@ -1,115 +1,103 @@
 .about {
     height: 100dvh;
+    width: 100vw;
+
     position: absolute;
     top: 0;
-    z-index: 10;
-    background-color: #FDF7EE;
     right: 100vw;
     transition: all 0.9s ease;
+    z-index: 10;
+    background-color: #FDF7EE;
+    font-weight: 350;
 }
 
 .about>div {
-    width: 94vw;
-    height: 82vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding-left: 6vw;
-    padding-top: 10vh;
-    padding-bottom: 8vh;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: auto auto auto auto;
+    gap: 10px;
+    padding: 0 7.9vw 0 7.9vw;
+    align-content: center;
+    height: 100%;
 }
 
-
-/*------------------------- SOBRE ----------------------------*/
 .about_title {
-    font-size: 5.5vw;
+    grid-column: 1 / 3;
+    grid-row: 1;
+    font-size: 4vw;
     margin: 0;
     font-weight: 500;
     line-height: 1;
 }
 
-.about_text {
-    width: 55.5vw;
-    height: 16vh;
-    overflow-y: hidden;
-    font-size: 1.2vw;
-    line-height: 160%;
-    position: relative;
-    margin-top: 4vh;
-}
-
-.about_text>p {
-    margin: 0;
-    margin-right: 2vw;
-}
-
-.show {
-    display: block;
-    margin: 0;
-    margin-top: 2.5vh;
-    font-size: 1.1vw;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-#more{
-    display: block;
-}
-
-#less{
-    display: none;
-}
-
-/*esconde as barras de scroll no Chrome, Safari and Opera*/
-.about_text::-webkit-scrollbar {
-    background-color: #FDF7EE;
-    width: 7px;
-}
-
-.about_text::-webkit-scrollbar-thumb {
-    background: black;
-}
-
-.about_text::-webkit-scrollbar-track {
-  background-color:  #E7E1D5; 
-}
-
-/*------------------------- EQUIPA ----------------------------*/
-.about_equipa {
-    width: 70%;
-    position: absolute;
-    top: 63vh;
-}
-
 .about_subtitle {
     font-weight: 600;
     margin-top: 0;
-    margin-bottom: 2vh;
+    margin-bottom: 1.4vh;
+}
+
+.about_text {
+    font-size: 1.04vw;
+    line-height: 133%;
+    position: relative;
+    grid-column: 1 / 5;
+    grid-row: 2 / 5;
+}
+
+.about_text>p {
+    margin: 9px 0px 0px 0px;
+}
+
+
+/*------------------------- TÓPICOS ----------------------------*/
+.about_topicos {
+    grid-column: 6 / 9;
+    grid-row: 2;
+}
+
+/*lista de tópicos - o que pretendemos fazer*/
+.about_topicos>ol {
+    padding: 0;
+    font-size: 0.95vw;
+    display: grid;
+    row-gap: 4px;
+    list-style-position: inside;
+    margin: 0;
+}
+
+
+/*------------------------- EQUIPA ----------------------------*/
+.about_equipa {
+    grid-column: 6 / 9;
+    grid-row: 3;
+    align-self: center;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
 }
 
 /*lista de nomes equipa*/
 .about_equipa>ul {
-    margin-top: 0;
     list-style-type: none;
     padding: 0;
+    margin: 0;
+    font-size: 0.95vw;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, auto);
-    row-gap: 1vh;
-    column-gap: -1vw;
-    font-size: 1.2vw;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+    row-gap: 3px;
 }
+
 
 
 /*------------------------- LOGOS DE APOIO ----------------------------*/
-.about_logos{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    margin-top: auto;
+.about_logos {
+    grid-column: 6 / 9;
+    grid-row: 4;
+    
+    align-self: end;
 }
 
-.about_logos>img{
+.about_logos>img {
     height: 30px;
     width: auto;
 }
