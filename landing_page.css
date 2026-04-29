@@ -1,6 +1,6 @@
 /*pagina inicial - VAGOS*/
 .landing_page {
-    background-color: #FDF7EE;
+    background-color: #F7F2EA;
     height: 100vh;
     position: relative;
     display: flex;
@@ -59,8 +59,7 @@
 }
 
 .dots>a {
-    display: inline-block;
-    /* ou block */
+    display: inline-block;/* ou block */
     width: 0.3vw;
     height: 0.3vw;
     border: 2px solid black;

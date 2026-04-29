@@ -3,7 +3,7 @@
     position: absolute;
     top: 0;
     z-index: 10;
-    background-color: #FDF7EE;
+    background-color: #F7F2EA;
     left: 100vw;
     transition: left 0.9s ease;
 }
