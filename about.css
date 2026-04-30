@@ -9,19 +9,15 @@
     z-index: 10;
     font-weight: 350;
     background-color: #F7F2EA;
-
-    border: 3vw solid white;
-    box-sizing: border-box;
 }
 
 .about>div {
-    position: relative;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto auto auto auto;
     gap: 10px;
-    padding: 0 6vw 0 6vw;
-    align-content: center;
+    padding: 0 9vw 0 7vw;
+    align-content: initial;
     height: 100%;
 }
 
@@ -32,6 +28,7 @@
     margin: 0;
     font-weight: 500;
     line-height: 1;
+    margin-top: 10px;
 }
 
 .about_subtitle {
@@ -103,7 +100,7 @@
 }
 
 .about_logos>img {
-    height: 30px;
+    height: 60px;
     width: auto;
 }
 
@@ -116,15 +113,44 @@
     right: 0;
     transform: translateY(-50%) scale(-1, -1);
     font-weight: 500;
+    margin-right: 60px;
 }
 
-.peca {
-    left: 6vw;
+.frame {
     position: absolute;
-    height: 40px;
-    background-color: #F7F2EA;
     padding: 0;
     margin: 0;
-    width: 505px;
+    width: 100%;
+    height: 100%;
+    border: 3vw solid white;
     top: 0;
+    background-color: transparent;
+    box-sizing: border-box;
+    z-index: -10;
+}
+
+.peca{
+    position: absolute;
+    background-color: #F7F2EA;
+    width: 50vw;
+    left: 8vw;
+    height: 40px;
+    bottom: -3vw;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+
+
+.rect{
+    position: absolute;
+    background-color: #F7F2EA;
+    width: 50vw;
+    right: 8vw;
+    height: 40px;
+    top: -3vw;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
