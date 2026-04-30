@@ -9,14 +9,18 @@
     z-index: 10;
     font-weight: 350;
     background-color: #F7F2EA;
+
+    border: 3vw solid white;
+    box-sizing: border-box;
 }
 
 .about>div {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto auto auto auto;
     gap: 10px;
-    padding: 0 8vw 0 8vw;
+    padding: 0 6vw 0 6vw;
     align-content: center;
     height: 100%;
 }
@@ -37,15 +41,15 @@
 }
 
 .about_text {
-    font-size: 1.035vw;
+    font-size: 1.04vw;
     line-height: 130%;
     position: relative;
     grid-column: 1 / 5;
     grid-row: 2 / 5;
 }
 
-.about_text>p {
-    margin: 9px 0px 0px 0px;
+.about_text>p{
+    margin: 6px 0px 0px 0px;
     /*text-indent: 10px;*/
 }
 
@@ -111,17 +115,16 @@
     top: 50%;
     right: 0;
     transform: translateY(-50%) scale(-1, -1);
-    margin-right: 60px;
     font-weight: 500;
 }
 
-/*------------------------- Moldura Branca ----------------------------*/
-.frame {
+.peca {
+    left: 6vw;
     position: absolute;
+    height: 40px;
+    background-color: #F7F2EA;
+    padding: 0;
+    margin: 0;
+    width: 505px;
     top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: none;
-    border: 40px solid white;
-    box-sizing: border-box;
 }
