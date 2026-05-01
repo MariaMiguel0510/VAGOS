@@ -1,25 +1,22 @@
-let container = document.querySelector('.teste');
-let colunas = 8;//nº total de colunas existentes
+let container = document.querySelector('.spaces_container');
 
-space_container(container, 'div', colunas);
+space_container(container, 'div');
 
 
-function space_container(selected, name, total) {
+function space_container(selected, name) {
     let rect = document.createElement(name);
 
-    let start = Math.floor(Math.random() * (total - 1)) + 1;//define coluna início
-    let end = Math.floor(Math.random() * (total - start)) + start + 1;//define coluna fim
+    let min = 3;
+    let max = 10;
+
+    let start = Math.floor(Math.random() * (max - min)) + min;
+    let end = Math.floor(Math.random() * (max - start)) + start + 1;
 
     rect.style.height = '40px';
     rect.style.backgroundColor = '#F7F2EA';
-    rect.style.alignSelf = 'end';
-    rect.style.zIndex = '10';
 
-    //posição na grid
     rect.style.gridColumn = `${start} / ${end}`;
-
-    //última linha
-    rect.style.gridRow = "4";
+    rect.style.gridRow = "6";
 
     selected.appendChild(rect);
 
