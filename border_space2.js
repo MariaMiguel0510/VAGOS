@@ -28,11 +28,11 @@ function createRect(container, type, start, end, fixed) {
     rect.style.backgroundColor = '#F7F2EA';
 
     if (type == 'row') {
-        rect.style.height = '40px';
+        rect.style.height = '6.5vh';
         rect.style.gridColumn = `${start} / ${end}`;
         rect.style.gridRow = fixed;
     } else if (type == 'col') {
-        rect.style.width = '40px';
+        rect.style.width = '6.5vh';
         rect.style.gridColumn = fixed;
         rect.style.gridRow = `${start} / ${end}`;
     }
