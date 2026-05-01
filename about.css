@@ -144,6 +144,6 @@
     height: 100%;
     top: 0;
     display: grid;    
-    grid-template-columns: 6.5vh 4.5vw repeat(8, 0.8fr) 7vw;
+    grid-template-columns: 6.5vh 4.5vw repeat(8, 0.8fr) 10vw;
     grid-template-rows: 6.5vh 7vh 1fr 1fr 1fr 1fr 7vh 6.5vh;
 }
