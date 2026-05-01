@@ -116,10 +116,11 @@
     right: 0.2vw;
     cursor: pointer;
     z-index: 10;
-    width: 70px; 
+    width: 12vh; 
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
 }
+
 
 .frame {
     position: absolute;
