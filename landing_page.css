@@ -26,6 +26,7 @@
     font-weight: 500;
 }
 
+
 /*SOBRE*/
 #open_about {
     cursor: pointer;
@@ -67,8 +68,14 @@
 }
 
 /*----------------secções da homepage---------------------*/
-.content>div {
+.content{
+    position: absolute;
     height: 100dvh;
+    width: 100vw;
+}
+
+.content>div {
+    height: 100%;
     width: 100%;
 }
 

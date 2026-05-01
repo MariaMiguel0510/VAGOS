@@ -1,14 +1,5 @@
 .about {
-    height: 100dvh;
-    width: 100vw;
-
-    position: absolute;
-    top: 0;
     right: 100vw;
-    transition: all 0.9s ease;
-    z-index: 10;
-    font-weight: 350;
-    background-color: #F7F2EA;
 }
 
 .grid_container {
@@ -28,12 +19,6 @@
 
 .about_title {
     grid-area: title;
-
-    font-size: 8.5vh;
-    font-weight: 500;
-    line-height: 1;
-    margin: 10px 0 4vh 0;
-    z-index: 10;
 }
 
 .about_subtitle {
@@ -105,46 +90,15 @@
     grid-area: logos;
 }
 
+
 .about_logos>img {
     width: 100%;
     height: auto;
 }
 
 
-#close_about {
-    position: absolute;
+#close_about{
     right: 0.2vw;
-    cursor: pointer;
-    z-index: 10;
-    width: 12vh; 
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
 }
 
 
-.frame {
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    border: 6.5vh solid white;
-    top: 0;
-    background-color: transparent;
-    box-sizing: border-box;
-    z-index: -10;
-}
-
-
-
-.spaces_container{    
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    display: grid;    
-    grid-template-columns: 6.5vh 4.5vw repeat(8, 0.8fr) 10vw;
-    grid-template-rows: 6.5vh 7vh 1fr 1fr 1fr 1fr 7vh 6.5vh;
-}

@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
 
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="landing_page.css">
+    <link rel="stylesheet" href="teste.css">
     <link rel="stylesheet" href="about.css">
     <link rel="stylesheet" href="archive.css">
+    <link rel="stylesheet" href="landing_page.css">
     <title>VAGOS</title>
 </head>
 
@@ -19,9 +19,9 @@
         <div class="container landing_page">
 
             <div class="containerVideo">
-                <video class="video" autoplay muted>
+                <!--<video class="video" autoplay muted>
                     <source src="./media/animacao_logo_site.mp4" type="video/mp4">
-                </video>
+                </video>-->
             </div>
 
             <h3 id="open_about">SOBRE</h3>
@@ -40,9 +40,11 @@
 
         <!--------------------- ABOUT --------------------->
         <div class="container about">
-            <img id="close_about" src="./media/logos/logo_vagos.svg" alt="vagos">
+
+            <img class="close" id="close_about" src="./media/logos/logo_vagos.svg" alt="vagos">
             <div class="grid_container">
-                <h1 class="about_title">SOBRE</h1>
+
+                <h1 class="title about_title">SOBRE</h1>
                 <div class="about_text">
                     <p>Portugal enfrenta um aparente paradoxo: a escassez de habitação acessível coexiste com o
                         elevado
@@ -125,8 +127,11 @@
 
         <!--------------------- ARCHIVE --------------------->
         <div class="container archive">
-            <h3 id="close_archive">VAGOS</h3>
-            <h1>ARQUIVO</h1>
+            <img class="close" id="close_archive" src="./media/logos/logo_vagos.svg" alt="vagos">
+            <h1 class="title archive_title">ARQUIVO</h1>
+
+            <div class="frame"></div>
+            <div class="spaces_container"></div>
         </div>
 
 
@@ -139,8 +144,9 @@
     </main>
 
 </body>
+
 <script src="toggle.js"></script>
 <script src="dots.js"></script>
-<script src="border_space2.js"></script>
+<script src="border_space.js"></script>
 
 </html>
