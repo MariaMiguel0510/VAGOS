@@ -1,17 +1,4 @@
-/*pagina inicial - VAGOS*/
-.homepage{
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-
-    left: 0;
-    transition: all 0.9s ease;/*transicao para deslocar landing page*/
-}
-
 .landing_page {
-    height: 100dvh;
-    width: 100vw;
     position: relative;
 
     display: flex;
@@ -21,32 +8,14 @@
     align-items: center;
 }
 
-/*atlas*/
-.atlas {
-    height: 100dvh;
-    width: 100vw;
-    background-color: aqua;
-}
-
-/*toolkit*/
-.toolkit {
-    height: 100dvh;
-    width: 100vw;
-    background-color: white;
-}
-
-/*zpu*/
-.zpu {
-    height: 100dvh;
-    width: 100vw;
-    background-color: yellow;
-}
-
 .video {
     width: 100%;
     height: 100%;
 }
 
+
+
+/*--------------------subtítulos para abrir as secções----------------------*/
 /*todos os títulos/aberturas de página na landing_page*/
 .landing_page>h3 {
     border: 0;
@@ -67,7 +36,7 @@
 
 /*CONTEÚDO*/
 #content_title {
-   top: 87vh;
+    top: 87vh;
 }
 
 /*ARQUIVO*/
@@ -78,7 +47,10 @@
     transform: scale(-1, -1);
 }
 
-/*pontos que remetem ao atlas/toolkit/zpu*/
+
+
+
+/*----------------------------pontos que remetem ao atlas/toolkit/zpu---------------------------*/
 .dots {
     position: absolute;
     display: flex;
@@ -90,7 +62,8 @@
 }
 
 .dots>a {
-    display: inline-block;/* ou block */
+    display: inline-block;
+    /* ou block */
     width: 0.3vw;
     height: 0.3vw;
     border: 2px solid black;
