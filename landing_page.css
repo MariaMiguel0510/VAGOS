@@ -13,8 +13,8 @@
 }
 
 .video {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: auto;
 }
 
 /*todos os títulos/aberturas de página na landing_page*/
@@ -65,31 +65,4 @@
     height: 0.3vw;
     border: 2px solid black;
     background-color: #FDF7EE;
-}
-
-/*----------------secções da homepage---------------------*/
-.content{
-    position: absolute;
-    height: 100dvh;
-    width: 100vw;
-}
-
-.content>div {
-    height: 100%;
-    width: 100%;
-}
-
-/*atlas*/
-#atlas {
-    background-color: aqua;
-}
-
-/*toolkit*/
-#toolkit {
-    background-color: white;
-}
-
-/*zpu*/
-#zpu {
-    background-color: yellow;
 }
