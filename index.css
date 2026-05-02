@@ -14,6 +14,7 @@ body {
     -ms-overflow-style: none;
     /* IE and Edge */
     overflow-x: hidden;
+    background-color: #F7F2EA;
 }
 
 /*esconde as barras de scroll no Chrome, Safari and Opera*/
