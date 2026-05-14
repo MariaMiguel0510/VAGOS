@@ -1,24 +1,55 @@
-.atlas{
+.atlas {
+    position: absolute;
     top: 100vh;
-}
-
-.atlas_grid_container {
     display: grid;
+    width: 100%;
+    min-height: 500vh;
+
     grid-template-columns: repeat(8, 0.8fr);
     grid-template-rows: repeat(4, 1fr);
     grid-template-areas:
-        ". . . . mapa mapa mapa ."
-        ". . . . mapa mapa mapa ."
-        ". . . . mapa mapa mapa ."
-        ". . . . mapa mapa mapa .";
-    padding: 5vh 6vw 5vh 6vw;
-    height: 100%;
+        ". step . . mapa mapa mapa ."
+        ". step . . mapa mapa mapa ."
+        ". step . . mapa mapa mapa ."
+        ". step . . mapa mapa mapa .";
+
+    padding: 0vh 6vw 5vh 6vw;
     gap: 5px;
+
     box-sizing: border-box;
 }
 
-.mapa_svg {
-    grid-area: mapa;
-    height: 90vh;
-    width: auto;
+.steps-container {
+    grid-area: step;
+    position: relative;
+    z-index: 10;
 }
+
+.atlas_grid_container {
+    grid-area: mapa;
+
+    position: sticky;
+    top: 5vh;
+
+    width: 100%;
+    height: 90vh;
+}
+
+.mapa_svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.mapa_svg path {
+    transition: fill 400ms linear;
+    will-change: fill;
+}
+
+.step {
+    height: 100vh;
+    color: white;
+}
+
+/*determina que step está a aparecer no momento*/
+.step.is-active {}

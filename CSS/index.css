@@ -34,7 +34,6 @@ main {
 
 
 .landing_page,
-.atlas,
 .toolkit,
 .zpu {
     position: absolute;
@@ -43,11 +42,11 @@ main {
 }
 
 .toolkit{
-    top: 200vh;
+    top: 600vh;
 }
 
 .zpu{
-    top: 300vh;
+    top: 700vh;
 }
 
 /*toolkit*/

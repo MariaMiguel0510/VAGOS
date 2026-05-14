@@ -182,3 +182,48 @@ function draw_map(data) {
             .attr("stroke-width", 0.5);
     });
 }
+
+//código de teste do scrollytelling com um retangulo
+let svg = null;
+let retangulo = null;
+
+export function draw_map(geojson, csvData) {
+
+    let container = d3.select(".atlas_grid_container");
+
+    // evita duplicação
+    container.selectAll("svg").remove();
+
+    svg = container
+        .append("svg")
+        .attr("class", "mapa_svg");
+
+    let width = container.node().clientWidth;
+    let height = container.node().clientHeight;
+
+    retangulo = svg.append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", width)
+    .attr("height", height);
+}
+
+function getStepColor(step) {
+    switch (step) {
+        case 0: return "red";
+        case 1: return "blue";
+        case 2: return "yellow";
+        case 3: return "green";
+        default: return "#999";
+    }
+}
+
+export function updateMap(step) {
+
+    if (!svg || !retangulo) return;
+
+    retangulo
+        .transition()
+        .duration(600)
+        .attr("fill", getStepColor(step));
+}

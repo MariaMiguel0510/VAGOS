@@ -21,7 +21,7 @@
 <body>
     <main>
         <!--------------------- LANDING PAGE --------------------->
-        <div class=" landing_page">
+        <section class=" landing_page">
 
             <div class="containerVideo">
                 <video class="video" autoplay muted>
@@ -38,19 +38,28 @@
                 <a id="toolkit_title" href="#toolkit"></a>
                 <a id="zpu_title" href="#zpu"></a>
             </nav>
-        </div>
+        </section>
 
-        <div class="atlas" id="atlas">
+
+        <section class="atlas" id="atlas">
+
+            <div class="steps-container">
+                <div class="step" data-step="1"></div>
+                <div class="step" data-step="2"></div>
+                <div class="step" data-step="3"></div>
+                <div class="step" data-step="4"></div>
+                <div class="step" data-step="5"></div>
+            </div>
+
             <div class="atlas_grid_container"></div>
-        </div>
-        <div class="toolkit" id="toolkit"></div>
-        <div class="zpu" id="zpu"></div>
+        </section>
 
-
+        <section class="toolkit" id="toolkit"></section>
+        <section class="zpu" id="zpu"></section>
 
 
         <!--------------------- ABOUT --------------------->
-        <div class="container about">
+        <section class="container about">
 
             <img class="close" id="close_about" src="./media/logos/logo_vagos.svg" alt="vagos">
             <div class="grid_container">
@@ -133,25 +142,28 @@
             <div class="frame"></div>
             <div class="spaces_container"></div>
 
-        </div>
+        </section>
 
 
         <!--------------------- ARCHIVE --------------------->
-        <div class="container archive">
+        <section class="container archive">
             <img class="close" id="close_archive" src="./media/logos/logo_vagos.svg" alt="vagos">
             <h1 class="title archive_title">ARQUIVO</h1>
 
             <div class="frame"></div>
             <div class="spaces_container"></div>
-        </div>
-
+        </section>
     </main>
 
 </body>
 
+
 <script src="./JS/toggle.js"></script>
-<script src="./JS/dots.js"></script>
 <script src="./JS/border_space.js"></script>
+
+<script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+<script src="https://unpkg.com/scrollama"></script>
+<script type="module" src="./JS/scrolly_atlas.js"></script>
 <script type="module" src="./JS/data_atlas.js"></script>
 <script type="module" src="./JS/draw_atlas.js"></script>
 
