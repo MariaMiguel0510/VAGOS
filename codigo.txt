@@ -132,3 +132,53 @@ window.addEventListener('wheel', (e) => {
 
 
 
+//codigo para se o mapa for desenhado em topojson
+
+// data (agora TopoJSON)
+let geoMap = "./data/concelhos_continente.json";
+
+window.onload = function () {
+    let promises = [
+        d3.json(geoMap)
+    ];
+
+    Promise.all(promises).then(draw_map);
+}
+
+function draw_map(data) {
+
+    let geojson = topojson.feature(
+        data[0],
+        data[0].objects.ContinenteConcelhos
+    );
+
+    let svg = d3.select('.atlas_grid_container')
+        .append('svg')
+        .attr('class', 'mapa_svg');
+
+    requestAnimationFrame(() => {
+
+        let bounds = svg.node().getBoundingClientRect();
+
+        let width = bounds.width;
+        let height = bounds.height;
+
+        svg.attr("viewBox", `0 0 ${width} ${height}`);
+
+        let projection = d3.geoMercator()
+            .fitSize([width, height], geojson);
+
+        let path = d3.geoPath()
+            .projection(projection);
+
+        svg.append("g")
+            .selectAll("path")
+            .data(geojson.features)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .attr("fill", "#f5f5f5")
+            .attr("stroke", "#333")
+            .attr("stroke-width", 0.5);
+    });
+}

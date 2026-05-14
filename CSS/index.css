@@ -33,28 +33,21 @@ main {
 }
 
 
-/*comum à homepage -> secções de landing_page, atlas, toolkit e zpu*/
-.homepage {
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-
-    left: 0;
-    transition: all 0.9s ease;/*transicao para deslocar landing page*/
-}
-
 .landing_page,
 .atlas,
 .toolkit,
 .zpu {
+    position: absolute;
     height: 100dvh;
     width: 100vw;
 }
 
-/*atlas*/
-.atlas {
-    background-color: aqua;
+.toolkit{
+    top: 200vh;
+}
+
+.zpu{
+    top: 300vh;
 }
 
 /*toolkit*/

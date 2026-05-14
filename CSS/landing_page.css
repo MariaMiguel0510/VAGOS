@@ -1,16 +1,17 @@
 .landing_page {
-    position: relative;
-
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: center;
     align-items: center;
+    top: 0;
+    left: 0;
+    transition: all 0.9s ease;
 }
 
 
 /*----------------------------------------vídeo---------------------------------------------*/
-.containerVideo{
+.containerVideo {
     height: 100%;
     width: auto;
 }
@@ -26,26 +27,31 @@
     border: 0;
     padding: 0px;
     margin: 0px;
-    position: absolute;
     font-size: 3.5vh;
     font-weight: 450;
 }
 
 /*SOBRE*/
 #open_about {
+    position: absolute;
     cursor: pointer;
     left: 2vw;
     writing-mode: vertical-lr;
     transform: scale(-1, -1);
+    transform: translateY(0) scale(-1, -1);
+    will-change: transform;
 }
+
 
 /*CONTEÚDO*/
 #content_title {
+    position: absolute;
     top: 87vh;
 }
 
 /*ARQUIVO*/
 #open_archive {
+    position: absolute;
     cursor: pointer;
     right: 2vw;
     writing-mode: vertical-lr;

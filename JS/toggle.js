@@ -8,7 +8,7 @@ let open_archive = document.getElementById('open_archive');
 let close_archive = document.getElementById('close_archive');
 let archive_container = document.querySelector('.archive');
 
-let landing_page = document.querySelector('.homepage')
+let landing_page = document.querySelector('.landing_page')
 
 //OPEN/CLOSE ABOUT/ARCHIVE ---------------------------------------------------
 toggleSection(open_about, close_about, about_container, 'right','100vw');//about
@@ -41,5 +41,6 @@ function lockScroll(lock) {
         document.body.style.overflow = 'hidden';
     } else {
         document.body.style.overflow = 'auto';
+        document.body.style.overflowX = 'hidden';
     }
 }
