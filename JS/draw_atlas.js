@@ -1,16 +1,6 @@
-//data
-let geoMap = "./data/concelhos_continente.geojson";
+//este ficheiro é dedicado a desenhar o mapa de portugal por concelhos
 
-window.onload = function () {
-    let promises = [
-        d3.json(geoMap), //guarda os dados para desenhar cada concelho
-    ];
-
-    //só depois de descarregar todos os dados é que os envia para a função draw_map
-    Promise.all(promises).then(draw_map);
-}
-
-function draw_map(data) {
+export function draw_map(geojson, csvData) {
     //cria um elemento svg dentro da class da grelha
     let svg = d3.select('.atlas_grid_container')
         .append('svg')
@@ -25,7 +15,7 @@ function draw_map(data) {
     svg.attr("viewBox", `0 0 ${width} ${height}`);//define as coordenadas
 
     let projection = d3.geoMercator()
-        .fitSize([width, height], data[0]);
+        .fitSize([width, height], geojson);
 
     //desenha o mapa
     let path = d3.geoPath()
@@ -34,13 +24,33 @@ function draw_map(data) {
     //desenha os concelhos
     svg.append("g")
         .selectAll("path")
-        .data(data[0].features)//liga os dados geoJson aos elementos svg
+        .data(geojson.features)//liga os dados geoJson aos elementos svg
         .enter()
         .append("path")//cria um path para cada concelho
         .attr("d", path)//para cada concelho, pega na geometria e transforma-a em desenho no mapa
-        .attr("fill", "#f5f5f5")
+        .attr("fill", d => {
+            //procura os dados o id do csv correspondente ao DICO do geojson
+            let match = csvData.find(c => c.id === +d.properties.DICO);
+            //se não encontrar o concelho em comum preenche com cinza
+            if (!match) return "#ccc";
+
+            return getColor(match.percentagem);
+        })
         .attr("stroke", "#333")
         .attr("stroke-width", 0.5); //espessura da linha do mapa   
 }
 
-
+function getColor(percentagem) {
+    if (percentagem >= 5.8 && percentagem < 10.4) {
+        return "#ebd2ca";
+    }
+    else if (percentagem >= 10.4 && percentagem < 13.9) {
+        return "#f2ae9c";
+    }
+    else if (percentagem >= 13.9 && percentagem < 18.3) {
+        return "#b00920";
+    }
+    else if (percentagem >= 18.3 && percentagem < 25.9) {
+        return "#5e2a2d";
+    }
+}
