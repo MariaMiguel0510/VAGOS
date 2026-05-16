@@ -41,11 +41,6 @@
     display: block;
 }
 
-.mapa_svg path {
-    transition: fill 400ms linear;
-    will-change: fill;
-}
-
 .step {
     height: 100vh;
     color: white;
