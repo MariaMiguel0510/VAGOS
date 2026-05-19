@@ -2,8 +2,65 @@
     left: 100vw;
 }
 
+.archive_grid_container {
+    display: grid;
+    grid-template-columns: repeat(8, 0.8fr);
+    grid-template-rows: auto 1fr 1fr 1fr;
+    grid-template-areas:
+        "archive_title archive_title archive_title archive_title . . . ."
+        "reports reports . articles articles . others others"
+        "reports reports . articles articles . others others"
+        "reports reports . articles articles . others others";
+    padding: 0 7.5vw 10vh 10vw;
+    height: 100%;
+    gap: 5px;
+    box-sizing: border-box;
+}
+
 .archive_title {
-    padding-left: 7.5vw;
+    grid-area: archive_title;
+}
+
+
+/*------------------------- RELATÓRIOS/ARTIGOS/OUTROS----------------------------*/
+.archive_reports {
+    grid-area: reports;
+}
+
+.archive_articles {
+    grid-area: articles;
+}
+
+.archive_others {
+    grid-area: others;
+}
+
+.archive_reports>p,
+.archive_articles>p,
+.archive_others>p {
+    font-size: 2.5vh;
+    line-height: 4.5vh;
+    margin: 0;
+    margin-top: 2.5vh;
+    padding: 0;
+}
+
+.archive_reports>ul,
+.archive_articles>ul,
+.archive_others>ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    font-size: 2.22vh;
+    line-height: 4.5vh;
+    padding-left: 3vw;
+}
+
+.archive_reports>ul>li>a,
+.archive_articles>ul>li>a,
+.archive_others>ul>li>a {
+    color: black;
+    text-decoration: underline;
 }
 
 #close_archive {

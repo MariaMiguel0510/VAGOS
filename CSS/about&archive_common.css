@@ -34,6 +34,15 @@
     z-index: 10;
 }
 
+/*subtítulos*/
+.subtitle {
+    font-size: 3.7vh;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1.4vh;
+}
+
+
 /*moldura branca*/
 .frame {
     position: absolute;
@@ -59,4 +68,5 @@
     display: grid;    
     grid-template-columns: 6.5vh 4.5vw repeat(8, 0.8fr) 10vw;
     grid-template-rows: 6.5vh 7vh 1fr 1fr 1fr 1fr 7vh 6.5vh;
+    pointer-events: none;
 }

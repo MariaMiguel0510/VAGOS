@@ -2,12 +2,12 @@
     right: 100vw;
 }
 
-.grid_container {
+.about_grid_container {
     display: grid;
     grid-template-columns: repeat(8, 0.8fr);
     grid-template-rows: auto 1fr 1fr 1fr;
     grid-template-areas:
-        "title title title title . . . ."
+        "about_title about_title about_title about_title . . . ."
         "text text text text . topicos topicos topicos"
         "text text text text . equipa equipa equipa"
         "text text text text . logos logos .";
@@ -18,14 +18,7 @@
 }
 
 .about_title {
-    grid-area: title;
-}
-
-.about_subtitle {
-    font-size: 3.7vh;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 1.4vh;
+    grid-area: about_title;
 }
 
 .about_text {
