@@ -107,8 +107,8 @@ function setColorScales() {
 export function updateMap(step) {
 
     if (svg || mapa) {
-        svg.select("text").remove();
-        svg.append("text").text(step).attr("y", 100);
+       // svg.select("text").remove();
+       // svg.append("text").text(step).attr("y", 100);
 
         mapa
             .transition()//cria transição entre as cores

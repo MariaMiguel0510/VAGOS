@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
 html {
     scroll-behavior: smooth;
@@ -42,11 +43,11 @@ main {
 }
 
 .toolkit{
-    top: 600vh;
+    top: 613vh;
 }
 
 .zpu{
-    top: 700vh;
+    top: 713vh;
 }
 
 /*toolkit*/
