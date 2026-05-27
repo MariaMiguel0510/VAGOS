@@ -12,12 +12,26 @@ let hiddenClasses = new Set();
 let tooltip = d3.select("body")
     .append("div")
     .style("position", "fixed")
-    .style("height", "0px")
-    .style("border-top", "1.2px solid black")
     .style("pointer-events", "none")
-    .style("opacity", 0)
+    .style("display", "flex")
+    .style("align-items", "center")
+    .style("gap", "4px")
+    .style("opacity", 0);
+
+let tooltip_text = tooltip
+    .append("h5")
     .style("font-family", "Crimson")
-    .style("font-size", "2vh");
+    .style("margin", "0")
+    .style("font-size", "2vh")
+    .style("font-weight", "400")
+    .style("word-break", "break-word")
+    .style("max-width", "150px");
+
+let tooltip_line = tooltip
+    .append("div")
+    .style("height", "0px")
+    .style("flex", "1")
+    .style("border-top", "1.2px solid black");
 
 
 function isHidden(index) {
@@ -118,7 +132,13 @@ export function draw_map(geojson, csvData) {
 
 
             //escreve o nome dos concelhos
-            let nomes = tooltip.html(`${d.properties.local}`);
+            let key = dados[currentStep];
+            let value = d.properties[key];
+
+            tooltip_text.html(`
+        ${d.properties.local} <br>
+        ${value ?? "sem dados"}
+    `);
 
 
             let [x, y] = path.centroid(d);
@@ -132,11 +152,15 @@ export function draw_map(geojson, csvData) {
             if (x < mapMiddle) {
                 tooltip.style("width", "150px");
                 let tooltipWidth = 150;
+                tooltip_line.style("order", 1);
+                tooltip_text.style("order", 0);
                 left = svgRect.left + x - tooltipWidth;
                 origin = "right center";
             } else {
-                tooltip.style("width", "120px");
-                let tooltipWidth = 120;
+                tooltip.style("max-width", "150px");
+                let tooltipWidth = 150;
+                tooltip_line.style("order", 0);
+                tooltip_text.style("order", 1);
                 left = svgRect.left + x;
                 origin = "left center";
             }
