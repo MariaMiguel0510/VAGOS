@@ -2,12 +2,22 @@
 let m_svg = null; //guarda o mapa
 let mapa = null; //guarda todos os path dos concelhos
 
-
 let colorScales = {};
-const dados = ["percentagem", "total", "bons", "retencao", "carencias"];
+const dados = ["percentagem", "total", "bons", "retencao", "carencias", "local"];
 
 let currentStep = 0;
 let hiddenClasses = new Set();
+
+
+let tooltip = d3.select("body")
+    .append("div")
+    .style("position", "fixed")
+    .style("height", "0px")
+    .style("border-top", "1.2px solid black")
+    .style("pointer-events", "none")
+    .style("opacity", 0)
+    .style("font-family", "Crimson")
+    .style("font-size", "2vh");
 
 
 function isHidden(index) {
@@ -93,7 +103,89 @@ export function draw_map(geojson, csvData) {
         })
 
         .attr("stroke", "#F7F2EA")
-        .attr("stroke-width", 0.35);
+        .attr("stroke-width", 0.35)
+
+
+        //TOOLTIP A APARECE -------------------------------
+        .on("mouseover", function (event, d) {
+
+            d3.select(this)
+                .transition()
+                .duration(300)
+                .style("opacity", 1)
+                .attr("fill", "#FFD700")
+                .style("cursor", "pointer");
+
+
+            //escreve o nome dos concelhos
+            let nomes = tooltip.html(`${d.properties.local}`);
+
+
+            let [x, y] = path.centroid(d);
+            let svgRect = m_svg.node().getBoundingClientRect();
+
+            let mapMiddle = width / 2;
+            let left;
+            let origin;
+
+            //a linha do lado esquerdo é maior que a do lado direito
+            if (x < mapMiddle) {
+                tooltip.style("width", "150px");
+                let tooltipWidth = 150;
+                left = svgRect.left + x - tooltipWidth;
+                origin = "right center";
+            } else {
+                tooltip.style("width", "120px");
+                let tooltipWidth = 120;
+                left = svgRect.left + x;
+                origin = "left center";
+            }
+
+            tooltip
+                .interrupt()
+                .style("left", `${left}px`)
+                .style("top", `${svgRect.top + y}px`)
+                .style("transform-origin", origin)
+
+                .transition()
+                .duration(300)
+                .style("opacity", 1)
+                .style("transform", "scaleX(1)");
+        })
+
+        //TOOLTIP DESAPARECE -----------------------------------
+        .on("mouseout", function (event, d) {
+            //verifica qual o mapa que está a aparecer e a sua escala de cores
+            let key = dados[currentStep];
+            let scale = colorScales[key];
+
+            //vai buscar o valor real do concelho
+            let value = d.properties[key];
+            let classIndex = getClassIndex(scale, value);
+
+            let color;
+
+            //repõe a cor original
+            if (value == null || isNaN(value)) {
+                color = "#999";
+            } else if (isHidden(classIndex)) {
+                color = "#ffffff";
+            } else {
+                color = scale(value);
+            }
+
+            d3.select(this)
+                .transition()
+                .duration(150)
+                .attr("fill", color);
+
+            tooltip
+                .interrupt()
+                .transition()
+                .duration(200)
+                .ease(d3.easeCubicIn)
+                .style("opacity", 0);
+        })
 
     drawLegend(0);//desenha a legenda
 }
