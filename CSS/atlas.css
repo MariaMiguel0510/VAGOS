@@ -5,7 +5,7 @@ html.snap-mode {
 
 .atlas {
     position: absolute;
-    top: 100vh;
+    top: 101vh;
     display: grid;
     width: 100%;
     min-height: 500vh;
@@ -99,6 +99,7 @@ html.snap-mode {
 
 /*---------------------------------STEPS STUFF--------------------------------*/
 .step {
+    position: relative;
     height: 100vh;
     color: black;
     display: grid;
