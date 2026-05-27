@@ -23,7 +23,6 @@ html.snap-mode {
     position: relative;
     grid-column: 1 / 9;
     grid-row: 1 / 5;
-    z-index: 1;
 }
 
 
@@ -37,7 +36,6 @@ html.snap-mode {
     grid-template-rows: repeat(4, 1fr);
     gap: 5px;
 
-    z-index: 0;
 
     position: sticky;
     top: 5vh;
@@ -70,6 +68,8 @@ html.snap-mode {
     flex-direction: column;
     gap: 8px;
     margin-bottom: 3vh;
+
+    z-index: 30;
 }
 
 /*conjunto de bloco de cor + label*/
@@ -89,6 +89,8 @@ html.snap-mode {
 /*texto da legenda*/
 .legend_label {
     font-size: 2vh;
+    font-family: "Crimson", serif;
+    font-weight: 400;
 }
 
 

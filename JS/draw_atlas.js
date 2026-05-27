@@ -6,6 +6,26 @@ let mapa = null; //guarda todos os path dos concelhos
 let colorScales = {};
 const dados = ["percentagem", "total", "bons", "retencao", "carencias"];
 
+let currentStep = 0;
+let hiddenClasses = new Set();
+
+
+function isHidden(index) {
+    return hiddenClasses.has(index);
+}
+
+
+// classifica corretamente com base nos thresholds
+function getClassIndex(scale, value) {
+    let thresholds = scale.domain();
+
+    for (let i = 0; i < thresholds.length; i++) {
+        if (value <= thresholds[i]) return i;
+    }
+
+    return thresholds.length;
+}
+
 
 //FUNÇÃO QUE DESENHA O MAPA -----------------------------------------------------------------
 export function draw_map(geojson, csvData) {
@@ -57,9 +77,19 @@ export function draw_map(geojson, csvData) {
         .append("path")
         .attr("d", path)
 
-        //cor inicial do mapa (step 0)
         .attr("fill", d => {
-            return colorScales[dados[0]](d.properties[dados[0]])
+            let key = dados[0];
+            let scale = colorScales[key];
+            let value = d.properties[key];
+
+            if (value == null || isNaN(value)) return "#999";
+
+            let classIndex = getClassIndex(scale, value);
+            if (isHidden(classIndex)) {
+                return "#ffffff";
+            } else {
+                return scale(value);
+            }
         })
 
         .attr("stroke", "#F7F2EA")
@@ -90,9 +120,6 @@ function drawLegend(step) {
     //cria um array de labels para indicar os thresholds
     let labels = [];
 
-    //primeiro limite 
-    labels.push(`≤ ${thresholds[0]}`);
-
     //todos os valores intermédios
     for (let i = 1; i < thresholds.length; i++) {
         labels.push(
@@ -100,33 +127,113 @@ function drawLegend(step) {
         );
     }
 
-    //coloca o último limite como maior que >
-    labels.push(`> ${thresholds[thresholds.length - 1]}`);
+    //elimina o primeiro index (0) por ser < que o primeiro limite
+    let legendData = colors.slice(1).map((c, i) => ({
+        color: c,
+        index: i + 1
+    }));
 
 
     let items = legend
         .selectAll(".legend_item")
-        .data(colors)
+        .data(legendData)
         .enter()
         .append("div")
-        .attr("class", "legend_item");
+        .attr("class", "legend_item")
+        .style("cursor", "pointer")
 
-    //parte da cor
+        .on("click", function (event, d) {
+
+            if (hiddenClasses.has(d.index)) {
+                hiddenClasses.delete(d.index);
+            }
+            else {
+                hiddenClasses.add(d.index);
+            }
+
+            updateLegendVisual();
+            updateMapColors();
+        });
+
+
+
     items
         .append("div")
         .attr("class", "legend_color")
-        .style("background-color", d => d);
+        .style("background-color", d => {
 
-    //parte do texto
+            if (isHidden(d.index)) {
+                return "#ffffff";
+            } else {
+                return d.color;
+            }
+        });
+
+
     items
         .append("div")
         .attr("class", "legend_label")
         .text((d, i) => labels[i]);
+
+    updateLegendVisual();
+}
+
+
+//FUNÇÃO QUE ATUALIZA O ASPETO DA LEGENDA -----------------------------------------
+function updateLegendVisual() {
+
+    //seleciona a legenda e retira a opacidade do texto
+    d3.selectAll(".legend_item")
+        .style("font-style", d => {
+            if (isHidden(d.index)) {
+                return "italic";
+            } else {
+                return "normal";
+            }
+        });
+
+    //coloca o bloco de cor a branco
+    d3.selectAll(".legend_color")
+        .style("background-color", d => {
+            if (isHidden(d.index)) {
+                return "#ffffff";
+            } else {
+                return d.color;
+            }
+        });
 }
 
 
 
+//FUNÇÃO QUE ATUALIZA AS CORES DO MAPA --------------------------------------------
+function updateMapColors() {
 
+    if (!mapa) return;
+
+    let key = dados[currentStep];
+    let scale = colorScales[key];
+
+    //muda a cor dos mapas consoante 
+    mapa
+        .interrupt()
+        .transition()
+        .duration(350)
+
+        .attr("fill", d => {
+
+            let value = d.properties[key];
+
+            if (value == null || isNaN(value)) return "#999";
+
+            let classIndex = getClassIndex(scale, value);
+
+            if (isHidden(classIndex)) {
+                return "#ffffff";
+            }
+
+            return scale(value);
+        });
+}
 
 
 //FUNÇÃO QUE DEFINE AS CORES DOS MAPAS ---------------------------------------------------
@@ -165,22 +272,17 @@ function setColorScales() {
 }
 
 
-
-//FUNÇÃO QUE MUDA A COR DO MAPA --------------------------------------------------------
+//FUNÇÃO QUE ATUALIZA OS MAPAS --------------------------------------------------------
 export function updateMap(step) {
+
+    currentStep = step;
 
     if (m_svg || mapa) {
         // svg.select("text").remove();
         // svg.append("text").text(step).attr("y", 100);
 
         mapa
-            .transition()//cria transição entre as cores
-            .duration(250)//duração da transição
-
-            //atualiza as cores para cada step
-            .attr("fill", d => (d.properties[dados[step]] == null || isNaN(d.properties[dados[step]])) ?
-                "#999" : colorScales[dados[step]](d.properties[dados[step]]));
-
-          drawLegend(step);//desenha a legenda consoante o mapa
+        drawLegend(step);//desenha a legenda consoante o mapa
+        updateMapColors();
     }
 }
