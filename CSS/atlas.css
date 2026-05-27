@@ -26,9 +26,16 @@ html.snap-mode {
     z-index: 1;
 }
 
+
+/*----------------------------------MAPS STUFF-----------------------------*/
 .atlas_grid_container {
-    grid-column: 5 / 8;
+    grid-column: 5 / 9;
     grid-row: 1 / 5;
+
+    display: grid;
+    grid-template-columns: repeat(4, 0.8fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
 
     z-index: 0;
 
@@ -39,12 +46,38 @@ html.snap-mode {
     height: 90vh;
 }
 
+.draw_atlas {
+    grid-column: 2 / 4;
+    grid-row: 1 / 5;
+}
+
 .mapa_svg {
     width: auto;
     height: 100%;
     display: block;
 }
 
+
+/*----------------------------------LEGEND STUFF-----------------------------*/
+.legend_container {
+    grid-column: 4;
+    grid-row: 3/4;
+    width: 100%;
+    align-self: end;
+}
+
+.legend_values {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+    margin-top: 10px;
+    display: block;
+    background-color: pink;
+}
+
+
+
+/*---------------------------------STEPS STUFF--------------------------------*/
 .step {
     height: 100vh;
     color: black;

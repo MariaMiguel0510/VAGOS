@@ -25,7 +25,7 @@ export function draw_map(geojson, csvData) {
     });
 
     //seleciona o contentor onde o mapa vai ser desenhado
-    let container = d3.select(".atlas_grid_container");
+    let container = d3.select(".draw_atlas");
     //evita criar vários mapas 
     container.selectAll("svg").remove();
 
