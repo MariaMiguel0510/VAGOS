@@ -47,8 +47,9 @@ html.snap-mode {
 }
 
 .draw_atlas {
-    grid-column: 2 / 4;
+    grid-column: 1 / 4;
     grid-row: 1 / 5;
+    justify-self: end;
 }
 
 .mapa_svg {
@@ -61,19 +62,35 @@ html.snap-mode {
 /*----------------------------------LEGEND STUFF-----------------------------*/
 .legend_container {
     grid-column: 4;
-    grid-row: 3/4;
+    grid-row: 3/5;
     width: 100%;
     align-self: end;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 3vh;
 }
 
-.legend_values {
-    width: 10px;
-    height: 10px;
-    margin: 0;
-    margin-top: 10px;
-    display: block;
-    background-color: pink;
+/*conjunto de bloco de cor + label*/
+.legend_item {
+    display: flex;
+    align-items: center;
+    gap: 2vh;
 }
+
+/*estes são os quadrados de cores dos mapas*/
+.legend_color {
+    width: 2.5vh;
+    height: 2.5vh;
+    flex-shrink: 0;
+}
+
+/*texto da legenda*/
+.legend_label {
+    font-size: 2vh;
+}
+
 
 
 

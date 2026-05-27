@@ -1,12 +1,13 @@
 // este ficheiro é dedicado a desenhar o mapa de portugal por concelhos
-let svg = null; //guarda o mapa
-let mapa = null; //guarda todos os math dos concelhos
+let m_svg = null; //guarda o mapa
+let mapa = null; //guarda todos os path dos concelhos
 
 
 let colorScales = {};
 const dados = ["percentagem", "total", "bons", "retencao", "carencias"];
 
 
+//FUNÇÃO QUE DESENHA O MAPA -----------------------------------------------------------------
 export function draw_map(geojson, csvData) {
 
     //transforma o array do CSV num Map para procurar os id por índices e ser mais rápido
@@ -27,10 +28,10 @@ export function draw_map(geojson, csvData) {
     //seleciona o contentor onde o mapa vai ser desenhado
     let container = d3.select(".draw_atlas");
     //evita criar vários mapas 
-    container.selectAll("svg").remove();
+    container.selectAll("m_svg").remove();
 
     //cria o svg
-    svg = container
+    m_svg = container
         .append("svg")
         .attr("class", "mapa_svg");
 
@@ -39,7 +40,7 @@ export function draw_map(geojson, csvData) {
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
 
-    svg.attr("viewBox", `0 0 ${width} ${height}`);
+    m_svg.attr("viewBox", `0 0 ${width} ${height}`);
 
     let projection = d3.geoMercator()
         .fitSize([width, height], geojson);
@@ -48,7 +49,7 @@ export function draw_map(geojson, csvData) {
 
 
     //desenha o mapa
-    mapa = svg
+    mapa = m_svg
         .append("g")
         .selectAll("path")
         .data(geojson.features)
@@ -63,10 +64,72 @@ export function draw_map(geojson, csvData) {
 
         .attr("stroke", "#F7F2EA")
         .attr("stroke-width", 0.35);
+
+    drawLegend(0);//desenha a legenda
 }
 
 
 
+//FUNÇÃO QUE DESENHA A LEGENDA -----------------------------------------------------
+function drawLegend(step) {
+
+    //coloca a escala de cores de acordo com o step atual
+    let key = dados[step];
+    let scale = colorScales[key];
+
+    //devolve as cores e os intervalos a usar
+    let colors = scale.range();
+    let thresholds = scale.domain();
+
+    //seleciona o contentor onde á legenda é desenhada
+    let legend = d3.select(".legend_container");
+
+    //limpa a janela e remove os elementos anteriores
+    legend.selectAll("*").remove();
+
+    //cria um array de labels para indicar os thresholds
+    let labels = [];
+
+    //primeiro limite 
+    labels.push(`≤ ${thresholds[0]}`);
+
+    //todos os valores intermédios
+    for (let i = 1; i < thresholds.length; i++) {
+        labels.push(
+            `${thresholds[i - 1]} – ${thresholds[i]}`
+        );
+    }
+
+    //coloca o último limite como maior que >
+    labels.push(`> ${thresholds[thresholds.length - 1]}`);
+
+
+    let items = legend
+        .selectAll(".legend_item")
+        .data(colors)
+        .enter()
+        .append("div")
+        .attr("class", "legend_item");
+
+    //parte da cor
+    items
+        .append("div")
+        .attr("class", "legend_color")
+        .style("background-color", d => d);
+
+    //parte do texto
+    items
+        .append("div")
+        .attr("class", "legend_label")
+        .text((d, i) => labels[i]);
+}
+
+
+
+
+
+
+//FUNÇÃO QUE DEFINE AS CORES DOS MAPAS ---------------------------------------------------
 function setColorScales() {
 
     const colorScale_0 = d3.scaleThreshold()
@@ -103,12 +166,12 @@ function setColorScales() {
 
 
 
-//muda o mapa sem redesenhar tudo -> muda só a cor
+//FUNÇÃO QUE MUDA A COR DO MAPA --------------------------------------------------------
 export function updateMap(step) {
 
-    if (svg || mapa) {
-       // svg.select("text").remove();
-       // svg.append("text").text(step).attr("y", 100);
+    if (m_svg || mapa) {
+        // svg.select("text").remove();
+        // svg.append("text").text(step).attr("y", 100);
 
         mapa
             .transition()//cria transição entre as cores
@@ -116,6 +179,8 @@ export function updateMap(step) {
 
             //atualiza as cores para cada step
             .attr("fill", d => (d.properties[dados[step]] == null || isNaN(d.properties[dados[step]])) ?
-                "#999" : colorScales[dados[step]](d.properties[dados[step]]))
+                "#999" : colorScales[dados[step]](d.properties[dados[step]]));
+
+          drawLegend(step);//desenha a legenda consoante o mapa
     }
 }
