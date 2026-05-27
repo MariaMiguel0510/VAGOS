@@ -1,6 +1,7 @@
 /*permite ativar o snap scroll dentro do storytelling*/
 html.snap-mode {
     scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
 }
 
 .atlas {
