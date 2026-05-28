@@ -1,3 +1,4 @@
+/*este ficheiro é dedicado aos botões que surgem durante o website*/
 
 //ABOUT + ARCHIVE ---------------
 let open_about = document.getElementById('open_about');
@@ -10,9 +11,14 @@ let archive_container = document.querySelector('.archive');
 
 let landing_page = document.querySelector('.landing_page')
 
+//MAP DOWNLOAD --------------------
+let save_atlas = document.querySelector(".download");
+let atlas_container = document.querySelector(".atlas_grid_container");
+
+
 //OPEN/CLOSE ABOUT/ARCHIVE ---------------------------------------------------
-toggleSection(open_about, close_about, about_container, 'right','100vw');//about
-toggleSection(open_archive, close_archive, archive_container, 'left','-100vw');//archive
+toggleSection(open_about, close_about, about_container, 'right', '100vw');//about
+toggleSection(open_archive, close_archive, archive_container, 'left', '-100vw');//archive
 
 function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     //coloca a transicao de abertura universal
@@ -35,7 +41,7 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
 }
 
 
-//bloqueia o scroll
+//bloqueia o scroll no about e no archive
 function lockScroll(lock) {
     if (lock) {
         document.body.style.overflow = 'hidden';
@@ -44,3 +50,17 @@ function lockScroll(lock) {
         document.body.style.overflowX = 'hidden';
     }
 }
+
+
+//FAZ DOWNLOAD DO MAPA/ATLAS E DA LEGENDA
+save_atlas.addEventListener('click', async function () {
+
+    //tira um print do contentor
+    let canvas = await html2canvas(atlas_container);
+    let link = document.createElement('a');
+
+    link.download = 'atlas.png';
+    link.href = canvas.toDataURL('image/png');
+
+    link.click();
+});
