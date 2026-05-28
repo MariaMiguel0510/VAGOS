@@ -333,7 +333,7 @@ function updateMapColors() {
     mapa
         .interrupt()
         .transition()
-        .duration(350)
+        .duration(450)
 
         .attr("fill", d => {
 
