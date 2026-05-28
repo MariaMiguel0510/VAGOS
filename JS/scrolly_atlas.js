@@ -17,7 +17,6 @@ function handleStepEnter(response) {
 }
 
 function init() {
-
     scroller
         .setup({
             step: ".atlas .step",
@@ -32,6 +31,7 @@ function init() {
 init();
 
 
+//SNAP SCROLL EFFECT
 //permite criar o efeito de snap scroll dentro do scrollytelling
 window.addEventListener("scroll", () => {
 
@@ -44,3 +44,28 @@ window.addEventListener("scroll", () => {
         document.documentElement.classList.remove("snap-mode");
     }
 });
+
+
+//FADE-IN / FADE-OUT EFFECT
+//verifica quando os elementos entrem e saem da viewport
+const observer = new IntersectionObserver(
+
+    //sempre que algum dos elementos entra/sai da viewport
+    (entries) => {
+        entries.forEach(entry => {
+
+            //verifica se está visível
+            if (entry.isIntersecting) {
+                entry.target.classList.add("text-visible");
+            } else {
+                entry.target.classList.remove("text-visible");
+            }
+        });
+    },
+    {
+        threshold: 0.25
+    });
+
+document
+    .querySelectorAll(".step_title, .step_subtitle, .step_text")
+    .forEach(el => observer.observe(el));
