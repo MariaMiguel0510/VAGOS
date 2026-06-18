@@ -17,6 +17,7 @@ Promise.all([
             carencias: +d.T_CAR_ELH,
             bons: +d.T_VAG_B,
             total: +d.T_VAG_21,
+            variacao: +d.V_POP_1121.replace(",", "."),
             percentagem: +d.P_VAG_21.replace(",", "."),
             retencao: +d.P_VAG_RET.replace(",", ".")
         };

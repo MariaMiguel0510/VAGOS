@@ -3,7 +3,14 @@ let m_svg = null; //guarda o mapa
 let mapa = null; //guarda todos os path dos concelhos
 
 let colorScales = {};
-const dados = ["percentagem", "total", "bons", "retencao", "carencias", "local"];
+const dados = ["percentagem", "total", "bons", "retencao", "variacao", "local"];
+const legendTitles = {
+    percentagem: "Vagos Percentagem",
+    total: "Vagos Total",
+    bons: "Vagos Total Bom Estado",
+    retencao: "Vagos Retenção",
+    variacao: "Vagos Populacional"
+};
 
 let currentStep = 0;
 let hiddenClasses = new Set();
@@ -34,6 +41,7 @@ let tooltip_line = tooltip
     .style("border-top", "1.2px solid black");
 
 
+// verifica se está escondido
 function isHidden(index) {
     return hiddenClasses.has(index);
 }
@@ -174,7 +182,8 @@ export function draw_map(geojson, csvData) {
                 .transition()
                 .duration(300)
                 .style("opacity", 1)
-                .style("transform", "scaleX(1)");
+                .style("transform", "scaleX(1)")
+                .style("background-color", "#F7F2EA");
         })
 
         //TOOLTIP DESAPARECE -----------------------------------
@@ -239,9 +248,15 @@ function drawLegend(step) {
     //todos os valores intermédios
     for (let i = 1; i < thresholds.length; i++) {
         labels.push(
-            `${thresholds[i - 1]} – ${thresholds[i]}`
+            `${thresholds[i - 1]} a ${thresholds[i]}`
         );
     }
+    
+    legend
+        .append("h2")
+        .attr("class", "legend_title")
+        .text(legendTitles[key]);
+
 
     //elimina o primeiro index (0) por ser < que o primeiro limite
     let legendData = colors.slice(1).map((c, i) => ({
@@ -271,8 +286,6 @@ function drawLegend(step) {
             updateMapColors();
         });
 
-
-
     items
         .append("div")
         .attr("class", "legend_color")
@@ -300,21 +313,11 @@ function updateLegendVisual() {
 
     //seleciona a legenda e retira a opacidade do texto
     d3.selectAll(".legend_item")
-        .style("font-style", d => {
+        .style("opacity", d => {
             if (isHidden(d.index)) {
-                return "italic";
+                return 0.4;
             } else {
-                return "normal";
-            }
-        });
-
-    //coloca o bloco de cor a branco
-    d3.selectAll(".legend_color")
-        .style("background-color", d => {
-            if (isHidden(d.index)) {
-                return "#ffffff";
-            } else {
-                return d.color;
+                return 1;
             }
         });
 }
@@ -382,9 +385,9 @@ function setColorScales() {
 
     const colorScale_4 = d3.scaleThreshold()
         .domain([-21.6, -20, -15, -10, -5, 0, 5, 10, 13.3]) // Threshold breakpoints
-        .range(["#999", "#5e2a2d", "#b00920", "#f2ae9c", "#ebd2ca", "#b7c8c2", "#8cbdab", "#6e9486", "#3f544c", "#000"]);
+        .range(["#999", "#5e2a2d", "#b00920", "#f2ae9c", "#ebd2ca", "#b7c8c2", "#8cbdab", "#6e9486", "#3f544c"]);
 
-    colorScales["carencias"] = colorScale_4;
+    colorScales["variacao"] = colorScale_4;
 }
 
 
