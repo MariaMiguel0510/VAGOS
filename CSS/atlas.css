@@ -55,19 +55,18 @@ html.snap-mode {
 .legend_container {
     grid-column: 4;
     grid-row: 3/5;
-    align-self: end;
+    align-self: start;
     justify-self: start;
 
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 5.5vh;
 
     z-index: 30;
 }
 
-.legend_title{    
-    font-size: 2.1vh;
+.legend_title {
+    font-size: 2.2vh;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 1vh;
@@ -79,12 +78,13 @@ html.snap-mode {
     align-items: center;
     gap: 1.5vh;
     opacity: 1;
+    cursor: pointer;
 }
 
 /*estes são os quadrados de cores dos mapas*/
-.legend_color {
-    width: 2.5vh;
-    height: 2.5vh;
+.legend_texture {
+    width: 2.7vh;
+    height: 2.7vh;
     flex-shrink: 0;
 }
 
@@ -95,7 +95,26 @@ html.snap-mode {
     font-weight: 500;
 }
 
+.legend_info {
+    cursor: pointer;
+}
 
+.legend_info:hover {
+    color: #FFD700;
+}
+
+.legend_disclaimer {
+    display: none;
+    grid-column: 4;
+    grid-row: 2;
+    align-self: end;
+    justify-self: start;
+
+    padding: 0;
+    margin: 0;
+    font-size: 1.7vh;
+    line-height: 2vh;
+}
 
 /*---------------------------------STEPS--------------------------------*/
 /*ocupa a grelha do atlas toda*/
@@ -148,7 +167,7 @@ html.snap-mode {
 
 .step_text {
     font-size: 2vh;
-    line-height: 2.6vh;
+    line-height: 2.3vh;
     transform: translateY(20px);
 }
 
@@ -201,12 +220,17 @@ html.snap-mode {
     height: 90vh;
     top: 5vh;
     pointer-events: none;
+
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 5px;
 }
 
 .download {
-    position: absolute;
-    bottom: 0;
+    grid-row: 4;
+    align-self: end;
     margin: 0;
+
     font-size: 1.8vh;
     font-weight: 500;
     cursor: pointer;

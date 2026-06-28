@@ -35,16 +35,6 @@
     grid-area: articles;
 }
 
-.archive_police_brief>p,
-.archive_reports>p,
-.archive_articles>p{
-    font-size: 2.3vh;
-    line-height: 4.5vh;
-    margin: 0;
-    margin-top: 2.5vh;
-    padding: 0;
-}
-
 .archive_police_brief>ul,
 .archive_reports>ul,
 .archive_articles>ul{
