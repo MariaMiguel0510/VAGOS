@@ -99,6 +99,6 @@
     }
 
     .dots{
-        top: 95vh;
+        display: none;
     }
 }

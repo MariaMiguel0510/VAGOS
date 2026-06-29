@@ -21,6 +21,10 @@
     grid-area: archive_title;
 }
 
+.archive_subtitle{
+    margin-bottom: 0.4vh;
+}
+
 /*------------------------- RELATÓRIOS/ARTIGOS/OUTROS----------------------------*/
 .archive_police_brief {
     grid-area: police_brief;
@@ -49,6 +53,7 @@
 .archive_articles>ul>li>a {
     color: black;
     text-decoration: underline;
+    margin-bottom: 10px;
 }
 
 #close_archive {
@@ -72,7 +77,7 @@
     }
 
     #close_archive {
-        left: -2.2vw;
+        left: -1vw;
     }
 
 }

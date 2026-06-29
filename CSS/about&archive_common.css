@@ -39,7 +39,6 @@
     font-size: 3.5vh;
     font-weight: 600;
     margin-top: 0;
-    margin-bottom: 1.4vh;
 }
 
 
@@ -78,11 +77,11 @@
     }
 
     .subtitle {
-        font-size: 2.5vh;
+        font-size: 2.8vh;
     }
 
     .frame {
-        border: 4.5vh solid white;
+        border: 5vh solid white;
     }
 
     .close {

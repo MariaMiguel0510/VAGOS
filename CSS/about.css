@@ -21,6 +21,10 @@
     grid-area: about_title;
 }
 
+.about_subtitle{
+    margin-bottom: 1.4vh;
+}
+
 .about_text {
     grid-area: text;
 
@@ -114,7 +118,7 @@
     }
 
     #close_about {
-        right: -2.2vw;
+        right: -1vw;
     }
 
     .about_text {
