@@ -59,3 +59,16 @@ main {
 .zpu {
     background-color: yellow;
 }
+
+
+/*VERSÃO MOBILE ----------------------------------------------------------------------*/
+@media (max-width: 800px) {
+
+    .toolkit{
+        display: none;
+    }
+
+    .zpu{
+        display: none;
+    }
+}
