@@ -241,7 +241,9 @@ html.snap-mode {
     pointer-events: auto;
 }
 
-
+.download:hover {
+    color: #FFD700;
+}
 
 
 /*VERSÃO MOBILE ----------------------------------------------------------------------*/

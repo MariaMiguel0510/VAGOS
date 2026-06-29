@@ -78,8 +78,6 @@ export function draw_map(geojson, csvData) {
         .data(geojson.features)
         .enter()
         .append("path")
-        .attr("stroke-width", 0.5)
-        //.attr("stroke", "#000000")
         .attr("d", path)
         .attr("fill", d => {
             let key = dados[currentStep];
@@ -232,31 +230,31 @@ function setTextureScales() {
 
     const textureScale_0 = d3.scaleThreshold()
         .domain([5.8, 10.4, 13.9, 18.3, 25.9]) // Threshold breakpoints
-        .range([0, 0.6, 1.1, 1.5, 1.8]);
+        .range([0, 0.2, 0.7, 1, 1.2]);
 
     textureScales["percentagem"] = textureScale_0;
 
     const textureScale_1 = d3.scaleThreshold()
         .domain([47, 3085, 8779, 20270, 47748]) // Threshold breakpoints
-        .range([0, 0.6, 1.1, 1.5, 2]);
+        .range([0,  0.2, 0.7, 1, 1.2]);
 
     textureScales["total"] = textureScale_1;
 
     const textureScale_2 = d3.scaleThreshold()
         .domain([30, 1529, 3953, 7978, 15343, 41002]) // Threshold breakpoints
-        .range([0, 0.6, 1.1, 1.5, 1.7, 2]);
+        .range([0, 0.2, 0.7, 1, 1.2, 1.5]);
 
     textureScales["bons"] = textureScale_2;
 
     const textureScale_3 = d3.scaleThreshold()
         .domain([0.45, 1, 1.28, 1.63, 2.59]) // Threshold breakpoints
-        .range([0, 0.6, 1.1, 1.5, 1.8]);
+        .range([0, 0.2, 0.7, 1, 1.2]);
 
     textureScales["retencao"] = textureScale_3;
 
     const textureScale_4 = d3.scaleThreshold()
         .domain([-21.6, -20, -15, -10, -5, 0, 5, 10, 13.3]) // Threshold breakpoints
-        .range([0, 0.5, 0.8, 1.1, 1.3, 1.6, 2, 2.3, 2.6]);
+        .range([0, 0.2, 0.5, 0.7, 1, 1.2, 1.3, 1.5, 1.6]);
 
     textureScales["variacao"] = textureScale_4;
 }
@@ -275,7 +273,7 @@ function createTextures() {
     //cria uma textura para cada range
     [...widths].forEach(width => {
 
-        //cria a textura
+        //cria a textura default -> preta
         let black_texture = textures
             .paths()
             .d("squares")
@@ -283,6 +281,7 @@ function createTextures() {
             .strokeWidth(width)
             .stroke("#000");
 
+        //textura de hover no mapa -> amarela
         let yellow_texture = textures
             .paths()
             .d("squares")
