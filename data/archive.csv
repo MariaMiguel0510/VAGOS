@@ -1,6 +1,6 @@
 type,name,file
 ".police_brief","Police Brief","police_brief"
-".reports","Relatório de Estado de Conservação","relatorio_estado_conservacao"
+".reports","Relatório de Conservação","relatorio_estado_conservacao"
 ".reports","Relatório de Patologias","relatorio_patologias_construtivas"
 ".reports","Relatório de Condições","relatorio_condicoes_estruturais"
 ".reports","Relatório de Ocupação","relatorio_ocupacao_instalacoes"

@@ -79,3 +79,26 @@
     border: 2px solid black;
     background-color: #FDF7EE;
 }
+
+@media (max-width: 800px) {
+    .landing_page>h3 {
+        font-size: 2.8vh;
+    }
+
+    #content_title {
+        position: absolute;
+        top: 90vh;
+    }
+
+    #open_about{
+        left: 5.2vw;
+    }
+
+    #open_archive{
+        right: 5.2vw;
+    }
+
+    .dots{
+        top: 95vh;
+    }
+}

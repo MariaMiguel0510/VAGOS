@@ -90,8 +90,41 @@
 }
 
 
-#close_about{
+#close_about {
     right: 0.2vw;
 }
 
 
+/*VERSÃO MOBILE ----------------------------------------------------------------------*/
+@media (max-width: 800px) {
+    .about_grid_container {
+        display: grid;
+        grid-template-columns: repeat(8, 0.8fr);
+        grid-template-rows: auto 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+            "about_title about_title about_title . . . . ."
+            "text text text text text text text text"
+            "text text text text text text text text"
+            "text text text text text text text text"
+            "text text text text text text text text"
+            "topicos topicos topicos topicos topicos topicos topicos topicos"
+            "equipa equipa equipa equipa equipa equipa equipa equipa"
+            "logos logos logos logos logos logos logos logos";
+        padding: 0 18vw 10vh 17vw;
+    }
+
+    #close_about {
+        right: -2.2vw;
+    }
+
+    .about_text {
+        font-size: 2vh;
+        line-height: 2.2vh;
+        display: none;
+    }
+
+    .about_equipa>ul {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}
