@@ -74,6 +74,11 @@ html.snap-mode {
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 1vh;
+    cursor: pointer;
+}
+
+.legend_title:hover {
+    color: #FFD700;
 }
 
 /*conjunto de bloco de cor + label*/
@@ -97,14 +102,6 @@ html.snap-mode {
     font-size: 1.8vh;
     font-family: "Crimson", serif;
     font-weight: 500;
-}
-
-.legend_info {
-    cursor: pointer;
-}
-
-.legend_info:hover {
-    color: #FFD700;
 }
 
 .legend_disclaimer {
@@ -263,7 +260,7 @@ html.snap-mode {
         min-height: 100vh;
     }
 
-    .mobile_disclaimer>h2{        
+    .mobile_disclaimer>h2 {
         margin-top: 20vh;
     }
 

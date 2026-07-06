@@ -47,11 +47,11 @@ export function drawLegend({
     legend
         .append("h2")
         .attr("class", "legend_title")
-        .html(`${legendTitles[key]} <span class="legend_info">(i)</span>`);
+        .html(`${legendTitles[key]} <span>(i)</span>`);
 
 
     //coloca o disclaimer (i) sobre a legenda interativa a aparecer
-    legend.selectAll(".legend_info")
+    legend.selectAll(".legend_title")
         .on("mouseenter", () => {
             d3.select(".legend_disclaimer")
                 .style("display", "block");

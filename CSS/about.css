@@ -100,7 +100,7 @@
 
 
 /*VERSÃO MOBILE ----------------------------------------------------------------------*/
-@media (max-width: 800px) {
+@media (max-width: 600px) {
     .about_grid_container {
         display: grid;
         grid-template-columns: repeat(8, 0.8fr);

@@ -4,13 +4,15 @@
 
 .archive_grid_container {
     display: grid;
-    grid-template-columns: repeat(8, 0.8fr);
-    grid-template-rows: auto 1fr 1fr 1fr;
+    grid-template-columns: 0.8fr 0.4fr repeat(6, 0.8fr);
+    grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
         "archive_title archive_title archive_title archive_title . . . ."
-        "police_brief police_brief reports reports  articles articles . ."
-        "police_brief police_brief reports reports  articles articles . ."
-        "police_brief police_brief reports reports  articles articles . .";
+        "police_brief police_brief articles articles articles . . ."
+        "reports reports articles articles articles . . ."
+        "reports reports articles articles articles . . ."
+        ". . . . . . . ."
+        ". . . . . . . .";
     padding: 0 7.5vw 10vh 10vw;
     height: 100%;
     gap: 5px;
@@ -21,7 +23,7 @@
     grid-area: archive_title;
 }
 
-.archive_subtitle{
+.archive_subtitle {
     margin-bottom: 0.4vh;
 }
 
@@ -32,6 +34,8 @@
 
 .archive_reports {
     grid-area: reports;
+    margin-top: 0.8vh;
+    /*para que fique verticalmente alinhado com os artigos*/
 }
 
 .archive_articles {
@@ -60,10 +64,22 @@
     left: 0.2vw;
 }
 
+/*VERSÃO RESPONSIVA ----------------------------------------------------------------------*/
+@media (min-width: 800px) and (max-width: 1000px) {
+    .archive_grid_container {
+        grid-template-columns: 0.8fr 1fr repeat(6, 0.8fr);
+        padding: 0 7.5vw 10vh 13vw;
+    }
+}
 
+@media (min-width: 600px) and (max-width: 800px) {
+    .archive_grid_container {
+        grid-template-columns: 0.8fr 1.6fr repeat(6, 0.8fr);
+        padding: 0 7.5vw 10vh 15vw;
+    }
+}
 
-/*VERSÃO MOBILE ----------------------------------------------------------------------*/
-@media (max-width: 800px) {
+@media (max-width: 600px) {
     .archive_grid_container {
         display: grid;
         grid-template-columns: repeat(8, 0.8fr);
