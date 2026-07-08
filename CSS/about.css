@@ -130,6 +130,26 @@
     }
 }
 
+@media (max-width: 800px) {
+    .about_grid_container {
+        padding: 0 18vw 10vh 15vw;
+    }
+
+    .about_text {
+        font-size: 2vh;
+        line-height: 2.2vh;
+        display: none;
+    }
+
+    .about_disclaimer {
+        display: none;
+    }
+
+    .about_logos {
+        margin-top: 4vh;
+    }
+}
+
 @media (min-width: 600px) and (max-width: 800px) {
     .about_grid_container {
         grid-template-areas:
@@ -179,25 +199,5 @@
 
     #close_about {
         right: -0.25vw;
-    }
-}
-
-@media (max-width: 800px) {
-    .about_grid_container {
-        padding: 0 18vw 10vh 15vw;
-    }
-
-    .about_text {
-        font-size: 2vh;
-        line-height: 2.2vh;
-        display: none;
-    }
-
-    .about_disclaimer {
-        display: none;
-    }
-
-    .about_logos {
-        margin-top: 4vh;
     }
 }
