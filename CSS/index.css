@@ -63,6 +63,9 @@ main {
 
 /*VERSÃO MOBILE ----------------------------------------------------------------------*/
 @media (max-width: 800px) {
+    html{
+        overflow-y: hidden;
+    }
 
     .toolkit{
         display: none;

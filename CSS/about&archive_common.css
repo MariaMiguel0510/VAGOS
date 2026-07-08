@@ -72,7 +72,7 @@
 
 
 /*VERSÃO MOBILE ----------------------------------------------------------------------*/
-@media (max-width: 600px) {
+@media (max-width: 525px) {
     .title {
         font-size: 7vh;
     }
@@ -86,6 +86,6 @@
     }
 
     .close {
-        width: 11vh;
+        width: 10vh;
     }
 }

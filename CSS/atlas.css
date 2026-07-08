@@ -20,10 +20,6 @@ html.snap-mode {
     box-sizing: border-box;
 }
 
-.mobile_disclaimer {
-    display: none;
-}
-
 /*----------------------------------MAP-----------------------------*/
 .atlas_grid_container {
     grid-column: 5 / 9;
@@ -245,46 +241,9 @@ html.snap-mode {
 
 /*VERSÃO MOBILE ----------------------------------------------------------------------*/
 @media (max-width: 800px) {
-
     .atlas {
-        min-height: 100vh;
-        display: block;
-        padding: 0vh 10vw 5vh 10vw;
-    }
-
-    .mobile_disclaimer {
-        font-size: 2.22vh;
-        line-height: 2.8vh;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    .mobile_disclaimer>h2 {
-        margin-top: 20vh;
-    }
-
-    .mobile_disclaimer>p {
-        width: 65vw;
-        margin: 0;
-    }
-
-    /*logotipo no footer*/
-    .mobile_disclaimer>img {
-        width: 100%;
-        height: auto;
-        margin-top: auto;
-    }
-
-    .steps-container {
         display: none;
-    }
-
-    .atlas_grid_container {
-        display: none;
-    }
-
-    .download_container {
-        display: none;
+        min-height: 0;
+        background-color: pink;
     }
 }

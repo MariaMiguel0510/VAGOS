@@ -9,6 +9,10 @@
     transition: all 0.9s ease;
 }
 
+.mobile {
+    display: none;
+}
+
 
 /*----------------------------------------vídeo---------------------------------------------*/
 .containerVideo {
@@ -57,7 +61,8 @@
     transform: scale(-1, -1);
 }
 
-#open_about:hover, #open_archive:hover {
+#open_about:hover,
+#open_archive:hover {
     color: #FFD700;
 }
 
@@ -81,25 +86,55 @@
     background-color: #FDF7EE;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px){
     .landing_page>h3 {
         font-size: 2.8vh;
     }
 
     #content_title {
-        position: absolute;
-        top: 90vh;
+        display: none;
     }
 
-    #open_about{
+    #open_about {
         left: 5.2vw;
     }
 
-    #open_archive{
+    #open_archive {
         right: 5.2vw;
     }
 
-    .dots{
+    .dots {
         display: none;
+    }
+
+    .mobile {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        font-weight: 300;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mobile>p {
+        position: relative;
+        margin-top: auto;
+        font-size: 2vh;
+        padding: 0vh 25vw 5vh 25vw;
+    }
+
+    .mobile>img {
+        display: none;
+    }
+}
+
+@media(max-width: 325px) {
+    .mobile>img {
+        display: block;
+        position: relative;
+        height: 2.5vh;
+        margin-top: 13vh;
+        margin-bottom: 0;
     }
 }

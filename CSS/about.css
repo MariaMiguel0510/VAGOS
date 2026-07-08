@@ -21,7 +21,7 @@
     grid-area: about_title;
 }
 
-.about_subtitle{
+.about_subtitle {
     margin-bottom: 1.4vh;
 }
 
@@ -100,10 +100,70 @@
 
 
 /*VERSÃO MOBILE ----------------------------------------------------------------------*/
-@media (max-width: 600px) {
+@media (min-width: 800px) and (max-width: 1010px) {
     .about_grid_container {
-        display: grid;
-        grid-template-columns: repeat(8, 0.8fr);
+        grid-template-columns: repeat(4, 0.7fr) 0.4fr repeat(3, 0.7fr);
+        grid-template-areas:
+            "about_title about_title about_title about_title . . . ."
+            "text text text text . topicos topicos topicos"
+            "text text text text . equipa equipa equipa"
+            "text text text text . logos logos logos";
+        padding: 0 8vw 10vh 7.5vw;
+    }
+
+    .about_text {
+        font-size: 2vh;
+        line-height: 2.6vh;
+    }
+
+    .about_equipa {
+        margin-top: 4vh;
+    }
+
+    .about_equipa>ul,
+    .about_topicos>ol {
+        font-size: 1.8vh;
+    }
+
+    .about_disclaimer {
+        margin-top: 5vh;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+    .about_grid_container {
+        grid-template-areas:
+            "about_title about_title about_title . . . . ."
+            "topicos topicos topicos topicos topicos topicos . ."
+            "equipa equipa equipa equipa equipa equipa equipa equipa"
+            "logos logos logos logos logos . . .";
+    }
+
+    .about_equipa>ul {
+        grid-template-columns: repeat(2, 0.3fr);
+        column-gap: 0px;
+        row-gap: 0.3vh;
+    }
+}
+
+@media (min-width: 525px) and (max-width: 600px) {
+    .about_grid_container {
+        grid-template-areas:
+            "about_title about_title about_title . . . . ."
+            "topicos topicos topicos topicos topicos topicos . ."
+            "equipa equipa equipa equipa equipa equipa equipa equipa"
+            "logos logos logos logos logos logos . .";
+    }
+
+    .about_equipa>ul {
+        grid-template-columns: repeat(2, 0.4fr);
+        column-gap: 0px;
+        row-gap: 0.3vh;
+    }
+}
+
+@media (max-width: 525px) {
+    .about_grid_container {
         grid-template-rows: auto 0.5fr 1fr 1fr;
         grid-template-areas:
             "about_title about_title about_title . . . . ."
@@ -113,8 +173,18 @@
         padding: 0 18vw 10vh 17vw;
     }
 
+    .about_equipa>ul {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
     #close_about {
-        right: -1vw;
+        right: -0.25vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .about_grid_container {
+        padding: 0 18vw 10vh 15vw;
     }
 
     .about_text {
@@ -123,15 +193,11 @@
         display: none;
     }
 
-    .about_equipa>ul {
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .about_disclaimer{
+    .about_disclaimer {
         display: none;
     }
 
-    .about_logos{
+    .about_logos {
         margin-top: 4vh;
     }
 }

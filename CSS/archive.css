@@ -67,7 +67,7 @@
 
 
 /*VERSÃO RESPONSIVA ----------------------------------------------------------------------*/
-@media (min-width: 750px) and (max-width: 950px) {
+@media (min-width: 800px) and (max-width: 950px) {
     .archive_grid_container {
         grid-template-areas:
         "archive_title archive_title archive_title archive_title . . . . . ."
@@ -80,7 +80,7 @@
     }
 }
 
-@media (min-width: 525px) and (max-width: 750px) {
+@media (min-width: 525px) and (max-width: 800px) {
     .archive_grid_container {
         grid-template-areas:
         "archive_title archive_title archive_title archive_title . . . . . ."
@@ -112,7 +112,7 @@
     }
 
     #close_archive {
-        left: -1vw;
+        left: -0.25vw;
     }
 
 }
