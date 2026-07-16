@@ -103,8 +103,27 @@ export function drawLegend({
         .attr("class", "legend_label")
         .text((d, i) => labels[i]);
 
+    const defsOrigem = [];
+
+    d3.selectAll(".mapa_svg defs").each(function () {
+        defsOrigem.push(this);
+    });
+
+
+    d3.selectAll(".legend_texture").each(function () {
+        const svgDestino = this;
+
+        defsOrigem.forEach(defs => {
+            svgDestino.insertBefore(
+                defs.cloneNode(true),
+                svgDestino.firstChild
+            );
+        });
+    });
+
     updateLegendVisual(legend, textureMapBlack, hiddenClasses, isHidden);
 }
+
 
 
 //FUNÇÃO QUE ATUALIZA O ASPETO DA LEGENDA -----------------------------------------

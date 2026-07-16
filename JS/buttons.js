@@ -56,7 +56,7 @@ function lockScroll(lock) {
 save_atlas.addEventListener('click', async function () {
 
     //tira um print do contentor
-    let canvas = await html2canvas(atlas_container);
+    let canvas = await html2canvas(atlas_container, { "logging": false, "backgroundColor": null, "scale": 3 });
     let link = document.createElement('a');
 
     link.download = 'atlas.png';

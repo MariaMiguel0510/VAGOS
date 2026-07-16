@@ -60,16 +60,16 @@ export function draw_map(geojson, csvData) {
     let portugalBounds = path.bounds(geojson);
 
     let { show, hide } = createTooltip({
-    dados,
-    currentStep,
-    path,
-    m_svg,
-    width,
-    portugalBounds,
-    textureScales,
-    getClassIndex,
-    isHidden
-});
+        dados,
+        currentStep,
+        path,
+        m_svg,
+        width,
+        portugalBounds,
+        textureScales,
+        getClassIndex,
+        isHidden
+    });
 
     //desenha o mapa
     mapa = m_svg
@@ -236,7 +236,7 @@ function setTextureScales() {
 
     const textureScale_1 = d3.scaleThreshold()
         .domain([47, 3085, 8779, 20270, 47748]) // Threshold breakpoints
-        .range([0,  0.2, 0.7, 1, 1.2]);
+        .range([0, 0.2, 0.7, 1, 1.2]);
 
     textureScales["total"] = textureScale_1;
 
