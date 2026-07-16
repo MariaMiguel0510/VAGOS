@@ -48,16 +48,35 @@ export function draw_map(geojson, csvData) {
 
     //determina as medidas da largura da janela 
     //para que a largura do mapa seja responsiva
-    let width = container.node().clientWidth;
-    let height = container.node().clientHeight;
+    /* let width = container.node().clientWidth;
+     let height = container.node().clientHeight;
+ 
+     m_svg.attr("viewBox", `0 0 ${width} ${height}`);
+ 
+     let projection = d3.geoMercator()
+         .fitSize([width, height], geojson);
+ 
+     let path = d3.geoPath().projection(projection);*/
 
-    m_svg.attr("viewBox", `0 0 ${width} ${height}`);
+    let projection = d3.geoMercator();
 
-    let projection = d3.geoMercator()
-        .fitSize([width, height], geojson);
+    let path = d3.geoPath(projection);
 
-    let path = d3.geoPath().projection(projection);
+    // primeiro ajusta a projeção
+    projection.fitSize([container.node().clientWidth, container.node().clientHeight], geojson);
+
+    // depois calcula os limites reais
     let portugalBounds = path.bounds(geojson);
+
+    let width = portugalBounds[1][0] - portugalBounds[0][0];
+    let height = portugalBounds[1][1] - portugalBounds[0][1];
+
+    m_svg.attr(
+        "viewBox",
+        `${portugalBounds[0][0]} ${portugalBounds[0][1]} ${width} ${height}`
+    );
+
+    
 
     let { show, hide } = createTooltip({
         dados,
