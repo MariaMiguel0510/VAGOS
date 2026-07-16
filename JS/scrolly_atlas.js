@@ -11,7 +11,7 @@ function handleStepEnter(response) {
 
     steps.forEach(s => s.classList.remove("is-active"));
     response.element.classList.add("is-active");
-    console.log(response.index);
+    //console.log(response.index);
 
     updateMap(response.index);
 }

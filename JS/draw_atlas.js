@@ -48,16 +48,6 @@ export function draw_map(geojson, csvData) {
 
     //determina as medidas da largura da janela 
     //para que a largura do mapa seja responsiva
-    /* let width = container.node().clientWidth;
-     let height = container.node().clientHeight;
- 
-     m_svg.attr("viewBox", `0 0 ${width} ${height}`);
- 
-     let projection = d3.geoMercator()
-         .fitSize([width, height], geojson);
- 
-     let path = d3.geoPath().projection(projection);*/
-
     let projection = d3.geoMercator();
 
     let path = d3.geoPath(projection);
@@ -80,7 +70,7 @@ export function draw_map(geojson, csvData) {
 
     let { show, hide } = createTooltip({
         dados,
-        currentStep,
+        getCurrentStep: () => currentStep,
         path,
         m_svg,
         width,

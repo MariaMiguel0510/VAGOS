@@ -1,7 +1,7 @@
 // este ficheiro é dedicado a desenhar a tooltip dos mapas do atlas
 export function createTooltip({
     dados,
-    currentStep,
+    getCurrentStep,
     path,
     m_svg,
     width,
@@ -31,7 +31,7 @@ export function createTooltip({
         .style("justify-content", "center")
         .style("align-items", "center");
 
-    //background do texto para criar efeito blue/mais suave
+    //background do texto para criar efeito blur/mais suave
     let tooltip_bg = tooltip_text_container
         .append("div")
         .style("position", "absolute")
@@ -67,10 +67,10 @@ export function createTooltip({
         .attr("stroke-width", 0.8);
 
 
-    //MOUSEOVE TOOLTIP APARECER -> MOSTRA TOOLTIP
+    //MOUSEOVER TOOLTIP APARECER -> MOSTRA TOOLTIP
     function show(event, d) {
 
-        let key = dados[currentStep];//obtém o valor a mostrar (percentagem/total/etc)
+        let key = dados[getCurrentStep()];//obtém o valor a mostrar (percentagem/total/etc)
         let value = d.properties[key];//vai buscar o nome e o valor do município
 
         //escreve o texto -> nome numa linha/valor segunda linha
@@ -137,7 +137,7 @@ export function createTooltip({
     }
 
 
-    //MOUSEOVE TOOLTIP DESAPARECER -> ESCONDE TOOLTIP
+    //MOUSEOVER TOOLTIP DESAPARECER -> ESCONDE TOOLTIP
     function hide() {
         tooltip
             .interrupt()
