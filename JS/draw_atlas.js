@@ -94,6 +94,8 @@ export function draw_map(geojson, csvData) {
 
             return getTexture(scale, value);
         })
+        //.attr("stroke", "#000")   // cor do contorno
+        //.attr("stroke-width", 0.5)  // espessura
 
         //MOUSEOVER SOBRE O MAPA -> TEXTURA AMARELA E TOOLTIP APARECE
         .on("mouseover", function (event, d) {
