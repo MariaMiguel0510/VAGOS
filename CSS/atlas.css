@@ -139,7 +139,7 @@ html.snap-mode {
 }
 
 .step_title{
-    margin-top: 5vh;
+    margin-top: 6vh;
     grid-column: 1 / 4;
     grid-row: 1;
     transform: translateY(10px);
