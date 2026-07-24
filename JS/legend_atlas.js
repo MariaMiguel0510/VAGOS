@@ -89,12 +89,8 @@ export function drawLegend({
         .append("rect")
         .attr("width", '2.7vh')
         .attr("height", '2.7vh')
-        .attr("fill", d => {
-            if (isHidden(d.index)) {
-                return "#fff";
-            }
-            return textureMapBlack[d.texture].url();
-        });
+        .attr("fill", d => textureMapBlack[d.texture].url())
+        .style("opacity", d => isHidden(d.index) ? 0.6 : 1);
 
 
     //texto legenda
@@ -135,14 +131,8 @@ export function updateLegendVisual(
 ) {
 
     d3.selectAll(".legend_item rect")
-        .attr("fill", d => {
-
-            if (isHidden(d.index)) {
-                return "#ffffff";
-            }
-
-            return textureMap[d.texture].url();
-        });
+        .attr("fill", d => textureMap[d.texture].url())
+        .style("opacity", d => isHidden(d.index) ? 0.6 : 1);
 
     //seleciona a legenda e retira a opacidade do texto
     d3.selectAll(".legend_item")

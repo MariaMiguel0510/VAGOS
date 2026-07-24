@@ -92,18 +92,22 @@ export function draw_map(geojson, csvData) {
             let classIndex = getClassIndex(scale, value);
 
             if (isHidden(classIndex))
-                return "#ffffff";
+                return "#F7F2EA";
 
             return getTexture(scale, value);
         })
-        //.attr("stroke", "#000")   // cor do contorno
-        //.attr("stroke-width", 0.5)  // espessura
+        .attr("stroke", "#000")   // cor do contorno
+        .attr("stroke-width", 0.3)  // espessura
 
         //MOUSEOVER SOBRE O MAPA -> TEXTURA AMARELA E TOOLTIP APARECE
         .on("mouseover", function (event, d) {
             let key = dados[currentStep];
             let scale = textureScales[key];
             let value = d.properties[key];
+
+            //se a legenda estiver escondida a tooltip não funciona
+            let classIndex = getClassIndex(scale, value);
+            if (isHidden(classIndex)) return;
 
             d3.select(this)
                 .attr("fill", getTexture(scale, value, true))
@@ -120,6 +124,10 @@ export function draw_map(geojson, csvData) {
             let key = dados[currentStep];
             let scale = textureScales[key];
             let value = d.properties[key];
+
+            //se a legenda estiver escondida a tooltip não funciona
+            let classIndex = getClassIndex(scale, value);
+            if (isHidden(classIndex)) return;
 
             d3.select(this)
                 .transition()
@@ -222,7 +230,7 @@ function updateMapTexture() {
 
             //de branco
             if (isHidden(classIndex))
-                return "#ffffff";
+                return "#F7F2EA";
 
             return getTexture(scale, value);
         });

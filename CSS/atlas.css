@@ -227,8 +227,7 @@ html.snap-mode {
     align-self: end;
     margin: 0;
 
-    font-size: 1.8vh;
-    font-weight: 500;
+    height: 3vh;
     cursor: pointer;
     pointer-events: auto;
 }
