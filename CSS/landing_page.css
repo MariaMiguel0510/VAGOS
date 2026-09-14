@@ -16,7 +16,7 @@
 
 /*----------------------------------------vídeo---------------------------------------------*/
 .containerVideo {
-    height: 80%;
+    height: 100%;
     width: auto;
 }
 
@@ -97,7 +97,6 @@
         background: blue !important;
     }
 }
-
 @media (max-width: 800px){
     .landing_page>h3 {
         font-size: 2.8vh;
