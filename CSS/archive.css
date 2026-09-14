@@ -70,25 +70,26 @@
 @media (min-width: 800px) and (max-width: 950px) {
     .archive_grid_container {
         grid-template-areas:
-        "archive_title archive_title archive_title archive_title . . . . . ."
-        "police_brief police_brief police_brief articles articles articles articles . . ."
-        "reports reports reports articles articles articles articles . . ."
-        "reports reports reports articles articles articles articles . . ."
-        ". . . . . . . . . ."
-        ". . . . . . . . . .";
+            "archive_title archive_title archive_title archive_title . . . . . ."
+            "police_brief police_brief police_brief articles articles articles articles . . ."
+            "reports reports reports articles articles articles articles . . ."
+            "reports reports reports articles articles articles articles . . ."
+            ". . . . . . . . . ."
+            ". . . . . . . . . .";
         padding: 0 13vw 10vh 13vw;
     }
 }
 
-@media (min-width: 525px) and (max-width: 800px) {
+@media (min-width: 525px) and (max-width: 800px),
+(min-width: 800px) and (max-width: 950px) and (min-height: 1000px) {
     .archive_grid_container {
         grid-template-areas:
-        "archive_title archive_title archive_title archive_title . . . . . ."
-        "police_brief police_brief police_brief police_brief articles articles articles articles . ."
-        "reports reports reports reports articles articles articles articles . ."
-        "reports reports reports reports articles articles articles articles . ."
-        ". . . . . . . . . ."
-        ". . . . . . . . . .";
+            "archive_title archive_title archive_title archive_title . . . . . ."
+            "police_brief police_brief police_brief police_brief articles articles articles articles . ."
+            "reports reports reports reports articles articles articles articles . ."
+            "reports reports reports reports articles articles articles articles . ."
+            ". . . . . . . . . ."
+            ". . . . . . . . . .";
         padding: 0 13vw 10vh 16vw;
     }
 }
