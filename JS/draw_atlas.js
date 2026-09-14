@@ -51,10 +51,11 @@ export function draw_map(geojson, csvData) {
     let width = container.node().clientWidth;
     let height = container.node().clientHeight;
 
-    m_svg.attr("viewBox", `0 0 ${width} ${height}`);
+    m_svg
+        .attr("viewBox", `0 0 ${width} ${height}`);
 
     let projection = d3.geoMercator()
-        .fitSize([width, height], geojson);
+        .fitHeight(height, geojson);
 
     let path = d3.geoPath().projection(projection);
 
