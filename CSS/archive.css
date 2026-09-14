@@ -1,5 +1,6 @@
 .archive {
-    left: 100vw;
+    left: 0;
+    transform: translateX(100%);
 }
 
 .archive_grid_container {
