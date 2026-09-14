@@ -14,7 +14,7 @@ body {
     font-family: "Outfit", sans-serif;
     -ms-overflow-style: none;
     /* IE and Edge */
-    overflow-x: hidden;
+    overflow-x: clip;
     background-color: #F7F2EA;
 }
 
