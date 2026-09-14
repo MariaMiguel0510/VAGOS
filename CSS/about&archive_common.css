@@ -19,8 +19,7 @@
     position: absolute;
     top: 0;
     z-index: 10;
-   /* background-color: #F7F2EA;*/
-    background-color: pink;
+    background-color: #F7F2EA;
 
     font-weight: 350;
     transition: left 0.9s ease;
