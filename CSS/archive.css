@@ -67,7 +67,7 @@
 
 
 /*VERSÃO RESPONSIVA ----------------------------------------------------------------------*/
-@media (min-width: 800px) and (max-width: 950px) {
+@media (min-width: 725px) and (max-width: 950px) {
     .archive_grid_container {
         grid-template-areas:
             "archive_title archive_title archive_title archive_title . . . . . ."
@@ -80,7 +80,7 @@
     }
 }
 
-@media (min-width: 525px) and (max-width: 800px) {
+@media (min-width: 525px) and (max-width: 725px) { 
     .archive_grid_container {
         grid-template-areas:
             "archive_title archive_title archive_title archive_title . . . . . ."
@@ -95,7 +95,7 @@
 
 
 @media (max-width: 525px),
-(min-width: 800px) and (max-width: 950px) and (min-height: 1000px) {
+(min-width: 725px) and (max-width: 950px) and (min-height: 1000px) {
     .archive_grid_container {
         display: grid;
         grid-template-columns: repeat(8, 0.8fr);
