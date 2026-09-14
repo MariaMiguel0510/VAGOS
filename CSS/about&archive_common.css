@@ -19,7 +19,8 @@
     position: absolute;
     top: 0;
     z-index: 10;
-    background-color: #F7F2EA;
+   /* background-color: #F7F2EA;*/
+    background-color: pink;
 
     font-weight: 350;
     transition: left 0.9s ease;
@@ -27,7 +28,7 @@
 
 /*títulos*/
 .title {
-    font-size: 3.5rem;
+    font-size: 8.5vh;
     font-weight: 500;
     line-height: 1;
     margin: 10px 0 4vh 0;
@@ -36,7 +37,7 @@
 
 /*subtítulos*/
 .subtitle {
-    font-size: 1.4rem;
+    font-size: 3.5vh;
     font-weight: 600;
     margin-top: 0;
 }

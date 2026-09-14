@@ -48,7 +48,7 @@
     padding: 0;
     margin: 0;
     list-style-type: none;
-    font-size: 0.75rem;
+    font-size: 2vh;
     line-height: 4vh;
 }
 
@@ -67,7 +67,7 @@
 
 
 /*VERSÃO RESPONSIVA ----------------------------------------------------------------------*/
-@media (min-width: 700px) and (max-width: 950px) {
+@media (min-width: 750px) and (max-width: 950px) {
     .archive_grid_container {
         grid-template-areas:
             "archive_title archive_title archive_title archive_title . . . . . ."
@@ -80,7 +80,7 @@
     }
 }
 
-@media (min-width: 525px) and (max-width: 700px) { 
+@media (min-width: 525px) and (max-width: 750px) { 
     .archive_grid_container {
         grid-template-areas:
             "archive_title archive_title archive_title archive_title . . . . . ."
