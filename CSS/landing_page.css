@@ -5,8 +5,8 @@
     text-align: center;
     align-items: center;
     top: 0;
-    /*left: 0;
-    transition: all 0.9s ease;*/
+    left: 0;
+    transition: all 0.9s ease;
 }
 
 .mobile {
@@ -86,13 +86,13 @@
     background-color: #FDF7EE;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 850px) and (orientation: portrait) {
     body {
         background: red !important;
     }
 }
 
-@media (min-width: 851px) {
+@media (min-width: 851px) and (orientation: landscape) {
     body {
         background: blue !important;
     }
