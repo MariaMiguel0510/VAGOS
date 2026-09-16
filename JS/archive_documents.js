@@ -1,4 +1,4 @@
-/*este ficheiro é apenas para descarregar os documentos pdf da página archive
+/*este ficheiro é apenas para descarregar os documentos pdf da página archive*/
 let archiveData = "./data/archive.csv";
 
 function createList(link) {
@@ -54,11 +54,11 @@ function createList(link) {
 
    /* d3.csv(link).then(d => {
     console.log(d[0]);
-});
+});*/
 }
-
+/*
 //cria a lista de documentos
-createList(archiveData);*/
+createList(archiveData);
 
 let archiveData = "./data/archive.csv";
 
@@ -95,4 +95,4 @@ function createList(link) {
     });
 }
 
-createList(archiveData);
+createList(archiveData);*/
