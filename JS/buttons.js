@@ -1,4 +1,4 @@
-/*este ficheiro é dedicado aos botões que surgem durante o website*/
+/*este ficheiro é dedicado aos botões que surgem durante o website
 
 //ABOUT + ARCHIVE ---------------
 let open_about = document.getElementById('open_about');
@@ -40,6 +40,94 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     });
 }
 
+
+//bloqueia o scroll no about e no archive
+function lockScroll(lock) {
+    if (lock) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'auto';
+        document.body.style.overflowX = 'hidden';
+    }
+}
+
+
+//FAZ DOWNLOAD DO MAPA/ATLAS E DA LEGENDA
+save_atlas.addEventListener('click', async function () {
+
+    //tira um print do contentor
+    let canvas = await html2canvas(atlas_container, { "logging": false, "backgroundColor": null, "scale": 3 });
+    let link = document.createElement('a');
+
+    link.download = 'atlas.png';
+    link.href = canvas.toDataURL('image/png');
+
+    link.click();
+});
+*/
+
+/*este ficheiro é dedicado aos botões que surgem durante o website*/
+
+//ABOUT + ARCHIVE ---------------
+let open_about = document.getElementById('open_about');
+let close_about = document.getElementById('close_about');
+let about_container = document.querySelector('.about');
+
+let open_archive = document.getElementById('open_archive');
+let close_archive = document.getElementById('close_archive');
+let archive_container = document.querySelector('.archive');
+
+let landing_page = document.querySelector('.landing_page')
+
+//MAP DOWNLOAD --------------------
+let save_atlas = document.querySelector(".download");
+let atlas_container = document.querySelector(".atlas_grid_container");
+
+
+// ABOUT + ARCHIVE
+toggleSection(open_about, close_about, about_container, 'about');
+toggleSection(open_archive, close_archive, archive_container, 'archive');
+
+
+function toggleSection(openBtn, closeBtn, container, section) {
+
+    container.style.transition = 'transform 0.9s ease';
+    landing_page.style.transition = 'transform 0.9s ease';
+
+
+    // ABRIR
+    openBtn.addEventListener('click', function () {
+
+        container.style.transform = 'translateX(0)';
+
+        if (section === 'about') {
+            landing_page.style.transform = 'translateX(100vw)';
+        }
+
+        if (section === 'archive') {
+            landing_page.style.transform = 'translateX(-100vw)';
+        }
+
+        lockScroll(true);
+    });
+
+
+    // FECHAR
+    closeBtn.addEventListener('click', function () {
+
+        if (section === 'about') {
+            container.style.transform = 'translateX(-100vw)';
+        }
+
+        if (section === 'archive') {
+            container.style.transform = 'translateX(100vw)';
+        }
+
+        landing_page.style.transform = 'translateX(0)';
+
+        lockScroll(false);
+    });
+}
 
 //bloqueia o scroll no about e no archive
 function lockScroll(lock) {

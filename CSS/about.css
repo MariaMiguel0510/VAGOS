@@ -1,5 +1,8 @@
 .about {
-    right: 100vw;
+    /*right: 100vw;*/
+    
+    left: 0;
+    transform: translateX(-100vw);
 }
 
 .about_grid_container {
