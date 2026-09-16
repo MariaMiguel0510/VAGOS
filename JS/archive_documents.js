@@ -56,10 +56,10 @@ function createList(link) {
     console.log(d[0]);
 });*/
 }
-/*
+
 //cria a lista de documentos
 createList(archiveData);
-
+/*
 let archiveData = "./data/archive.csv";
 
 function createList(link) {
