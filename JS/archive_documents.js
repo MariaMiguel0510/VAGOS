@@ -52,10 +52,10 @@ function createList(link) {
         });
     });
 
-   /* d3.csv(link).then(d => {
+   /*d3.csv(link).then(d => {
     console.log(d[0]);
 });*/
 }
 
 //cria a lista de documentos
-createList(archiveData);
+createList(archiveData); 
