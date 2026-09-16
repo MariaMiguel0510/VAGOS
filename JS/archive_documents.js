@@ -1,4 +1,4 @@
-/*este ficheiro é apenas para descarregar os documentos pdf da página archive*/
+/*este ficheiro é apenas para descarregar os documentos pdf da página archive
 let archiveData = "./data/archive.csv";
 
 function createList(link) {
@@ -52,10 +52,47 @@ function createList(link) {
         });
     });
 
-    d3.csv(link).then(d => {
+   /* d3.csv(link).then(d => {
     console.log(d[0]);
 });
 }
 
 //cria a lista de documentos
+createList(archiveData);*/
+
+let archiveData = "./data/archive.csv";
+
+function createList(link) {
+
+    d3.csv(link).then(data => {
+
+        data.forEach(datum => {
+
+            const li = document.createElement("li");
+            const file = document.createElement("a");
+
+            file.href = `./data/documents/${datum.file}.pdf`;
+            file.target = "_blank";
+            file.textContent = datum.name;
+
+            const container = document.querySelector(datum.type);
+
+            if (!container) {
+                console.error("Container não encontrado:", datum.type);
+                return;
+            }
+
+            li.appendChild(file);
+            container.appendChild(li);
+        });
+
+        // DEBUG
+        console.log("viewport:", window.innerWidth);
+        console.log("document:", document.documentElement.scrollWidth);
+
+    }).catch(error => {
+        console.error("Erro ao carregar CSV:", error);
+    });
+}
+
 createList(archiveData);
