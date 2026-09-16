@@ -66,20 +66,21 @@ function createList(link) {
 
     d3.csv(link).then(data => {
 
+        //para cada um dos documentos existentes
         data.forEach(datum => {
 
-            const item = datum.file;
-            const name = datum.name;
-            const containerName = datum.type;
+            let item = datum.file;
+            let name = datum.name;
+            let containerName = datum.type;
 
-            // Caminho para o PDF
-            const pdfPath = `./data/documents/${item}.pdf`;
+            //caminho para encontrar o pdf
+            let pdfPath = `./data/documents/${item}.pdf`;
 
-            // Cria os elementos
-            const li = document.createElement("li");
-            const file = document.createElement("a");
+            //cria um elemento lista em formato link
+            let li = document.createElement("li");
+            let file = document.createElement("a");
 
-            // Configura o link
+            //atribui-lhe o nome/texto do documento pdf
             file.href = pdfPath;
             file.target = "_blank";
             file.textContent = name;
@@ -93,9 +94,9 @@ function createList(link) {
         });
 
     }).catch(error => {
-        console.error("Erro ao carregar o arquivo CSV:", error);
+        console.log("Ficheiro não encontrado");
     });
 }
 
-// Cria a lista de documentos
+//cria a lista de documentos
 createList(archiveData);
