@@ -86,13 +86,13 @@
     background-color: #FDF7EE;
 }
 
-@media (max-width: 850px) and (orientation: portrait) {
+@media (max-width: 850px)  {
     body {
         background: red !important;
     }
 }
 
-@media (min-width: 851px) and (orientation: landscape) {
+@media (min-width: 851px) {
     body {
         background: blue !important;
     }
