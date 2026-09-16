@@ -62,55 +62,40 @@ createList(archiveData); */
 
 let archiveData = "./data/archive.csv";
 
-async function createList(link) {
+function createList(link) {
 
-    const data = await d3.csv(link);
+    d3.csv(link).then(data => {
 
-    for (const datum of data) {
+        data.forEach(datum => {
 
-        const item = datum.file;
-        const name = datum.name;
-        const containerName = datum.type;
+            const item = datum.file;
+            const name = datum.name;
+            const containerName = datum.type;
 
-        const pdfPath = `./data/documents/${item}.pdf`;
+            // Caminho para o PDF
+            const pdfPath = `./data/documents/${item}.pdf`;
 
-        const li = document.createElement("li");
-        const file = document.createElement("a");
+            // Cria os elementos
+            const li = document.createElement("li");
+            const file = document.createElement("a");
 
-        file.textContent = name;
+            // Configura o link
+            file.href = pdfPath;
+            file.target = "_blank";
+            file.textContent = name;
 
-        try {
+            // Adiciona à lista correspondente
+            li.appendChild(file);
 
-            const response = await fetch(pdfPath, {
-                method: "HEAD"
-            });
+            document
+                .querySelector(containerName)
+                .appendChild(li);
+        });
 
-            if (response.ok) {
-
-                // O PDF existe
-                file.href = pdfPath;
-                file.target = "_blank";
-
-            } else {
-
-                // O PDF não existe
-                file.textContent = `${name} (indisponível)`;
-                file.style.color = "gray";
-            }
-
-        } catch (error) {
-
-            // Não foi possível verificar o ficheiro
-            file.textContent = `${name} (indisponível)`;
-            file.style.color = "gray";
-        }
-
-        li.appendChild(file);
-
-        document
-            .querySelector(containerName)
-            .appendChild(li);
-    }
+    }).catch(error => {
+        console.error("Erro ao carregar o arquivo CSV:", error);
+    });
 }
 
+// Cria a lista de documentos
 createList(archiveData);
