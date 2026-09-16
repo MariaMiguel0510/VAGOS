@@ -34,7 +34,7 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
 
     // FECHAR
     closeBtn.addEventListener('click', function () {
-        container.style[direction] = '100vw';
+        container.style[direction] = '-100vw';
         landing_page.style.left = '0vw';
         lockScroll(false);//ativa o scroll vertical
     });
