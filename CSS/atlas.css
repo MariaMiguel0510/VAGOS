@@ -237,11 +237,11 @@ html.snap-mode {
 }
 
 
-/*VERSÃO MOBILE ----------------------------------------------------------------------*/
+/*VERSÃO MOBILE ----------------------------------------------------------------------
 @media (max-width: 850px) {
     .atlas {
         display: none;
         min-height: 0;
         background-color: pink;
     }
-}
+}*/
