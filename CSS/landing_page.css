@@ -129,15 +129,15 @@
 /*mobile*/
 @media (max-width: 525px){
     .landing_page>h3 {
-        font-size: 3.5vh;
+        font-size: 3.3vh;
     }
 
     #open_about {
-        left: 10vw;
+        left: 6vw;
     }
 
     #open_archive {
-        right: 5.7vw;
+        right: 6vw;
     }
 
      .mobile>p {
