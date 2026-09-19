@@ -40,7 +40,7 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     });
 }
 
-
+/*
 //bloqueia o scroll no about e no archive
 function lockScroll(lock) {
     if (lock) {
@@ -48,6 +48,20 @@ function lockScroll(lock) {
     } else {
         document.body.style.overflow = 'auto';
         document.body.style.overflowX = 'hidden';
+    }
+}*/
+
+function lockScroll(lock) {
+    //na versão desktop
+    if (window.innerWidth > 850) {
+
+        if (lock) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+            document.body.style.overflowX = 'hidden';
+        }
+
     }
 }
 
