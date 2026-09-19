@@ -89,7 +89,7 @@
 /*para ipad e mobile*/
 @media (max-width: 850px){
     .landing_page>h3 {
-        font-size: 2.8vh;
+        font-size: 3.5vh;
     }
 
     #content_title {
@@ -97,11 +97,11 @@
     }
 
     #open_about {
-        left: 5.2vw;
+        left: 5.5vw;
     }
 
     #open_archive {
-        right: 5.2vw;
+        right: 5.5vw;
     }
 
     .dots {
@@ -121,21 +121,7 @@
     .mobile>p {
         position: relative;
         margin-top: auto;
-        font-size: 2vh;
+        font-size: 2.5vh;
         padding: 0vh 21vw 5vh 21vw;
-    }
-
-    .mobile>img {
-        display: none;
-    }
-}
-
-@media(max-width: 325px) {
-    .mobile>img {
-        display: block;
-        position: relative;
-        height: 2.5vh;
-        margin-top: 13vh;
-        margin-bottom: 0;
     }
 }
