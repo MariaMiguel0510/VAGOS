@@ -63,7 +63,7 @@ main {
 
 /*VERSÃO MOBILE ----------------------------------------------------------------------*/
 @media (max-width: 850px) {
-    html{
+    body{
         overflow-y: hidden;
     }
 
