@@ -40,17 +40,8 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     });
 }
 
-/*
-//bloqueia o scroll no about e no archive
-function lockScroll(lock) {
-    if (lock) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = 'auto';
-        document.body.style.overflowX = 'hidden';
-    }
-}*/
 
+//bloqueia o scroll no about e no archive
 function lockScroll(lock) {
     //na versão desktop
     if (window.innerWidth > 850) {
