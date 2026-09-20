@@ -26,7 +26,7 @@ function toggleSection(openBtn, oppositeopenBtn, closeBtn, oppositecloseBtn, con
     landing_page.style.transition = `left 0.9s ease`;
 
 
-    closeBtn.addEventListener('mouseover', function () {
+    closeBtn.addEventListener('mouseout', function () {
         oppositeopenBtn.style.color = 'black';
     });
 
