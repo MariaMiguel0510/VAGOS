@@ -25,6 +25,7 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     container.style.transition = `${direction} 0.9s ease`;
     landing_page.style.transition = `left 0.9s ease`;
 
+    //versão desktop mouseover botões
     if (window.innerWidth > 850) {
         openBtn.addEventListener('mouseover', function () {
             openBtn.style.color = '#FFD700';
@@ -42,12 +43,12 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
         landing_page.style.left = landingMove;
         lockScroll(true);//bloqueia o scroll vertical
 
-        //se estiver no ipad
+        //versão desktop "mouseover" ipad
         if (window.innerWidth < 850) {
             openBtn.style.color = '#FFD700';
             setTimeout(function () {
                 openBtn.style.color = 'black';
-            }, 250);
+            }, 300);
         }
     });
 
