@@ -66,14 +66,6 @@
     color: #FFD700;
 }
 
-/*
-@media (hover: hover) and (pointer: fine) {
-    #open_about:hover,
-    #open_archive:hover {
-        color: #FFD700;
-    }
-}*/
-
 /*----------------------------pontos que remetem ao atlas/toolkit/zpu---------------------------*/
 .dots {
     position: absolute;
