@@ -135,12 +135,6 @@
         padding: 0 18vw 10vh 15vw;
     }
 
-    .about_text {
-        font-size: 1.7vh;
-        line-height: 2vh;
-        display: none;
-    }
-
     .about_disclaimer {
         display: none;
     }
@@ -157,6 +151,11 @@
             "topicos topicos topicos topicos topicos topicos . ."
             "equipa equipa equipa equipa equipa equipa equipa equipa"
             "logos logos logos logos logos . . .";
+    }
+
+    .about_equipa>ul,
+    .about_topicos>ol {
+        font-size: 1.5vh;
     }
 
     .about_equipa>ul {
