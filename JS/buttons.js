@@ -19,19 +19,11 @@ let atlas_container = document.querySelector(".atlas_grid_container");
 //OPEN/CLOSE ABOUT/ARCHIVE ---------------------------------------------------
 toggleSection(open_about, close_about, about_container, 'right', '100vw');//about
 toggleSection(open_archive, close_archive, archive_container, 'left', '-100vw');//archive
-
+/*
 function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     //coloca a transicao de abertura universal
     container.style.transition = `${direction} 0.9s ease`;
     landing_page.style.transition = `left 0.9s ease`;
-
-    openBtn.addEventListener('mouseover', function () {
-        openBtn.style.color = '#FFD700';
-    });
-
-    openBtn.addEventListener('mouseout', function () {
-        openBtn.style.color = 'black';
-    });
 
     // ABRIR
     openBtn.addEventListener('click', function () {
@@ -46,11 +38,49 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
         landing_page.style.left = '0vw';
         lockScroll(false);//ativa o scroll vertical
     });
+}*/
 
-    // coloca  os botões ao estado normal
-    open_about.style.color = 'black';
-    open_archive.style.color = 'black';
+function toggleSection(openBtn, oppositeBtn, closeBtn, container, direction, landingMove) {
+
+    // transições
+    container.style.transition = `${direction} 0.9s ease`;
+    landing_page.style.transition = `left 0.9s ease`;
+
+
+    // ABRIR
+    openBtn.addEventListener('click', function () {
+
+        // abre a secção
+        container.style[direction] = '0vw';
+        landing_page.style.left = landingMove;
+
+        // botão da secção aberta fica amarelo
+        openBtn.style.color = '#FFD700';
+
+        // botão oposto volta a preto
+        oppositeBtn.style.color = 'black';
+
+        // bloqueia o scroll
+        lockScroll(true);
+    });
+
+
+    // FECHAR
+    closeBtn.addEventListener('click', function () {
+
+        // fecha a secção
+        container.style[direction] = '100vw';
+        landing_page.style.left = '0vw';
+
+        // ambos os botões voltam a preto
+        openBtn.style.color = 'black';
+        oppositeBtn.style.color = 'black';
+
+        // ativa o scroll
+        lockScroll(false);
+    });
 }
+
 
 
 //bloqueia o scroll no about e no archive
