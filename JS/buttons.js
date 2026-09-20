@@ -17,28 +17,13 @@ let atlas_container = document.querySelector(".atlas_grid_container");
 
 
 //OPEN/CLOSE ABOUT/ARCHIVE ---------------------------------------------------
-toggleSection(open_about, open_archive, close_about, close_archive, about_container, 'right', '100vw');//about
-toggleSection(open_archive, open_about, close_archive, close_about, archive_container, 'left', '-100vw');//archive
+toggleSection(open_about, close_about, about_container, 'right', '100vw');//about
+toggleSection(open_archive, close_archive, archive_container, 'left', '-100vw');//archive
 
-function toggleSection(openBtn, oppositeopenBtn, closeBtn, oppositecloseBtn, container, direction, landingMove) {
+function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     //coloca a transicao de abertura universal
     container.style.transition = `${direction} 0.9s ease`;
     landing_page.style.transition = `left 0.9s ease`;
-
-
-    closeBtn.addEventListener('click', function () {
-        oppositeopenBtn.style.color = 'red';
-    });
-
-    openBtn.addEventListener('mouseover', function () {
-        openBtn.style.color = '#FFD700';
-
-    });
-
-    openBtn.addEventListener('mouseout', function () {
-        openBtn.style.color = 'black';
-
-    });
 
     // ABRIR
     openBtn.addEventListener('click', function () {
@@ -55,48 +40,6 @@ function toggleSection(openBtn, oppositeopenBtn, closeBtn, oppositecloseBtn, con
         lockScroll(false);//ativa o scroll vertical
     });
 }
-/*
-function toggleSection(openBtn, oppositeBtn, closeBtn, container, direction, landingMove) {
-
-    // transições
-    container.style.transition = `${direction} 0.9s ease`;
-    landing_page.style.transition = `left 0.9s ease`;
-
-
-    // ABRIR
-    openBtn.addEventListener('click', function () {
-
-        // abre a secção
-        container.style[direction] = '0vw';
-        landing_page.style.left = landingMove;
-
-        // botão da secção aberta fica amarelo
-        openBtn.style.color = '#FFD700';
-
-        // botão oposto volta a preto
-        oppositeBtn.style.color = 'black';
-
-        // bloqueia o scroll
-        lockScroll(true);
-    });
-
-
-    // FECHAR
-    closeBtn.addEventListener('click', function () {
-
-        // fecha a secção
-        container.style[direction] = '100vw';
-        landing_page.style.left = '0vw';
-
-        // ambos os botões voltam a preto
-        openBtn.style.color = 'black';
-        oppositeBtn.style.color = 'black';
-
-        // ativa o scroll
-        lockScroll(false);
-    });
-}*/
-
 
 
 //bloqueia o scroll no about e no archive
