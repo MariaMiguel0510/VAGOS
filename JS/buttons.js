@@ -24,24 +24,26 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     //coloca a transicao de abertura universal
     container.style.transition = `${direction} 0.9s ease`;
     landing_page.style.transition = `left 0.9s ease`;
-
-    openBtn.addEventListener('click', function () {
-        openBtn.style.color = '#FFD700';
-        setTimeout(function () {
-            openBtn.style.color = 'black';
-        }, 200);
-    });
 /*
-    openBtn.addEventListener('mouseout', function () {
-        openBtn.style.color = 'black';
-
+    openBtn.addEventListener('mouseover', function () {
+        if(window.innerWidth > 850)
+        openBtn.style.color = '#FFD700';
     });*/
+
 
     // ABRIR
     openBtn.addEventListener('click', function () {
         container.style[direction] = '0vw';
         landing_page.style.left = landingMove;
         lockScroll(true);//bloqueia o scroll vertical
+
+        //se estiver no ipad
+        if (window.innerWidth < 850) {
+            openBtn.style.color = '#FFD700';
+            setTimeout(function () {
+                openBtn.style.color = 'black';
+            }, 250);
+        }
     });
 
     // FECHAR
@@ -51,49 +53,6 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
         lockScroll(false);//ativa o scroll vertical
     });
 }
-/*
-function toggleSection(openBtn, oppositeBtn, closeBtn, container, direction, landingMove) {
-
-    // transições
-    container.style.transition = `${direction} 0.9s ease`;
-    landing_page.style.transition = `left 0.9s ease`;
-
-
-    // ABRIR
-    openBtn.addEventListener('click', function () {
-
-        // abre a secção
-        container.style[direction] = '0vw';
-        landing_page.style.left = landingMove;
-
-        // botão da secção aberta fica amarelo
-        openBtn.style.color = '#FFD700';
-
-        // botão oposto volta a preto
-        oppositeBtn.style.color = 'black';
-
-        // bloqueia o scroll
-        lockScroll(true);
-    });
-
-
-    // FECHAR
-    closeBtn.addEventListener('click', function () {
-
-        // fecha a secção
-        container.style[direction] = '100vw';
-        landing_page.style.left = '0vw';
-
-        // ambos os botões voltam a preto
-        openBtn.style.color = 'black';
-        oppositeBtn.style.color = 'black';
-
-        // ativa o scroll
-        lockScroll(false);
-    });
-}*/
-
-
 
 //bloqueia o scroll no about e no archive
 function lockScroll(lock) {
