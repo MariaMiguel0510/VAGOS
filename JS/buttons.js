@@ -24,11 +24,16 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     //coloca a transicao de abertura universal
     container.style.transition = `${direction} 0.9s ease`;
     landing_page.style.transition = `left 0.9s ease`;
-/*
-    openBtn.addEventListener('mouseover', function () {
-        if(window.innerWidth > 850)
-        openBtn.style.color = '#FFD700';
-    });*/
+
+    if (window.innerWidth > 850) {
+        openBtn.addEventListener('mouseover', function () {
+            openBtn.style.color = '#FFD700';
+        });
+
+        openBtn.addEventListener('mouseout', function () {
+            openBtn.style.color = 'black';
+        });
+    }
 
 
     // ABRIR
