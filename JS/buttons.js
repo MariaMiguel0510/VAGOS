@@ -17,13 +17,26 @@ let atlas_container = document.querySelector(".atlas_grid_container");
 
 
 //OPEN/CLOSE ABOUT/ARCHIVE ---------------------------------------------------
-toggleSection(open_about, open_archive, close_about, about_container, 'right', '100vw');//about
-toggleSection(open_archive, open_about, close_archive, archive_container, 'left', '-100vw');//archive
-/*
-function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
+toggleSection(open_about, open_archive, close_about, close_archive, about_container, 'right', '100vw');//about
+toggleSection(open_archive, open_about, close_archive, close_about, archive_container, 'left', '-100vw');//archive
+
+function toggleSection(openBtn, oppositeopenBtn, closeBtn, oppositecloseBtn, container, direction, landingMove) {
     //coloca a transicao de abertura universal
     container.style.transition = `${direction} 0.9s ease`;
     landing_page.style.transition = `left 0.9s ease`;
+
+
+    closeBtn.addEventListener('mouseover', function () {
+        oppositeopenBtn.style.color = 'black';
+    });
+
+    openBtn.addEventListener('mouseover', function () {
+        openBtn.style.color = '#FFD700';
+    });
+
+    openBtn.addEventListener('mouseout', function () {
+        openBtn.style.color = 'black';
+    });
 
     // ABRIR
     openBtn.addEventListener('click', function () {
@@ -38,8 +51,8 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
         landing_page.style.left = '0vw';
         lockScroll(false);//ativa o scroll vertical
     });
-}*/
-
+}
+/*
 function toggleSection(openBtn, oppositeBtn, closeBtn, container, direction, landingMove) {
 
     // transições
@@ -79,7 +92,7 @@ function toggleSection(openBtn, oppositeBtn, closeBtn, container, direction, lan
         // ativa o scroll
         lockScroll(false);
     });
-}
+}*/
 
 
 
