@@ -100,7 +100,7 @@
 
 
 /*VERSÃO MOBILE ----------------------------------------------------------------------*/
-@media (min-width: 800px) and (max-width: 1010px) {
+@media (min-width: 850px) and (max-width: 1010px) {
     .about_grid_container {
         grid-template-columns: repeat(4, 0.7fr) 0.4fr repeat(3, 0.7fr);
         grid-template-areas:
@@ -130,7 +130,7 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
     .about_grid_container {
         padding: 0 18vw 10vh 15vw;
     }
@@ -150,7 +150,7 @@
     }
 }
 
-@media (min-width: 600px) and (max-width: 800px) {
+@media (min-width: 600px) and (max-width: 850px) {
     .about_grid_container {
         grid-template-areas:
             "about_title about_title about_title . . . . ."
