@@ -27,7 +27,7 @@ function toggleSection(openBtn, oppositeopenBtn, closeBtn, oppositecloseBtn, con
 
 
     closeBtn.addEventListener('click', function () {
-        oppositeopenBtn.style.color = 'black';
+       openBtn.style.color = 'black';
     });
 
     openBtn.addEventListener('mouseover', function () {
