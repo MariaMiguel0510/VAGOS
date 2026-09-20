@@ -29,7 +29,7 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
         openBtn.style.color = '#FFD700';
         setTimeout(function () {
             openBtn.style.color = 'black';
-        }, 500);
+        }, 200);
     });
 /*
     openBtn.addEventListener('mouseout', function () {
