@@ -45,7 +45,7 @@ function toggleSection(openBtn, oppositeBtn, closeBtn, container, direction, lan
         container.style[direction] = '100vw';
         landing_page.style.left = '0vw';
         lockScroll(false);//ativa o scroll vertical
-        //oppositeBtn.style.color = 'red';
+        oppositeBtn.style.color = 'red';
     });
 }
 
