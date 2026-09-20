@@ -52,6 +52,10 @@
     will-change: transform;
 }
 
+#close_about{
+    transform: translateY(-50%) rotate(90deg);
+}
+
 /*ARQUIVO*/
 #open_archive {
     position: absolute;
@@ -59,6 +63,10 @@
     right: 2vw;
     writing-mode: vertical-lr;
     transform: scale(-1, -1);
+}
+
+#close_archive{
+    transform: translateY(-50%) rotate(-90deg);
 }
 
 /*----------------------------pontos que remetem ao atlas/toolkit/zpu---------------------------*/
