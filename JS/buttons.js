@@ -17,8 +17,8 @@ let atlas_container = document.querySelector(".atlas_grid_container");
 
 
 //OPEN/CLOSE ABOUT/ARCHIVE ---------------------------------------------------
-toggleSection(open_about, close_about, about_container, 'right', '100vw');//about
-toggleSection(open_archive, close_archive, archive_container, 'left', '-100vw');//archive
+toggleSection(open_about, open_archive, close_about, about_container, 'right', '100vw');//about
+toggleSection(open_archive, open_about, close_archive, archive_container, 'left', '-100vw');//archive
 /*
 function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     //coloca a transicao de abertura universal
