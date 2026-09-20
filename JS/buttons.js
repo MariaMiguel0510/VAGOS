@@ -25,7 +25,7 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
     container.style.transition = `${direction} 0.9s ease`;
     landing_page.style.transition = `left 0.9s ease`;
 
-    openBtn.addEventListener('mouseover', function () {
+    openBtn.addEventListener('click', function () {
         openBtn.style.color = '#FFD700';
         setTimeout(function () {
             openBtn.style.color = 'black';
