@@ -61,11 +61,9 @@
     transform: scale(-1, -1);
 }
 
-@media (hover: hover) {
-    #open_about:hover,
-    #open_archive:hover {
-        color: #FFD700;
-    }
+#open_about:hover,
+#open_archive:hover {
+    color: #FFD700;
 }
 
 /*
