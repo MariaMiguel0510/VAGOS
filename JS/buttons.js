@@ -30,7 +30,6 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
         container.style[direction] = '0vw';
         landing_page.style.left = landingMove;
         lockScroll(true);//bloqueia o scroll vertical
-        openBtn.style.color = '#FFD700';
     });
 
     // FECHAR
@@ -38,7 +37,6 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
         container.style[direction] = '100vw';
         landing_page.style.left = '0vw';
         lockScroll(false);//ativa o scroll vertical
-        openBtn.style.color = 'black';
     });
 }
 
