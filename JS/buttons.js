@@ -27,15 +27,17 @@ function toggleSection(openBtn, oppositeopenBtn, closeBtn, oppositecloseBtn, con
 
 
     closeBtn.addEventListener('click', function () {
-       openBtn.style.color = 'black';
+        oppositeopenBtn.style.color = 'red';
     });
 
     openBtn.addEventListener('mouseover', function () {
         openBtn.style.color = '#FFD700';
+
     });
 
     openBtn.addEventListener('mouseout', function () {
         openBtn.style.color = 'black';
+
     });
 
     // ABRIR
@@ -43,6 +45,7 @@ function toggleSection(openBtn, oppositeopenBtn, closeBtn, oppositecloseBtn, con
         container.style[direction] = '0vw';
         landing_page.style.left = landingMove;
         lockScroll(true);//bloqueia o scroll vertical
+        oppositeopenBtn.style.color = 'black';
     });
 
     // FECHAR
