@@ -25,6 +25,14 @@ function toggleSection(openBtn, oppositeBtn, closeBtn, container, direction, lan
     container.style.transition = `${direction} 0.9s ease`;
     landing_page.style.transition = `left 0.9s ease`;
 
+    openBtn.addEventListener('mouseover', function () {
+        openBtn.style.color = '#FFD700';
+    });
+
+    openBtn.addEventListener('mouseout', function () {
+        openBtn.style.color = 'black';
+    });
+
     // ABRIR
     openBtn.addEventListener('click', function () {
         container.style[direction] = '0vw';
@@ -37,7 +45,7 @@ function toggleSection(openBtn, oppositeBtn, closeBtn, container, direction, lan
         container.style[direction] = '100vw';
         landing_page.style.left = '0vw';
         lockScroll(false);//ativa o scroll vertical
-        oppositeBtn.style.color = 'red';
+        //oppositeBtn.style.color = 'red';
     });
 }
 
