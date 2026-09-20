@@ -60,12 +60,7 @@
     writing-mode: vertical-lr;
     transform: scale(-1, -1);
 }
-/*
-#open_about:hover,
-#open_archive:hover {
-    color: #FFD700;
-}
-*/
+
 /*----------------------------pontos que remetem ao atlas/toolkit/zpu---------------------------*/
 .dots {
     position: absolute;
@@ -126,7 +121,7 @@
     }
 }
 
-/*VERSÃO MOBILE ----------------------------------------------------------------------*/
+/*VERSÃO MOBILE ----------------------------------------------------------------------
 @media (max-width: 525px) {
     .landing_page>h3 {
         font-size: 3.3vh;
@@ -143,4 +138,4 @@
     .mobile>p {
         font-size: 2vh;
     }
-}
+}*/

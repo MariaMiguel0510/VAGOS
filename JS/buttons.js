@@ -44,7 +44,7 @@ function toggleSection(openBtn, closeBtn, container, direction, landingMove) {
         lockScroll(true);//bloqueia o scroll vertical
 
         //versão desktop "mouseover" ipad
-        if (window.innerWidth < 850  && window.innerWidth > 525) {
+        if (window.innerWidth < 850) {
             openBtn.style.color = '#FFD700';
             setTimeout(function () {
                 openBtn.style.color = 'black';
