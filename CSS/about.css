@@ -101,8 +101,8 @@
 /*VERSÃO IPAD ----------------------------------------------------------------------*/
 @media (max-width: 850px) {
     .about_text {
-        font-size: 1.8vh;
-        line-height: 2.4vh;
+        font-size: 1.7vh;
+        line-height: 2.2vh;
     }
 
     .about_topicos>ol,
