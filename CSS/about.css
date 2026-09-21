@@ -100,7 +100,13 @@
 
 /*VERSÃO IPAD ----------------------------------------------------------------------*/
 @media (max-width: 850px) {
-    .about_topicos>ol, .about_equipa>ul  {
+    .about_text {
+        font-size: 1.8vh;
+    line-height: 2.4vh;
+    }
+
+    .about_topicos>ol,
+    .about_equipa>ul {
         font-size: 1.5vh;
     }
 }
@@ -126,7 +132,8 @@
         display: none;
     }
 
-    .about_topicos>ol, .about_equipa>ul  {
+    .about_topicos>ol,
+    .about_equipa>ul {
         font-size: 2vh;
     }
 

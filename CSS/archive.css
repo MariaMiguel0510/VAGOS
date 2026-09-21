@@ -80,9 +80,19 @@
             ". . . . . . . . . .";
         padding: 0 13vw 10vh 13vw;
     }
+
+    .archive_police_brief>ul,
+    .archive_reports>ul,
+    .archive_articles>ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        font-size: 1.8vh;
+        line-height: 3.5vh;
+    }
 }
 
-@media (min-width: 700px) and (max-width: 800px) { 
+@media (min-width: 700px) and (max-width: 800px) {
     .archive_grid_container {
         grid-template-areas:
             "archive_title archive_title archive_title archive_title . . . . . ."
@@ -95,7 +105,7 @@
     }
 }
 
-@media (min-width: 525px) and (max-width: 700px) { 
+@media (min-width: 525px) and (max-width: 700px) {
     .archive_grid_container {
         grid-template-areas:
             "archive_title archive_title archive_title archive_title . . . . . ."
@@ -109,7 +119,7 @@
 }
 
 /*mobile*/
-@media (max-width: 525px){
+@media (max-width: 525px) {
     .archive_grid_container {
         display: grid;
         grid-template-columns: repeat(8, 0.8fr);
