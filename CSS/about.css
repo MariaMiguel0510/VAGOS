@@ -102,13 +102,12 @@
 @media (max-width: 1250px) {
     .about_grid_container {
         grid-template-columns: repeat(4, 0.8fr) 0.4fr repeat(3, 0.8fr);
-        padding: 0 10vw 10vh 7vw;
+        padding: 0 8vw 10vh 8vw;
     }
 
     .about_text {
         font-size: 2vh;
         line-height: 2.6vh;
-        color: red;
     }
 
     .about_topicos>ol,
