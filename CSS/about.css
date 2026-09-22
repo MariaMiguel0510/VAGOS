@@ -98,7 +98,7 @@
 }
 
 
-/*VERSÃO IPAD ----------------------------------------------------------------------*/
+/*VERSÃO IPAD HORIZONTAL----------------------------------------------------------------------*/
 @media (max-width: 1250px) {
     .about_grid_container {
         grid-template-columns: repeat(4, 0.7fr) 0.3fr repeat(3, 0.8fr);
@@ -106,7 +106,6 @@
     }
 
     .about_text {
-        color: red;
         font-size: 2vh;
         line-height: 2.6vh;
     }
@@ -125,6 +124,7 @@
     }
 }
 
+/*VERSÃO IPAD VERTICAL----------------------------------------------------------------------*/
 @media (max-width: 850px) {
     .about_text {
         font-size: 1.7vh;
@@ -139,7 +139,6 @@
 
 @media (max-width: 600px) {
     .about_grid_container {
-        background-color: yellow;
         grid-template-rows: auto 0.5fr 1fr 1fr;
         grid-template-areas:
             "about_title about_title about_title . . . . ."
