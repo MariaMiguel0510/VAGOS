@@ -99,7 +99,11 @@
 
 
 /*VERSÃO IPAD ----------------------------------------------------------------------*/
-@media (max-width: 850px) {
+@media (min-width: 750px) and (max-width: 950px) {
+    .about_grid_container {
+        background-color: pink;
+    }
+
     .about_text {
         font-size: 1.7vh;
         line-height: 2.3vh;
@@ -111,9 +115,10 @@
     }
 }
 
-/*VERSÃO INTERMÉDIA ----------------------------------------------------------------------*/
+
 @media (max-width: 600px) {
     .about_grid_container {
+        background-color: yellow;
         grid-template-rows: auto 0.5fr 1fr 1fr;
         grid-template-areas:
             "about_title about_title about_title . . . . ."
