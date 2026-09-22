@@ -69,8 +69,15 @@
     pointer-events: none;
 }
 
+/*VERSÃO IPAD HORIZONTAL----------------------------------------------------------------------*/
+@media (max-width: 1250px) {
+    .title {
+        margin: 10px 0 3vh 0;
+    }
+}
 
-/*VERSÃO IPAD & MOBILE----------------------------------------------------------------------*/
+
+/*VERSÃO IPAD VERTICAL & MOBILE----------------------------------------------------------------------*/
 @media (max-width: 850px) {
     .title {
         font-size: 7vh;
@@ -88,4 +95,3 @@
         width: 10vh;
     }
 }
-
