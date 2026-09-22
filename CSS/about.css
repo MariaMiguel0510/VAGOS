@@ -115,6 +115,11 @@
     }
 }
 
+@media (max-width: 850px) {
+    .about_grid_container {
+        background-color: yellow;
+    }
+}
 
 @media (max-width: 600px) {
     .about_grid_container {
