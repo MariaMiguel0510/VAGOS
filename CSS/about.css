@@ -99,7 +99,7 @@
 
 
 /*VERSÃO IPAD ----------------------------------------------------------------------*/
-@media (min-width: 950px) and (max-width: 1050px) {
+@media (min-width: 100px) and (max-width: 1150px) {
     .about_grid_container {
         background-color: pink;
     }
