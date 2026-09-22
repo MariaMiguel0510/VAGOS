@@ -99,9 +99,9 @@
 
 
 /*VERSÃO IPAD ----------------------------------------------------------------------*/
-@media (min-width: 950px) and (max-width: 1250px) {
+@media (max-width: 1250px) {
     .about_grid_container {
-        background-color: pink;
+        background-color: greenyellow;
     }
 
     .about_text {
