@@ -101,6 +101,7 @@
 /*VERSÃO IPAD ----------------------------------------------------------------------*/
 @media (max-width: 1250px) {
     .about_grid_container {
+        background-color: pink;
         grid-template-columns: repeat(4, 0.8fr) 0.5fr repeat(3, 0.8fr);
         padding: 0 9vw 10vh 7.5vw;
     }
@@ -116,7 +117,7 @@
     }
 
     .about_equipa {
-        margin-top: 5vh;
+        margin-top: 4vh;
     }
 
     .about_disclaimer {
