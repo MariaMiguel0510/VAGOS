@@ -101,12 +101,13 @@
 /*VERSÃO IPAD ----------------------------------------------------------------------*/
 @media (max-width: 1250px) {
     .about_grid_container {
-        background-color: greenyellow;
+        background-color: pink;
+        grid-template-columns: repeat(4, 0.8fr) 0.5fr repeat(3, 0.8fr);
     }
 
     .about_text {
-        font-size: 1.9vh;
-        line-height: 2.5vh;
+        font-size: 2.1vh;
+        line-height: 2.7vh;
     }
 
     .about_topicos>ol,
