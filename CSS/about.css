@@ -105,6 +105,22 @@
     }
 
     .about_text {
+        font-size: 1.9vh;
+        line-height: 2.5vh;
+    }
+
+    .about_topicos>ol,
+    .about_equipa>ul {
+        font-size: 2vh;
+    }
+}
+
+@media (max-width: 850px) {
+    .about_grid_container {
+        background-color: yellow;
+    }
+
+    .about_text {
         font-size: 1.7vh;
         line-height: 2.3vh;
     }
@@ -112,12 +128,6 @@
     .about_topicos>ol,
     .about_equipa>ul {
         font-size: 1.5vh;
-    }
-}
-
-@media (max-width: 850px) {
-    .about_grid_container {
-        background-color: yellow;
     }
 }
 
