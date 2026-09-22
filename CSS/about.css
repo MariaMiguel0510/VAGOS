@@ -115,6 +115,14 @@
     .about_equipa>ul {
         font-size: 1.8vh;
     }
+
+    .about_equipa {
+        margin-top: 6vh;
+    }
+
+    .about_disclaimer {
+        margin-top: 5vh;
+    }
 }
 
 @media (max-width: 850px) {
