@@ -1,6 +1,6 @@
 // este ficheiro é dedicado a desenhar a legenda dos mapas do atlas
 const legendTitles = {
-    percentagem: "Vagos Percentagem",
+    percentagem: "Percentagem de alojamentos vagos e de segunda habitação (subocupados), em relação ao número total de alojamentos",
     total: "Vagos Total",
     bons: "Vagos Total<br>Bom Estado",
     retencao: "Vagos Retenção",
