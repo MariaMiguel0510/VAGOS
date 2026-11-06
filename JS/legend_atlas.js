@@ -1,15 +1,9 @@
 // este ficheiro é dedicado a desenhar a legenda dos mapas do atlas
-const legendTitles = {
-    percentagem: "Percentagem de alojamentos vagos e de segunda habitação (subocupados), em relação ao número total de alojamentos",
-    total: "Vagos Total",
-    bons: "Vagos Total<br>Bom Estado",
-    retencao: "Vagos Retenção",
-    variacao: "Vagos Populacional"
-};
 
 //FUNÇÃO QUE DESENHA A LEGENDA -----------------------------------------------------
 export function drawLegend({
     step,
+    stepData,
     dados,
     textureScales,
     textureMapBlack,
@@ -19,8 +13,20 @@ export function drawLegend({
     onStepUpdate
 }) {
 
-    //coloca a escala de texturas de acordo com o step atual
-    let key = dados[step];
+    // procura a informação da legenda no CSV
+    let legendInfo = stepData.find(d => d.legend_key?.trim() !== "");
+
+    // se o step não tiver legenda, termina a função
+    if (!legendInfo) {
+        d3.select(".legend_container").selectAll("*").remove();
+        return;
+    }
+
+    // identifica a chave e o título da legenda
+    let key = legendInfo.legend_key;
+    let legendTitle = legendInfo.legend_title;
+
+    // vai buscar a escala correspondente
     let scale = textureScales[key];
 
     //devolve as texturas e os intervalos a usar
@@ -47,7 +53,7 @@ export function drawLegend({
     legend
         .append("h2")
         .attr("class", "legend_title")
-        .html(`${legendTitles[key]} <span>(i)</span>`);
+        .html(`${legendTitle} <span>(i)</span>`);
 
 
     //coloca o disclaimer (i) sobre a legenda interativa a aparecer
@@ -63,7 +69,7 @@ export function drawLegend({
 
 
     //elimina o primeiro index (0) por ser < que o primeiro limite
-    let legendData = texture.slice(1).map((t, i) => ({
+    let legendItems = texture.slice(1).map((t, i) => ({
         texture: t,
         index: i + 1
     }));
@@ -71,7 +77,7 @@ export function drawLegend({
 
     let items = legend
         .selectAll(".legend_item")
-        .data(legendData)
+        .data(legendItems)
         .enter()
         .append("div")
         .attr("class", "legend_item")

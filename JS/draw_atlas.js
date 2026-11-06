@@ -13,7 +13,16 @@ const dados = ["percentagem", "total", "bons", "retencao", "variacao", "local"];
 let currentStep = 0;
 let hiddenClasses = new Set();
 
-let corTextura = "#000";
+// guarda os dados dos steps provenientes do CSV
+let stepDataByIndex = [];
+
+// recebe os dados dos steps
+export function setStepData(groupedData) {
+
+    // transforma o Map num array de steps
+    stepDataByIndex = Array.from(groupedData.values());
+
+}
 
 //FUNÇÃO QUE DESENHA O MAPA -----------------------------------------------------------------
 export function draw_map(geojson, csvData) {
@@ -140,6 +149,7 @@ export function draw_map(geojson, csvData) {
 
     drawLegend({
         step: currentStep,
+        stepData: stepDataByIndex[currentStep],
         dados,
         textureScales,
         textureMapBlack,
@@ -177,6 +187,7 @@ export function updateMap(step) {
 
         drawLegend({
             step: currentStep,
+            stepData: stepDataByIndex[currentStep],
             dados,
             textureScales,
             textureMapBlack,

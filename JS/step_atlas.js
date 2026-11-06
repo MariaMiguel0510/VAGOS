@@ -72,6 +72,9 @@ export function createSteps() {
 
         });
 
+        //devolve os dados do CSV para serem utilizados noutros ficheiros .js
+        return groupedData;
+
     });
 
 }

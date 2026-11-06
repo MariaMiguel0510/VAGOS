@@ -1,76 +1,79 @@
 //este ficheiro controla a passagem dos passos do scrollytelling e desenha os steps
-import { updateMap } from "./draw_atlas.js";
+import { updateMap, setStepData } from "./draw_atlas.js";
 import { createSteps } from "./step_atlas.js";
 
 //desenha os steps
-createSteps().then(() => {
+createSteps().then(groupedData => {
 
-let atlas = document.querySelector(".atlas");
-let steps = document.querySelectorAll(".atlas .step");
+    // envia os dados dos steps para o draw_atlas.js
+    setStepData(groupedData);
 
-let scroller = scrollama();
+    let atlas = document.querySelector(".atlas");
+    let steps = document.querySelectorAll(".atlas .step");
 
-function handleStepEnter(response) {
+    let scroller = scrollama();
 
-    steps.forEach(s => s.classList.remove("is-active"));
-    response.element.classList.add("is-active");
-    //console.log(response.index);
+    function handleStepEnter(response) {
 
-    updateMap(response.index);
-}
+        steps.forEach(s => s.classList.remove("is-active"));
+        response.element.classList.add("is-active");
+        //console.log(response.index);
 
-function init() {
-    scroller
-        .setup({
-            step: ".atlas .step",
-            offset: 0.5,
-            //debug: true //permite ver as linhas que acionam o trigger scrolly
-        })
-        .onStepEnter(handleStepEnter);
-
-    window.addEventListener("resize", scroller.resize);
-}
-
-init();
-
-
-//SNAP SCROLL EFFECT
-//permite criar o efeito de snap scroll dentro do scrollytelling
-window.addEventListener("scroll", () => {
-
-    //obtém a posição do atlas para verificar os limites top/bottom
-    let rect = atlas.getBoundingClientRect();
-
-    if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
-        document.documentElement.classList.add("snap-mode");
-    } else {
-        document.documentElement.classList.remove("snap-mode");
+        updateMap(response.index);
     }
-});
+
+    function init() {
+        scroller
+            .setup({
+                step: ".atlas .step",
+                offset: 0.5,
+                //debug: true //permite ver as linhas que acionam o trigger scrolly
+            })
+            .onStepEnter(handleStepEnter);
+
+        window.addEventListener("resize", scroller.resize);
+    }
+
+    init();
 
 
-//FADE-IN / FADE-OUT EFFECT
-//verifica quando os elementos entrem e saem da viewport
-const observer = new IntersectionObserver(
+    //SNAP SCROLL EFFECT
+    //permite criar o efeito de snap scroll dentro do scrollytelling
+    window.addEventListener("scroll", () => {
 
-    //sempre que algum dos elementos entra/sai da viewport
-    (entries) => {
-        entries.forEach(entry => {
+        //obtém a posição do atlas para verificar os limites top/bottom
+        let rect = atlas.getBoundingClientRect();
 
-            //verifica se está visível
-            if (entry.isIntersecting) {
-                entry.target.classList.add("text-visible");
-            } else {
-                entry.target.classList.remove("text-visible");
-            }
-        });
-    },
-    {
-        threshold: 0.25
+        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+            document.documentElement.classList.add("snap-mode");
+        } else {
+            document.documentElement.classList.remove("snap-mode");
+        }
     });
 
-document
-    .querySelectorAll(".step_title, .step_subtitle, .step_text")
-    .forEach(el => observer.observe(el));
+
+    //FADE-IN / FADE-OUT EFFECT
+    //verifica quando os elementos entrem e saem da viewport
+    const observer = new IntersectionObserver(
+
+        //sempre que algum dos elementos entra/sai da viewport
+        (entries) => {
+            entries.forEach(entry => {
+
+                //verifica se está visível
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("text-visible");
+                } else {
+                    entry.target.classList.remove("text-visible");
+                }
+            });
+        },
+        {
+            threshold: 0.25
+        });
+
+    document
+        .querySelectorAll(".step_title, .step_subtitle, .step_text")
+        .forEach(el => observer.observe(el));
 
 });
