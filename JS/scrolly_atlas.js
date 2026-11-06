@@ -1,6 +1,9 @@
-import { draw_map } from "./draw_atlas.js";
+//este ficheiro controla a passagem dos passos do scrollytelling e desenha os steps
 import { updateMap } from "./draw_atlas.js";
+import { createSteps } from "./step_atlas.js";
 
+//desenha os steps
+createSteps().then(() => {
 
 let atlas = document.querySelector(".atlas");
 let steps = document.querySelectorAll(".atlas .step");
@@ -69,3 +72,5 @@ const observer = new IntersectionObserver(
 document
     .querySelectorAll(".step_title, .step_subtitle, .step_text")
     .forEach(el => observer.observe(el));
+
+});

@@ -1,10 +1,11 @@
-/*este ficheiro é apenas para descarregar os documentos pdf da página archive*/
+//este ficheiro é apenas para descarregar os documentos pdf da página archive
 
 let archiveData = "./data/archive.csv";
 
-function createList(link) {
+//doc é o link do ficheiro csv que é lido
+function createList(doc) {
 
-    d3.csv(link).then(data => {
+    d3.csv(doc).then(data => {
 
         //para cada um dos documentos existentes
         data.forEach(datum => {

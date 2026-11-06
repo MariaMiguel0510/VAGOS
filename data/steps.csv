@@ -1,0 +1,16 @@
+step_id,element,type,content,column,row
+1,title,title,Percentagem de alojamentos familiares clássicos Vagos,1/4,1
+1,date,date,2021,1,1
+1,text,paragraph,Sed molestie vehicula pellentesque. Nullam tincidunt euismod congue. Fusce sodales sed nibh rutrum facilisis.,4,2
+1,text,paragraph,"Praesent efficitur, dui ac molestie egestas, ligula nulla faucibus odio, at ullamcorper erat est sed sem. Cras feugiat eros in tellus consectetur sodales. Aliquam sed posuere lorem.",1/3,4
+2,title,title,Total de alojamentos familiares clássicos Vagos,1/4,1
+2,date,date,2021,1,1
+2,text,paragraph,Sed molestie vehicula pellentesque. Nullam tincidunt euismod congue. Fusce sodales sed nibh rutrum facilisis.,2/3,3
+2,text,paragraph,"Praesent efficitur, dui ac molestie egestas, ligula nulla faucibus odio, at ullamcorper erat est sed sem. Cras feugiat eros in tellus consectetur sodales. Aliquam sed posuere lorem.",3/5,4
+2,text,paragraph,Sed molestie vehicula pellentesque. Nullam tincidunt euismod congue. Fusce sodales sed nibh rutrum facilisis.,4/5,2
+3,title,title,Total de alojamentos familiares clássicos Vagos em Bom Estado,1/4,1
+3,date,date,2021,1,1
+4,title,title,Percentagem de Retenção de Alojamentos Vagos,1/4,1
+4,date,date,2021,1,1
+5,title,title,Variação da população Residente,1/4,1
+5,date,date,2011-2021,1,1
