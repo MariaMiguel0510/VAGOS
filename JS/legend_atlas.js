@@ -4,7 +4,6 @@
 export function drawLegend({
     step,
     stepData,
-    dados,
     textureScales,
     textureMapBlack,
     hiddenClasses,
