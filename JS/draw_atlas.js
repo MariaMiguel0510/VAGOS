@@ -1,61 +1,24 @@
 // este ficheiro é dedicado a desenhar o mapa de portugal por concelhos
 import { drawLegend, updateLegendVisual } from "./legend_atlas.js";
 import { createTooltip } from "./tooltip_atlas.js";
+import { setTextureScales, createTextures, getTexture, getClassIndex, getTextureMapBlack } from "./texture_atlas.js";
+import { calculateMapGeometry, resizeMap } from "./geometry_atlas.js";
 
 let m_svg = null; //guarda o mapa
+let mapPath = null;
 let mapa = null; //guarda todos os path dos concelhos
-
-let textureMapBlack = {};
-let textureMapYellow = {};
-let textureScales = {};
-
 let currentStep = 0;
 let hiddenClasses = new Set();
 let currentMapKey = null;
+let tooltipFunctions = null;
+let stepDataByIndex = new Map();// guarda os dados dos steps provenientes do CSV
+let textureScales = {};
+let resizeHandler = null;
 
-// guarda os dados dos steps provenientes do CSV
-let stepDataByIndex = new Map();
-
-export function setStepData(groupedData) {
-
-    stepDataByIndex = groupedData;
-
-}
-
-//identifica a legend_key
-function getStepLegendKey(step) {
-
-    let stepData = stepDataByIndex.get(String(step));
-
-    if (!stepData) return null;
-
-    let legendInfo = stepData.find(d =>
-        d.legend_key?.trim()
-    );
-
-    return legendInfo ? legendInfo.legend_key.trim() : null;
-}
 
 //FUNÇÃO QUE DESENHA O MAPA -----------------------------------------------------------------
 export function draw_map(geojson, csvData) {
-
-    //transforma o array do CSV num Map para procurar os id por índices e ser mais rápido
-    let csvMap = new Map(csvData.map(d => [d.id, d]));
-
-    //junta os dados do geojson com os do csv
-    geojson.features.forEach(feature => {
-
-        //procura a correspondência entre o geojson e o csv
-        let match = csvMap.get(+feature.properties.DICO);
-
-        if (match) {
-            Object.keys(match).forEach(key => {
-                if (key !== "id") {
-                    feature.properties[key] = match[key];
-                }
-            });
-        }
-    });
+    mergeAtlasData(geojson, csvData);
 
     //seleciona o contentor onde o mapa vai ser desenhado
     let container = d3.select(".draw_atlas");
@@ -68,35 +31,28 @@ export function draw_map(geojson, csvData) {
         .attr("class", "mapa_svg");
 
     //cria e aplica as texturas no mapa
-    setTextureScales();
-    createTextures();
+    textureScales = setTextureScales();
+    createTextures(m_svg);
 
-    //determina as medidas da largura da janela 
-    //para que a largura do mapa seja responsiva
-    let width = container.node().clientWidth;
-    let height = container.node().clientHeight;
+    let geometry = calculateMapGeometry(geojson);
 
-    m_svg
-        .attr("viewBox", `0 0 ${width} ${height}`);
+    mapPath = geometry.path;
 
-    let projection = d3.geoMercator()
-        .fitHeight(height, geojson);
+    let portugalBounds = geometry.bounds;
 
-    let path = d3.geoPath().projection(projection);
+    m_svg.attr(
+        "viewBox",
+        `0 0 ${geometry.width} ${geometry.height}`
+    );
 
-    let portugalBounds = path.bounds(geojson);
-
-
-    let { show, hide } = createTooltip({
+    tooltipFunctions = createTooltip({
         getCurrentMapKey: () => currentMapKey,
-        path,
+        path: mapPath,
         m_svg,
-        width,
-        portugalBounds,
-        textureScales,
-        getClassIndex,
-        isHidden
+        portugalBounds
     });
+
+    let { show, hide } = tooltipFunctions;
 
     //desenha o mapa
     mapa = m_svg
@@ -105,38 +61,20 @@ export function draw_map(geojson, csvData) {
         .data(geojson.features)
         .enter()
         .append("path")
-        .attr("d", path)
-        .attr("fill", d => {
-            let key = currentMapKey;
-            if (!key || !textureScales[key])
-                return "none";
-
-            let scale = textureScales[key];
-            let value = d.properties[key];
-
-            if (value == null || isNaN(value))
-                return "#999";
-
-            let classIndex = getClassIndex(scale, value);
-
-            if (isHidden(classIndex))
-                return "#F7F2EA";
-
-            return getTexture(scale, value);
-        })
-        .attr("stroke", "#000")   // cor do contorno
+        .attr("d", mapPath)
+        .attr("fill", getMunicipalityFill)
+        //.attr("stroke", "#000")   // cor do contorno
         .attr("stroke-width", 0.3)  // espessura
 
         //MOUSEOVER SOBRE O MAPA -> TEXTURA AMARELA E TOOLTIP APARECE
         .on("mouseover", function (event, d) {
-            if (!currentMapKey || !textureScales[currentMapKey]) return;
+            let municipalityData = getMunicipalityData(d);
 
-            let key = currentMapKey;
-            let scale = textureScales[key];
-            let value = d.properties[key];
+            if (!municipalityData) return;
+
+            let { scale, value, classIndex } = municipalityData;
 
             //se a legenda estiver escondida a tooltip não funciona
-            let classIndex = getClassIndex(scale, value);
             if (isHidden(classIndex)) return;
 
             d3.select(this)
@@ -151,14 +89,13 @@ export function draw_map(geojson, csvData) {
 
         //MOUSEOUT SOBRE O MAPA -> TEXTURA PRETA E TOOLTIP DESAPARECE
         .on("mouseout", function (event, d) {
-            if (!currentMapKey || !textureScales[currentMapKey]) return;
+            let municipalityData = getMunicipalityData(d);
 
-            let key = currentMapKey;
-            let scale = textureScales[key];
-            let value = d.properties[key];
+            if (!municipalityData) return;
+
+            let { scale, value, classIndex } = municipalityData;
 
             //se a legenda estiver escondida a tooltip não funciona
-            let classIndex = getClassIndex(scale, value);
             if (isHidden(classIndex)) return;
 
             d3.select(this)
@@ -166,39 +103,131 @@ export function draw_map(geojson, csvData) {
                 .duration(150)
                 .attr("fill", getTexture(scale, value));
 
-            hide.call(this, event, d);
+            hide();
         })
 
     if (currentMapKey) {
-        drawLegend({
-            step: currentStep,
-            stepData: stepDataByIndex.get(String(currentStep)),
-            textureScales,
-            textureMapBlack,
-            hiddenClasses,
-            isHidden,
-            onToggleClass: (index) => {
-                if (hiddenClasses.has(index)) {
-                    hiddenClasses.delete(index);
-                } else {
-                    hiddenClasses.add(index);
-                }
-
-                updateLegendVisual(
-                    d3.select(".legend_container"),
-                    textureMapBlack,
-                    hiddenClasses,
-                    isHidden
-                );
-
-                updateMapTexture();
-            }
-        });
+        updateMapLegend();
     }
+    updateMapTexture();
+
+    if (resizeHandler) {
+        window.removeEventListener("resize", resizeHandler);
+    }
+
+    resizeHandler = () => {
+        resizeMap({
+            geojson,
+            svg: m_svg,
+            paths: mapa,
+            tooltip: tooltipFunctions
+        });
+    };
+
+    window.addEventListener("resize", resizeHandler);
+}
+
+
+//GUARDA OS DADOS DOS STEPS PARA SEREM USADOS NOUTROS FICHEIROS EXTERNOS
+export function setStepData(groupedData) {
+    stepDataByIndex = groupedData;
+}
+
+//VERIFICA SE ALGUMA DAS CLASSES DA LEGENDA ESTÁ ESCONDIDA
+function isHidden(index) {
+    return hiddenClasses.has(index);
+}
+
+//IDENTIFICA QUAL É A LEGEND_KEY (CSV)
+function getStepLegendKey(step) {
+    let stepData = stepDataByIndex.get(String(step));
+
+    if (!stepData) return null;
+
+    let legendInfo = stepData.find(d => d.legend_key?.trim());
+
+    return legendInfo?.legend_key.trim() ?? null;
+}
+
+//ALTERA A VISIBILIDADE DAS CLASSES DA LEGENDA (VISÍVEIS/INVISÍVEIS)
+function toggleLegendClass(index) {
+
+    if (hiddenClasses.has(index)) {
+        hiddenClasses.delete(index);
+    } else {
+        hiddenClasses.add(index);
+    }
+
+    // atualiza o aspeto da legenda
+    updateLegendVisual(
+        d3.select(".legend_container"),
+        getTextureMapBlack(),
+        hiddenClasses,
+        isHidden
+    );
+
+    // atualiza as texturas do mapa
     updateMapTexture();
 }
 
-//FUNÇÃO QUE ATUALIZA O MAPA ----------------------------------------------------------
+//OBTÉM OS DADOS NECESSÁRIOS PARA REPRESENTAR UM DADO CONCELHO
+function getMunicipalityData(d) {
+    let key = currentMapKey;
+
+    if (!key || !textureScales[key]) return null;
+
+    let scale = textureScales[key];
+    let value = d.properties[key];
+
+    if (value == null || isNaN(value)) return null;
+
+    let classIndex = getClassIndex(scale, value);
+
+    return {
+        scale,
+        value,
+        classIndex
+    };
+}
+
+//DETERMINA A TEXTURA DE CADA CONCELHO
+function getMunicipalityFill(d) {
+    let municipalityData = getMunicipalityData(d);
+
+    if (!municipalityData) {
+        return currentMapKey ? "#999" : "none";
+    }
+
+    let { scale, value, classIndex } = municipalityData;
+
+    if (isHidden(classIndex)) return "#F7F2EA";
+
+    return getTexture(scale, value);
+}
+
+//JUNTA OS DADOS CSV COM OS DADOS GEOGRÁFICOS DO GEOJSON
+function mergeAtlasData(geojson, csvData) {
+    //cria o mapa com os dados do csv
+    let csvMap = new Map(csvData.map(d => [d.id, d]));
+
+    //percorre todos os concelhos
+    geojson.features.forEach(feature => {
+        let match = csvMap.get(+feature.properties.DICO);
+
+        if (match) {
+            Object.keys(match).forEach(key => {
+                if (key !== "id") {
+                    //associa os dados encontrados
+                    feature.properties[key] = match[key];
+                }
+            });
+        }
+    });
+
+    return geojson;
+}
+
+//ATUALIZA O MAPA ----------------------------------------------------------
 export function updateMap(step) {
 
     currentStep = step;
@@ -206,7 +235,10 @@ export function updateMap(step) {
     // identifica o mapa correspondente ao step
     currentMapKey = getStepLegendKey(step);
 
-    if (m_svg || mapa) {
+    //quando mudo de step, se tiver alguma parte da legenda invisível, depois volta a ficar visível
+    hiddenClasses.clear();
+
+    if (m_svg && mapa) {
         // svg.select("text").remove();
         // svg.append("text").text(step).attr("y", 100);
 
@@ -225,43 +257,15 @@ export function updateMap(step) {
         // apresenta novamente o mapa
         mapa.style("display", null);
 
-        drawLegend({
-            step: currentStep,
-            stepData: stepDataByIndex.get(String(step)),
-            textureScales,
-            textureMapBlack,
-            hiddenClasses,
-            isHidden,
-            onToggleClass: (index) => {
-                if (hiddenClasses.has(index)) {
-                    hiddenClasses.delete(index);
-                } else {
-                    hiddenClasses.add(index);
-                }
-
-                updateLegendVisual(
-                    d3.select(".legend_container"),
-                    textureMapBlack,
-                    hiddenClasses,
-                    isHidden
-                );
-
-                updateMapTexture();
-            }
-        });
-
+        updateMapLegend();
         updateMapTexture();
     }
 
 }
 
-
-//FUNÇÃO QUE ATUALIZA AS TEXTURAS DO MAPA --------------------------------------------
+//ATUALIZA AS TEXTURAS DO MAPA --------------------------------------------
 function updateMapTexture() {
     if (!mapa || !currentMapKey) return;
-
-    let key = currentMapKey;
-    let scale = textureScales[key];
 
     //muda a textura dos mapas consoante 
     mapa
@@ -270,124 +274,22 @@ function updateMapTexture() {
         .duration(450) //efeito transição
 
         //preenche o espaço
-        .attr("fill", d => {
-
-            let value = d.properties[key];
-
-            //de cinzento se o valor for nulo
-            if (value == null || isNaN(value))
-                return "#999";
-
-            let classIndex = getClassIndex(scale, value);
-
-            //de branco
-            if (isHidden(classIndex))
-                return "#F7F2EA";
-
-            return getTexture(scale, value);
-        });
+        .attr("fill", getMunicipalityFill)
 }
 
-
-//FUNÇÃO QUE DEFINE AS TEXTURAS DOS MAPAS ---------------------------------------------------
-function setTextureScales() {
-
-    const textureScale_0 = d3.scaleThreshold()
-        .domain([5.8, 10.4, 13.9, 18.3, 25.9]) // Threshold breakpoints
-        .range([0, 0.2, 0.7, 1, 1.2]);
-
-    textureScales["percentagem"] = textureScale_0;
-
-    const textureScale_1 = d3.scaleThreshold()
-        .domain([47, 3085, 8779, 20270, 47748]) // Threshold breakpoints
-        .range([0, 0.2, 0.7, 1, 1.2]);
-
-    textureScales["total"] = textureScale_1;
-
-    const textureScale_2 = d3.scaleThreshold()
-        .domain([30, 1529, 3953, 7978, 15343, 41002]) // Threshold breakpoints
-        .range([0, 0.2, 0.7, 1, 1.2, 1.5]);
-
-    textureScales["bons"] = textureScale_2;
-
-    const textureScale_3 = d3.scaleThreshold()
-        .domain([0.45, 1, 1.28, 1.63, 2.59]) // Threshold breakpoints
-        .range([0, 0.2, 0.7, 1, 1.2]);
-
-    textureScales["retencao"] = textureScale_3;
-
-    const textureScale_4 = d3.scaleThreshold()
-        .domain([-21.6, -20, -15, -10, -5, 0, 5, 10, 13.3]) // Threshold breakpoints
-        .range([0, 0.2, 0.5, 0.7, 1, 1.2, 1.3, 1.5, 1.6]);
-
-    textureScales["variacao"] = textureScale_4;
-}
-
-
-//FUNÇÃO QUE CRIA AS TEXTURAS -------------------------------------------------------
-function createTextures() {
-    //cria um array de largura dos quadrados para cada mapa
-    let widths = new Set();
-
-    //cria uma textura para cada largura
-    Object.values(textureScales).forEach(scale => {
-        scale.range().forEach(v => widths.add(v));
-    });
-
-    //cria uma textura para cada range
-    [...widths].forEach(width => {
-
-        //cria a textura default -> preta
-        let black_texture = textures
-            .paths()
-            .d("squares")
-            .size(4)
-            .strokeWidth(width)
-            .stroke("#000");
-
-        //textura de hover no mapa -> amarela
-        let yellow_texture = textures
-            .paths()
-            .d("squares")
-            .size(4)
-            .strokeWidth(width)
-            .stroke("#FFD700");
-
-        m_svg.call(black_texture);
-        m_svg.call(yellow_texture);
-
-        textureMapBlack[width] = black_texture;
-        textureMapYellow[width] = yellow_texture;
+//ATUALIZA AS LEGENDAS --------------------------------------------
+function updateMapLegend() {
+    drawLegend({
+        stepData: stepDataByIndex.get(String(currentStep)),
+        textureScales,
+        textureMapBlack: getTextureMapBlack(),
+        hiddenClasses,
+        isHidden,
+        onToggleClass: toggleLegendClass
     });
 }
 
-//FUNÇÃO PARA OBTER A TEXTURA --------------------------------------------------
-function getTexture(scale, value, highlight = false) {
-
-    let width = scale(value);
-
-    if (highlight) {
-        return textureMapYellow[width].url();
-    }
-
-    return textureMapBlack[width].url();
-}
 
 
 
-// verifica se está escondido
-function isHidden(index) {
-    return hiddenClasses.has(index);
-}
-
-// classifica corretamente com base nos thresholds
-function getClassIndex(scale, value) {
-    let thresholds = scale.domain();
-
-    for (let i = 0; i < thresholds.length; i++) {
-        if (value <= thresholds[i]) return i;
-    }
-
-    return thresholds.length;
-}
 

@@ -1,12 +1,20 @@
-//este ficheiro controla a passagem dos passos do scrollytelling e desenha os steps
-import { updateMap, setStepData } from "./draw_atlas.js";
-import { createSteps } from "./step_atlas.js";
+import { loadAtlasData } from "./data_atlas.js"; //carrega os dados
+import { draw_map, updateMap, setStepData } from "./draw_atlas.js"; //desenha e atualiza o mapa
+import { createSteps } from "./step_atlas.js"; //cria os passos
 
-//desenha os steps
-createSteps().then(groupedData => {
 
-    // envia os dados dos steps para o draw_atlas.js
+// carrega os dados do mapa e cria os steps em paralelo
+Promise.all([
+    loadAtlasData(),
+    createSteps()
+]).then(([[geojson, csvData], groupedData]) => {
+
+    //envia os dados dos steps para o draw_atlas.js
     setStepData(groupedData);
+
+    //envia os dados geográficos e estatísticos para desenhar o mapa
+    draw_map(geojson, csvData);
+
 
     let atlas = document.querySelector(".atlas");
     let steps = document.querySelectorAll(".atlas .step");
@@ -14,13 +22,13 @@ createSteps().then(groupedData => {
     let scroller = scrollama();
 
     function handleStepEnter(response) {
-
         steps.forEach(s => s.classList.remove("is-active"));
         response.element.classList.add("is-active");
-        //console.log(response.index);
 
-        updateMap(response.index);
+        let stepId = response.element.dataset.step;
+        updateMap(stepId);//corresponde ao identificador real do passo definido no csv
     }
+
 
     function init() {
         scroller
@@ -76,4 +84,7 @@ createSteps().then(groupedData => {
         .querySelectorAll(".step_title, .step_subtitle, .step_text")
         .forEach(el => observer.observe(el));
 
+}).catch(error => {
+    //permite receber uma indicação de erro caso um ficheiro não carregue
+    console.error("Erro ao carregar os dados do atlas:", error);
 });

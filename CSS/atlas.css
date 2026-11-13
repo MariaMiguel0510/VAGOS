@@ -42,6 +42,9 @@ html.snap-mode {
     grid-column: 1 / 4;
     grid-row: 1 / 5;
     justify-self: end;
+
+    height: 100%;
+    width: auto;
 }
 
 .mapa_svg {

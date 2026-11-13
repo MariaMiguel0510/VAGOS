@@ -2,20 +2,18 @@
 
 //FUNÇÃO QUE DESENHA A LEGENDA -----------------------------------------------------
 export function drawLegend({
-    step,
     stepData,
     textureScales,
     textureMapBlack,
     hiddenClasses,
     isHidden,
-    onToggleClass,
-    onStepUpdate
+    onToggleClass
 }) {
 
-    // procura a informação da legenda no CSV
-    let legendInfo = stepData.find(d => d.legend_key?.trim() !== "");
+    //procura a informação da legenda no CSV
+    let legendInfo = stepData?.find(d => d.legend_key?.trim());
 
-    // se o step não tiver legenda, termina a função
+    //se o step não tiver legenda, termina a função
     if (!legendInfo) {
         d3.select(".legend_container").selectAll("*").remove();
         return;
@@ -29,7 +27,7 @@ export function drawLegend({
     let scale = textureScales[key];
 
     //devolve as texturas e os intervalos a usar
-    let texture = scale.range();
+    let texture = scale.range().slice(1, -1); //elimina as primeira e últimas texturas dos range
     let thresholds = scale.domain();
 
     //seleciona o contentor onde á legenda é desenhada
@@ -41,12 +39,12 @@ export function drawLegend({
     //cria um array de labels para indicar os thresholds
     let labels = [];
 
-    //todos os valores intermédios
     for (let i = 1; i < thresholds.length; i++) {
-        labels.push(
-            `${thresholds[i - 1]} a ${thresholds[i]}`
-        );
+        labels.push(`${thresholds[i - 1]} a ${thresholds[i]}`);
     }
+
+    // última classe
+    labels.push(`> ${thresholds[thresholds.length - 1]}`);
 
     //escreve os títulos das legendas
     legend
@@ -68,7 +66,7 @@ export function drawLegend({
 
 
     //elimina o primeiro index (0) por ser < que o primeiro limite
-    let legendItems = texture.slice(1).map((t, i) => ({
+    let legendItems = texture.map((t, i) => ({
         texture: t,
         index: i + 1
     }));
@@ -128,24 +126,12 @@ export function drawLegend({
 
 
 //FUNÇÃO QUE ATUALIZA O ASPETO DA LEGENDA -----------------------------------------
-export function updateLegendVisual(
-    legend,
-    textureMap,
-    hiddenClasses,
-    isHidden
-) {
-
-    d3.selectAll(".legend_item rect")
+export function updateLegendVisual(legend, textureMap, hiddenClasses, isHidden) {
+    legend.selectAll(".legend_item rect")
         .attr("fill", d => textureMap[d.texture].url())
         .style("opacity", d => isHidden(d.index) ? 0.6 : 1);
 
     //seleciona a legenda e retira a opacidade do texto
-    d3.selectAll(".legend_item")
-        .style("opacity", d => {
-            if (isHidden(d.index)) {
-                return 0.4;
-            } else {
-                return 1;
-            }
-        });
+    legend.selectAll(".legend_item")
+        .style("opacity", d => isHidden(d.index) ? 0.4 : 1);
 }

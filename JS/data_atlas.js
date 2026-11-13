@@ -1,15 +1,14 @@
-//este ficheiro carrega os dados dos ficheiros geojson e csv para desenhar os mapas
-import { draw_map } from "./draw_atlas.js";
+//este ficheiro limita-se a carregar e devolver os dados sem chamar diretamente o mapa
+export function loadAtlasData() {
 
-let geoMap = "./data/concelhos_continente.geojson";
-let atlas = "./data/atlas.csv";
+    let geoMap = "./data/concelhos_continente.geojson";
+    let atlas = "./data/atlas.csv";
 
-Promise.all([
+    return Promise.all([
 
-    d3.json(geoMap),
+        d3.json(geoMap),
 
-    d3.dsv(";", atlas, d => {
-        return {
+        d3.dsv(";", atlas, d => ({
             id: +d.DICO.trim(),
             local: d.CONCELHO,
             zona_geral: d.NUTSII_24,
@@ -20,11 +19,6 @@ Promise.all([
             variacao: +d.V_POP_1121.replace(",", "."),
             percentagem: +d.P_VAG_21.replace(",", "."),
             retencao: +d.P_VAG_RET.replace(",", ".")
-        };
-    })
-
-]).then(([geojson, csvData]) => {
-
-    draw_map(geojson, csvData);
-
-});
+        }))
+    ]);
+}

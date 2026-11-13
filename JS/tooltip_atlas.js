@@ -3,12 +3,12 @@ export function createTooltip({
     getCurrentMapKey,
     path,
     m_svg,
-    width,
-    portugalBounds,
-    textureScales,
-    getClassIndex,
-    isHidden
+    portugalBounds
 }) {
+
+    //permite atualizar a projeção quando o mapa é redimensionado
+    let currentPath = path;
+    let currentPortugalBounds = portugalBounds;
 
     //conjunto total da tooltip
     let tooltip = d3.select("body")
@@ -31,7 +31,7 @@ export function createTooltip({
         .style("align-items", "center");
 
     //background do texto para criar efeito blur/mais suave
-    let tooltip_bg = tooltip_text_container
+    tooltip_text_container
         .append("div")
         .style("position", "absolute")
         .style("top", "0")
@@ -71,17 +71,17 @@ export function createTooltip({
 
         let key = getCurrentMapKey();
         let value = d.properties[key];
-        
+
         //escreve o texto -> nome numa linha/valor segunda linha
         tooltip_text.html(`${d.properties.local}<br>${value ?? "sem dados"}`);
 
         //calcula o centro do município 
-        let [x, y] = path.centroid(d);
+        let [x, y] = currentPath.centroid(d);
         //posição do mapa na página
         let svgRect = m_svg.node().getBoundingClientRect();
 
-        // Retângulo que contém Portugal
-        let [[minX], [maxX]] = portugalBounds;
+        //retângulo que contém Portugal
+        let [[minX], [maxX]] = currentPortugalBounds;
         let centerPortugal = (minX + maxX) / 2;//deteta se o município está à esq ou drt
 
         let margin = 30;
@@ -135,6 +135,11 @@ export function createTooltip({
             .style("opacity", 1);
     }
 
+    // atualiza a projeção e os limites geográficos
+    function updateGeometry(newPath, newBounds) {
+        currentPath = newPath;
+        currentPortugalBounds = newBounds;
+    }
 
     //MOUSEOVER TOOLTIP DESAPARECER -> ESCONDE TOOLTIP
     function hide() {
@@ -145,5 +150,5 @@ export function createTooltip({
             .style("opacity", 0);
     }
 
-    return { show, hide };
+    return { show, hide, updateGeometry };
 }
