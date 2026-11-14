@@ -3,6 +3,7 @@ import { drawLegend, updateLegendVisual } from "./legend_atlas.js";
 import { createTooltip } from "./tooltip_atlas.js";
 import { setTextureScales, createTextures, getTexture, getClassIndex, getTextureMapBlack } from "./texture_atlas.js";
 import { calculateMapGeometry, resizeMap } from "./geometry_atlas.js";
+//import { drawMunicipalityBorders } from "./geometry_atlas.js";
 
 let m_svg = null; //guarda o mapa
 let mapPath = null;
@@ -14,6 +15,7 @@ let tooltipFunctions = null;
 let stepDataByIndex = new Map();// guarda os dados dos steps provenientes do CSV
 let textureScales = {};
 let resizeHandler = null;
+let legendHasAppeared = false;
 
 
 //FUNÇÃO QUE DESENHA O MAPA -----------------------------------------------------------------
@@ -24,6 +26,11 @@ export function draw_map(geojson, csvData) {
     let container = d3.select(".draw_atlas");
     //evita criar vários mapas 
     container.selectAll("svg").remove();
+
+    /*
+    let canvas = d3.select(".draw_atlas")
+        .append("canvas")
+        .attr("class", "mapa_canvas");*/
 
     //cria o svg
     m_svg = container
@@ -37,6 +44,14 @@ export function draw_map(geojson, csvData) {
     let geometry = calculateMapGeometry(geojson);
 
     mapPath = geometry.path;
+    /*
+        drawMunicipalityBorders(
+            canvas,
+            geojson,
+            mapPath,
+            geometry.width,
+            geometry.height
+        );*/
 
     let portugalBounds = geometry.bounds;
 
@@ -65,6 +80,7 @@ export function draw_map(geojson, csvData) {
         .attr("fill", getMunicipalityFill)
         //.attr("stroke", "#000")   // cor do contorno
         .attr("stroke-width", 0.3)  // espessura
+
 
         //MOUSEOVER SOBRE O MAPA -> TEXTURA AMARELA E TOOLTIP APARECE
         .on("mouseover", function (event, d) {
@@ -105,6 +121,7 @@ export function draw_map(geojson, csvData) {
 
             hide();
         })
+
 
     if (currentMapKey) {
         updateMapLegend();
@@ -238,29 +255,63 @@ export function updateMap(step) {
     //quando mudo de step, se tiver alguma parte da legenda invisível, depois volta a ficar visível
     hiddenClasses.clear();
 
-    if (m_svg && mapa) {
-        // svg.select("text").remove();
-        // svg.append("text").text(step).attr("y", 100);
 
-        // se não existir legend_key, esconde o mapa e a legenda
+    if (m_svg && mapa) {
+
+        // Se o capítulo não tiver mapa
         if (!currentMapKey) {
 
-            mapa.style("display", "none");
+            m_svg
+                .interrupt()
+                .transition()
+                .duration(300)
+                .style("opacity", 0)
+                .on("end", function () {
+                    d3.select(this).style("visibility", "hidden");
+                });
 
             d3.select(".legend_container")
-                .selectAll("*")
-                .remove();
+                .interrupt()
+                .style("pointer-events", "none")
+                .transition()
+                .duration(300)
+                .style("opacity", 0);
 
             return;
         }
 
-        // apresenta novamente o mapa
-        mapa.style("display", null);
+        //volta a apresentar o SVG
+        m_svg
+            .interrupt()
+            .style("visibility", "visible")
+            .transition()
+            .duration(300)
+            .style("opacity", 1);
 
         updateMapLegend();
+
+        let legend = d3.select(".legend_container");
+        legend.style("pointer-events", "auto");
+
+        //se a legenda estiver a ser desenhada e for desaparecer
+        if (!legendHasAppeared) {
+            legend
+                .interrupt()
+                .style("opacity", 0)
+                .transition()
+                .duration(400)
+                .style("opacity", 1);
+
+            legendHasAppeared = true; //legenda escondida
+        } else {
+            //se não legenda aparece
+            legend
+                .interrupt()
+                .style("opacity", 1);
+        }
+
         updateMapTexture();
     }
-
 }
 
 //ATUALIZA AS TEXTURAS DO MAPA --------------------------------------------
