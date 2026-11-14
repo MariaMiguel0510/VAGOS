@@ -44,14 +44,6 @@ export function draw_map(geojson, csvData) {
     let geometry = calculateMapGeometry(geojson);
 
     mapPath = geometry.path;
-    /*
-        drawMunicipalityBorders(
-            canvas,
-            geojson,
-            mapPath,
-            geometry.width,
-            geometry.height
-        );*/
 
     let portugalBounds = geometry.bounds;
 
@@ -78,8 +70,8 @@ export function draw_map(geojson, csvData) {
         .append("path")
         .attr("d", mapPath)
         .attr("fill", getMunicipalityFill)
-        //.attr("stroke", "#000")   // cor do contorno
-        .attr("stroke-width", 0.3)  // espessura
+        .attr("stroke", "#000")   // cor do contorno
+        .attr("stroke-width", 0.5)  // espessura
 
 
         //MOUSEOVER SOBRE O MAPA -> TEXTURA AMARELA E TOOLTIP APARECE

@@ -46,15 +46,7 @@ html.snap-mode {
     height: 100%;
     width: auto;
 }
-/*.mapa_svg, .mapa_canvas {
-    grid-column: 1 / 4;
-    grid-row: 1 / 5;
-    justify-self: end;
-    width: auto;
-    height: 100%;
-    display: block;
-    position: absolute;
-}*/
+
 .mapa_svg {
     width: auto;
     height: 100%;
