@@ -81,7 +81,7 @@ Promise.all([
         });
 
     document
-        .querySelectorAll(".step_title, .step_subtitle, .step_text")
+        .querySelectorAll(".step_title, .step_subtitle, .step_text, .step h1, .step h2, .step h5")
         .forEach(el => observer.observe(el));
 
 }).catch(error => {

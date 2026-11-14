@@ -1,6 +1,7 @@
 step_id,element,type,content,column,row,legend_key,legend_title
 0,heading,heading,ATLAS,1/2,1,,
-0,subtitle,subtitle,Habitação Vaga em Portugal,1/2,1,,
+0,subtitle,subtitle,Habitação Vaga em Portugal,1/4,1,,
+0,intertitle,intertitle,Introdução,1,3,,
 0,text,paragraph,Um alojamento vago é uma habitação que não está a ser usada como habitação permanente nem como segunda habitação de uso sazonal. Qual a dimensão e características deste fenómeno em Portugal? Consulta o Atlas da Habitação Vaga na íntegra aqui (link) ou navega aqui para uma visão geral das análises realizadas e das conclusões.,1/4,4,,
 1,title,title,Percentagem de alojamentos familiares clássicos Vagos,1/4,1,percentagem,"Percentagem de alojamentos vagos e de segunda habitação (subocupados), em relação ao número total de alojamentos"
 1,date,date,2021,1,1,,

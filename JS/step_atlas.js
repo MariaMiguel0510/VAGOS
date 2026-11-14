@@ -32,6 +32,24 @@ export function createSteps() {
 
                 //identifica o tipo de elemento
                 switch (element.type) {
+                    //--------------------------------------------------------
+                    //estes três elementos são dedicados ao step 0
+
+                    //se o elemento for heading cria um h1
+                    case "heading":
+                        newElement = step.append("h1")
+                        break;
+
+                    //se o elemento for subtitle cria um h2
+                    case "subtitle":
+                        newElement = step.append("h2")
+                        break;
+
+                    //se o elemento for intertitle cria um h3
+                    case "intertitle":
+                        newElement = step.append("h5")
+                        break;
+                    //---------------------------------------------------------
 
                     //se o elemento for title cria um h2
                     case "title":
@@ -62,7 +80,7 @@ export function createSteps() {
                     .style("grid-column", element.column)
                     .style("grid-row", element.row);
 
-                //coloca os títulos e as datas dentro de um só contentor
+                //coloca os títulos e as datas dentro de um só contentor - title
                 //(contentor de título/subtítulo)
                 if (element.type === "title" || element.type === "date") {
                     title.node().appendChild(newElement.node());
