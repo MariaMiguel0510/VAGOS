@@ -35,7 +35,10 @@ export function draw_map(geojson, csvData) {
     //cria o svg
     m_svg = container
         .append("svg")
-        .attr("class", "mapa_svg");
+        .attr("class", "mapa_svg")
+        //faz com que o stroke não apareça inicialmente
+        .style("visibility", currentMapKey ? "visible" : "hidden")
+        .style("opacity", currentMapKey ? 1 : 0);
 
     //cria e aplica as texturas no mapa
     textureScales = setTextureScales();
