@@ -10,11 +10,11 @@ html.snap-mode {
     top: 101vh;
     display: grid;
     width: 100%;
-    min-height: 600vh;
+    min-height: 3300vh;
 
-    grid-template-columns: repeat(8, 0.8fr);
+    grid-template-columns: repeat(10, 0.8fr);
     grid-template-rows: repeat(4, 100vh);
-    padding: 0vh 6vw 5vh 6vw;
+    padding: 0vh 6vw 5vh 6.45vw;
     gap: 5px;
 
     box-sizing: border-box;
@@ -22,14 +22,13 @@ html.snap-mode {
 
 /*----------------------------------MAP-----------------------------*/
 .atlas_grid_container {
-    grid-column: 5 / 9;
+    grid-column: 6 / 11;
     grid-row: 1 / 5;
 
     display: grid;
-    grid-template-columns: repeat(4, 0.8fr);
+    grid-template-columns: repeat(5, 0.8fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 5px;
-
 
     position: sticky;
     top: 5vh;
@@ -56,10 +55,11 @@ html.snap-mode {
 
 /*----------------------------------LEGEND-----------------------------*/
 .legend_container {
-    grid-column: 4;
+    grid-column: 4/6;
     grid-row: 3/5;
     align-self: start;
     justify-self: start;
+    margin-left: 5vw;
 
     display: flex;
     flex-direction: column;
@@ -74,6 +74,7 @@ html.snap-mode {
     margin-top: 0;
     margin-bottom: 1vh;
     cursor: pointer;
+    line-height: 2.5vh;
 }
 
 .legend_title:hover {
@@ -105,13 +106,14 @@ html.snap-mode {
 
 .legend_disclaimer {
     display: none;
-    grid-column: 4;
+    grid-column: 4/6;
     grid-row: 2;
     align-self: end;
-    justify-self: start;
 
     padding: 0;
     margin: 0;
+    margin-left: 5vw;
+    margin-right: 2vw;
     font-size: 1.7vh;
     line-height: 2vh;
 }
@@ -120,7 +122,7 @@ html.snap-mode {
 /*ocupa a grelha do atlas toda*/
 .steps-container {
     position: relative;
-    grid-column: 1 / 9;
+    grid-column: 1 / 11;
     grid-row: 1 / 5;
 }
 
@@ -130,7 +132,7 @@ html.snap-mode {
     color: black;
     display: grid;
 
-    grid-template-columns: repeat(8, 0.8fr);
+    grid-template-columns: repeat(10, 0.8fr);
     grid-template-rows: repeat(4, 1fr);
     gap: 5px;
 }
@@ -152,33 +154,30 @@ html.snap-mode {
 .step>h2 {
     font-size: 3.5vh;
     font-weight: 600;
-    align-self: self-end;
     transform: translateY(20px);
 }
 
-.step>h5{
-    align-self: self-end;
-    margin:0;
+.step>h5 {
+    margin: 0;
     transform: translateY(20px);
 }
+
 /*---------------------------------------------------------------------------*/
 
-.step_title {
+.step_title_container {
     margin-top: 6vh;
-    grid-column: 1 / 4;
-    grid-row: 1;
     transform: translateY(10px);
 }
 
-.step_title>h2 {
-    font-size: 4.5vh;
-    line-height: 5vh;
+.step_title_container>h2 {
+    font-size: 4.43vh;
+    line-height: 4.8vh;
     font-weight: 600;
     margin: 0;
     margin-bottom: 1.4vh;
 }
 
-.step_title>h3 {
+.step_title_container>h3 {
     font-family: "Crimson", serif;
     font-style: italic;
     font-size: 3vh;
@@ -193,7 +192,7 @@ html.snap-mode {
     margin: 0;
 }
 
-.step_title,
+.step_title_container,
 .step_subtitle,
 .step_text,
 .step>h1,
@@ -205,9 +204,9 @@ html.snap-mode {
         transform .8s ease-out;
 }
 
-.step > h1.text-visible,
-.step > h2.text-visible,
-.step > h5.text-visible,
+.step>h1.text-visible,
+.step>h2.text-visible,
+.step>h5.text-visible,
 .text-visible {
     opacity: 1;
     transform: translateY(0);
@@ -215,17 +214,21 @@ html.snap-mode {
 
 /*----------------------------------DOWNLOAD-----------------------------*/
 .download_container {
-    grid-column: 8 / 9;
+    grid-column: 9 / 11;
     grid-row: 1 / 5;
     position: sticky;
     width: 100%;
     height: 90vh;
     top: 5vh;
     pointer-events: none;
+    margin-left: 5.1vw;
 
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     gap: 5px;
+
+    opacity: 0;
+    visibility: hidden;
 }
 
 .download {

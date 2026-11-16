@@ -22,8 +22,8 @@ export function createSteps() {
                 .attr("data-step", stepId);
 
             //cria o container dos títulos
-            let title = step.append("div")
-                .attr("class", "step_title");
+            let title_container = step.append("div")
+                .attr("class", "step_title_container");
 
             //para cada elemento pertencente ao step/um step específico
             elements.forEach(element => {
@@ -53,12 +53,19 @@ export function createSteps() {
 
                     //se o elemento for title cria um h2
                     case "title":
-                        newElement = step.append("h2")
+                        newElement = title_container.append("h2")
+                            .attr("class", "step_title");
+
+                        // A posição do contentor vem do título
+                        title_container
+                            .style("grid-column", element.column)
+                            .style("grid-row", element.row);
                         break;
 
                     //se o elemento for date cria um h3
                     case "date":
-                        newElement = step.append("h3")
+                        newElement = title_container.append("h3")
+                            .attr("class", "step_subtitle");
                         break;
 
                     //se o elemento for paragraph cria um p
@@ -75,22 +82,30 @@ export function createSteps() {
                 //coloca o conteúdo
                 newElement.text(element.content);
 
-                //define a posição dos elementos na grelha
-                newElement
-                    .style("grid-column", element.column)
-                    .style("grid-row", element.row);
+                //os elementos individuais continuam a ter posições próprias,
+                //exceto título e data, que pertencem ao mesmo contentor
+                if (element.type !== "title" && element.type !== "date") {
+                    newElement
+                        .style("grid-column", element.column)
+                        .style("grid-row", element.row);
+                }
 
-                //coloca os títulos e as datas dentro de um só contentor - title
-                //(contentor de título/subtítulo)
-                if (element.type === "title" || element.type === "date") {
-                    title.node().appendChild(newElement.node());
+                //define o alinhamento vertical dentro da célula
+                let verticalAlign = {
+                    start: "start",
+                    center: "center",
+                    end: "end"
+                };
+
+                //alinha os elementos verticalmente dentro das células da grelha - coluna align
+                if (verticalAlign[element.align]) {
+                    newElement.style("align-self", verticalAlign[element.align]);
                 }
 
             });
 
         });
 
-        //devolve os dados do CSV para serem utilizados noutros ficheiros .js
         return groupedData;
 
     });

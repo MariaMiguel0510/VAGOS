@@ -2,8 +2,7 @@
 import { drawLegend, updateLegendVisual } from "./legend_atlas.js";
 import { createTooltip } from "./tooltip_atlas.js";
 import { setTextureScales, createTextures, getTexture, getClassIndex, getTextureMapBlack } from "./texture_atlas.js";
-import { calculateMapGeometry, resizeMap } from "./geometry_atlas.js";
-//import { drawMunicipalityBorders } from "./geometry_atlas.js";
+import { calculateMapGeometry, resizeMap, correctGeoJSONOrientation } from "./geometry_atlas.js";
 
 let m_svg = null; //guarda o mapa
 let mapPath = null;
@@ -22,15 +21,13 @@ let legendHasAppeared = false;
 export function draw_map(geojson, csvData) {
     mergeAtlasData(geojson, csvData);
 
+    //corrige a orientação das coordenadas para desenhar o mapa apenas uma vez
+    correctGeoJSONOrientation(geojson);
+
     //seleciona o contentor onde o mapa vai ser desenhado
     let container = d3.select(".draw_atlas");
     //evita criar vários mapas 
     container.selectAll("svg").remove();
-
-    /*
-    let canvas = d3.select(".draw_atlas")
-        .append("canvas")
-        .attr("class", "mapa_canvas");*/
 
     //cria o svg
     m_svg = container
@@ -247,15 +244,17 @@ export function updateMap(step) {
     // identifica o mapa correspondente ao step
     currentMapKey = getStepLegendKey(step);
 
+    //controla a visibilidade do download
+    let download = d3.select(".download_container");
+    let legend = d3.select(".legend_container");
+
     //quando mudo de step, se tiver alguma parte da legenda invisível, depois volta a ficar visível
     hiddenClasses.clear();
-
 
     if (m_svg && mapa) {
 
         // Se o capítulo não tiver mapa
         if (!currentMapKey) {
-
             m_svg
                 .interrupt()
                 .transition()
@@ -265,12 +264,21 @@ export function updateMap(step) {
                     d3.select(this).style("visibility", "hidden");
                 });
 
-            d3.select(".legend_container")
+            legend
                 .interrupt()
                 .style("pointer-events", "none")
                 .transition()
                 .duration(300)
                 .style("opacity", 0);
+
+            download
+                .interrupt()
+                .transition()
+                .duration(300)
+                .style("opacity", 0)
+                .on("end", function () {
+                    d3.select(this).style("visibility", "hidden");
+                });
 
             return;
         }
@@ -283,9 +291,15 @@ export function updateMap(step) {
             .duration(300)
             .style("opacity", 1);
 
+        download
+            .interrupt()
+            .style("visibility", "visible")
+            .transition()
+            .duration(300)
+            .style("opacity", 1);
+
         updateMapLegend();
 
-        let legend = d3.select(".legend_container");
         legend.style("pointer-events", "auto");
 
         //se a legenda estiver a ser desenhada e for desaparecer

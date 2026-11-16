@@ -5,31 +5,6 @@ export function calculateMapGeometry(geojson) {
     //garantindo que cada concelho é representado corretamente na projeção cartográfica
     //abrange geometrias do tipo Polygon e MultiPolygon
 
-    //percorre todos os concelhos
-    geojson.features.forEach(feature => {
-
-        //guarda a geometria do concelho atual.
-        const geometry = feature.geometry;
-
-        //verifica se a geometria é um polígono simples.
-        if (geometry.type === "Polygon") {
-
-            //percorre o perímetro de cada polígono e inverte a ordem
-            // das coordenadas de cada um 
-            geometry.coordinates = geometry.coordinates.map(ring =>
-                ring.slice().reverse()
-            );
-        }
-        //verifica se a geometria é composta por vários polígonos
-        if (geometry.type === "MultiPolygon") {
-            //percorre cada polígono e os respetivos perímetros,
-            //invertendo a ordem das coordenadas de cada um
-            geometry.coordinates = geometry.coordinates.map(polygon =>
-                polygon.map(ring => ring.slice().reverse())
-            );
-        }
-    });
-
     let container = d3.select(".draw_atlas");
     let height = container.node().clientHeight;
 
@@ -55,6 +30,34 @@ export function calculateMapGeometry(geojson) {
         width: bounds[1][0],
         height: bounds[1][1]
     };
+}
+
+
+//CORRIGE A ORIENTAÇÃO DOS POLÍGONOS
+export function correctGeoJSONOrientation(geojson) {
+
+    geojson.features.forEach(feature => {
+
+        const geometry = feature.geometry;
+
+        if (geometry.type === "Polygon") {
+
+            geometry.coordinates = geometry.coordinates.map(ring =>
+                ring.slice().reverse()
+            );
+
+        }
+
+        if (geometry.type === "MultiPolygon") {
+
+            geometry.coordinates = geometry.coordinates.map(polygon =>
+                polygon.map(ring => ring.slice().reverse())
+            );
+
+        }
+    });
+
+    return geojson;
 }
 
 
