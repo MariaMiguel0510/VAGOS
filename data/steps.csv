@@ -35,7 +35,7 @@ De seguida respondemos a algumas perguntas sobre este conjunto de alojamentos va
 10,title,title,"A situação é similar em todo o país?",1/5,1,start,total,"Alojamentos vagos por perfil territorial"
 10,date,date,2021,1,1,start,,
 10,intertitle,intertitle,Pressão extrema (19 municípios),2/4,2,end,,
-10,text,paragraph,"Núcleos centrais das áreas metropolitanas e áreas sob forte pressão turística, como o  Algarve. Marcado por preços muito elevados, forte dinâmica imobiliária e elevada procura externa. Mais de 80% dos vagos encontram-se em estado de conservação aceitável, apontando para elevada retenção de imóveis como reserva de valor e/ou grande incidência de usos não residenciais e sazonais.",2/4,3,start,,
+10,text,paragraph,"Núcleos centrais das áreas metropolitanas e áreas sob forte pressão turística, como o  Algarve. Marcado por preços muito elevados, forte dinâmica imobiliária e elevada procura externa. Mais de 80% dos vagos encontram-se em estado de conservação aceitável, apontando para elevada retenção de imóveis como reserva de valor e/ou grande incidência de usos não residenciais e sazonais.",2/4,3/5,start,,
 11,title,title,"A situação é similar em todo o país?",1/5,1,start,total,"Alojamentos vagos por perfil territorial"
 11,date,date,2021,1,1,start,,
 11,intertitle,intertitle,Metrópoles sob pressão (22 municípios),2/5,2,end,,
@@ -47,7 +47,7 @@ De seguida respondemos a algumas perguntas sobre este conjunto de alojamentos va
 13,title,title,"A situação é similar em todo o país?",1/5,1,start,total,"Alojamentos vagos por perfil territorial"
 13,date,date,2021,1,1,start,,
 13,intertitle,intertitle,Fragilidade iminente (76 municípios),2/5,2,end,,
-13,text,paragraph,"Territórios em perda de população, onde o número de alojamentos vagos só não é maior porque parte substancial dos alojamentos que estão desocupados a maior parte do ano, são classificados como residências secundárias. São as casas daqueles que partiram e mantêm ainda algum laço com o lugar de origem. Mas estes casos estão agora a transformar-se progressivamente em alojamentos vagos, levando estes territórios a convergir com os Territórios em Perda.",2/4,3,start,,
+13,text,paragraph,"Territórios em perda de população, onde o número de alojamentos vagos só não é maior porque parte substancial dos alojamentos que estão desocupados a maior parte do ano, são classificados como residências secundárias. São as casas daqueles que partiram e mantêm ainda algum laço com o lugar de origem. Mas estes casos estão agora a transformar-se progressivamente em alojamentos vagos, levando estes territórios a convergir com os Territórios em Perda.",2/4,3/5,start,,
 14,title,title,"A situação é similar em todo o país?",1/5,1,start,total,"Alojamentos vagos por perfil territorial"
 14,date,date,2021,1,1,start,,
 14,intertitle,intertitle,Territórios em Perda (91 municípios),2/5,2,end,,
@@ -65,7 +65,7 @@ De seguida respondemos a algumas perguntas sobre este conjunto de alojamentos va
 17,text,paragraph,"Enquanto nos territórios em perda, uma grande parte do elevado número de alojamentos vagos está em mau estado de conservação, nas áreas de maior procura, cerca de 80% dos alojamentos vagos estão em condições de conservação que permitiriam a sua rápida ocupação.",1/3,2,end,,
 18,title,title,"As habitações vagas são suficientes para as carências habitacionais identificadas?",1/5,1,start,percentagem,"Carências Habitacionais por tipo de território e relação com alojamentos vagos em bom estado"
 18,date,date,2021-2025,1,1,start,,
-18,text,paragraph,"Em qualquer um dos tipos de território identificados, o número de alojamentos vagos em bom estado de conservação ou com necessidade de pequenas reparações supera em muito as carências habitacionais identificadas nas Estratégias Locais de Habitação.",1/3,2,center,,
+18,text,paragraph,"Em qualquer um dos tipos de território identificados, o número de alojamentos vagos em bom estado de conservação ou com necessidade de pequenas reparações supera em muito as carências habitacionais identificadas nas Estratégias Locais de Habitação.",1/3,2,end,,
 19,title,title,"As habitações vagas são suficientes para as carências habitacionais identificadas?",1/5,1,start,percentagem,"Carências Habitacionais por tipo de território e relação com alojamentos vagos em bom estado"
 19,date,date,2021-2025,1,1,start,,
 19,text,paragraph,"Na Pressão Extrema, que alberga 19 municípios, as carências habitacionais identificadas equivalem a 37% dos alojamentos vagos em condições de ser habitados.",1/3,2,center,,
@@ -79,7 +79,7 @@ De seguida respondemos a algumas perguntas sobre este conjunto de alojamentos va
 21,text,paragraph,"Nas áreas de maior procura - Pressão Extrema, os números estão agora a descer, depois de décadas de subida contínua, sinal de que o mercado começa a absorver estes imóveis sem uso.",1/3,2,end,,
 22,title,title,"Porque se identifica a retenção como causa nas áreas de maior procura?",1/5,1,start,total,"Alojamentos vagos por perfil territorial"
 22,date,date,2021,1,1,start,,
-22,text,paragraph,"Olhemos para os casos do Porto e Lisboa.",1/3,2,start,,
+22,text,paragraph,"Olhemos para os casos do Porto e Lisboa.",1/4,2,start,,
 23,title,title,"Porque se identifica a retenção como causa nas áreas de maior procura?",1/5,1,start,total,"Alojamentos vagos por perfil territorial"
 23,date,date,2021,1,1,start,,
 23,text,paragraph,"Apesar de se tratarem de dois dos municípios com maior procura - e maior necessidade de habitação - concentram, de acordo com os últimos Censos, 68.018 alojamentos vagos.",1/3,2,start,,
@@ -88,7 +88,7 @@ De seguida respondemos a algumas perguntas sobre este conjunto de alojamentos va
 24,text,paragraph,"Na sua maioria, estes imóveis não se mantêm desocupados por estarem muito degradados - 83% estão em bom estado de conservação ou necessitam apenas de pequenas reparações.",1/3,3,start,,
 25,title,title,"Porque se identifica a retenção como causa nas áreas de maior procura?",1/5,1,start,total,"Alojamentos vagos por perfil territorial"
 25,date,date,2021,1,1,start,,
-25,text,paragraph,"Também não se mantêm desocupados por estarem em áreas onde ninguém quer viver ou comprar. Ao contrário do que sucede nos municípios mais periféricos, aqui a maior percentagem de alojamentos vagos encontra-se nas áreas onde os preços são mais elevados. Ou seja, nas áreas onde há maior procura, mas também onde há maior expectativa de obter elevado rendimento.",1/3,2,start,,
+25,text,paragraph,"Também não se mantêm desocupados por estarem em áreas onde ninguém quer viver ou comprar. Ao contrário do que sucede nos municípios mais periféricos, aqui a maior percentagem de alojamentos vagos encontra-se nas áreas onde os preços são mais elevados. Ou seja, nas áreas onde há maior procura, mas também onde há maior expectativa de obter elevado rendimento.",1/3,2/4,start,,
 26,title,title,"Porque é que isto é um problema?",1/5,1,start,,
 26,text,paragraph,"A habitação vaga - em particular a que se localiza em áreas urbanas qualificadas, bem infra-estruturadas e onde há procura por habitação - é um custo que todos pagamos, por várias razões:",1/3,2,start,,
 27,title,title,"Porque é que isto é um problema?",1/5,1,start,,

@@ -80,9 +80,9 @@ Promise.all([
             threshold: 0.25
         });
 
-    document
-        .querySelectorAll(".step_title_container, .step_subtitle, .step_text, .step h1, .step h2, .step h5")
-        .forEach(el => observer.observe(el));
+   document
+    .querySelectorAll(".step_title, .step_subtitle, .step_text, .step_pin_inner h1, .step_pin_inner h2, .step_pin_inner h5")
+    .forEach(el => observer.observe(el));
 
 }).catch(error => {
     //permite receber uma indicação de erro caso um ficheiro não carregue
